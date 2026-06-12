@@ -13,7 +13,7 @@
     </div>
 
     <!-- Create Form -->
-    <form action="{{ route('admin.posts.store') }}" method="POST" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         @csrf
 
         <!-- Main Content (2 cols) -->
@@ -42,8 +42,8 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label for="featured_image" class="block text-sm font-semibold text-neutral-300 mb-1.5">Featured Image URL</label>
-                        <input type="url" name="featured_image" id="featured_image" value="{{ old('featured_image') }}" placeholder="https://unsplash.com/photos/..." class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan placeholder:text-neutral-600">
+                        <label for="featured_image" class="block text-sm font-semibold text-neutral-300 mb-1.5">Featured Image File</label>
+                        <input type="file" name="featured_image" id="featured_image" accept="image/*" class="w-full px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-neutral-400 text-sm focus:outline-none focus:border-brand-cyan">
                     </div>
 
                     <div>

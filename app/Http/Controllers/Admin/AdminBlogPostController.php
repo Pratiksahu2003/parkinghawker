@@ -54,7 +54,7 @@ class AdminBlogPostController extends Controller
             'author_role' => 'nullable|string|max:100',
             'excerpt' => 'nullable|string',
             'content' => 'required|string',
-            'featured_image' => 'nullable|url|max:500',
+            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
             'youtube_url' => 'nullable|url|max:500',
             'tags' => 'nullable|string',
             'meta_title' => 'nullable|string|max:255',
@@ -73,6 +73,16 @@ class AdminBlogPostController extends Controller
 
         $validated['is_featured'] = $request->has('is_featured');
         $validated['slug'] = Str::slug($validated['title']);
+
+        // Handle direct file upload for featured image
+        if ($request->hasFile('featured_image')) {
+            $file = $request->file('featured_image');
+            $filename = time() . '_' . Str::slug($validated['title']) . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('blog', $filename, 'public');
+            $validated['featured_image'] = '/storage/' . $path;
+        } else {
+            $validated['featured_image'] = null;
+        }
 
         // Ensure unique slug
         $baseSlug = $validated['slug'];
@@ -110,7 +120,7 @@ class AdminBlogPostController extends Controller
             'author_role' => 'nullable|string|max:100',
             'excerpt' => 'nullable|string',
             'content' => 'required|string',
-            'featured_image' => 'nullable|url|max:500',
+            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
             'youtube_url' => 'nullable|url|max:500',
             'tags' => 'nullable|string',
             'meta_title' => 'nullable|string|max:255',
@@ -128,6 +138,17 @@ class AdminBlogPostController extends Controller
         }
 
         $validated['is_featured'] = $request->has('is_featured');
+
+        // Handle direct file upload for featured image
+        if ($request->hasFile('featured_image')) {
+            $file = $request->file('featured_image');
+            $filename = time() . '_' . Str::slug($validated['title']) . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('blog', $filename, 'public');
+            $validated['featured_image'] = '/storage/' . $path;
+        } else {
+            // If no file uploaded, retain the old image url/path
+            unset($validated['featured_image']);
+        }
 
         // Update slug if title changed
         if ($post->title !== $validated['title']) {

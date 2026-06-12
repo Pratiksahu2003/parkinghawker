@@ -13,6 +13,8 @@
     <title>{{ $title ?? 'Admin' }} — ParkingHawker Admin</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('logo/favicon.png') }}">
 </head>
 <body class="min-h-screen font-sans overflow-x-hidden selection:bg-brand-cyan/30 selection:text-brand-cyan" x-data="{ sidebarOpen: true, mobileSidebar: false }">
 
@@ -25,10 +27,8 @@
             <!-- Logo -->
             <div class="h-16 flex items-center gap-2.5 px-6 border-b border-white/5">
                 <div class="h-8 w-8 rounded-lg bg-gradient-to-tr from-brand-cyan to-brand-purple p-0.5 flex items-center justify-center">
-                    <div class="h-full w-full rounded-[6px] bg-dark-primary flex items-center justify-center">
-                        <svg class="h-4 w-4 text-brand-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                        </svg>
+                    <div class="h-full w-full rounded-[6px] bg-dark-primary flex items-center justify-center p-1">
+                        <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-full w-auto object-contain">
                     </div>
                 </div>
                 <span class="text-lg font-bold tracking-tight text-white">

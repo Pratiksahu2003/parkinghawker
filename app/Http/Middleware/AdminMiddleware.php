@@ -13,16 +13,20 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (app()->environment('local') && !auth()->check()) {
-            $adminUser = \App\Models\User::where('is_admin', true)->first();
-            if ($adminUser) {
-                auth()->login($adminUser);
+        if (!auth()->check()) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Unauthorized.'], 401);
             }
+
+            return redirect()->route('login');
         }
 
-        if (!auth()->check() || !auth()->user()->is_admin) {
+        $user = auth()->user();
+
+        // Enforce admin check (either is_admin flag or Spatie admin role)
+        if (!$user->is_admin && !$user->hasRole('admin')) {
             if ($request->expectsJson()) {
-                return response()->json(['message' => 'Unauthorized.'], 403);
+                return response()->json(['message' => 'You do not have admin access.'], 403);
             }
 
             abort(403, 'You do not have admin access.');

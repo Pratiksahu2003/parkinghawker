@@ -29,6 +29,8 @@
             }
         });
     </script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('logo/favicon.png') }}">
 </head>
 <body class="min-h-screen flex flex-col font-sans overflow-x-hidden selection:bg-brand-cyan/30 selection:text-brand-cyan">
 
@@ -46,11 +48,8 @@
             <!-- Animated Logo -->
             <a href="{{ route('home') }}" class="group flex items-center gap-2.5 z-50">
                 <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-brand-cyan to-brand-purple p-0.5 flex items-center justify-center shadow-lg shadow-brand-cyan/25 transition-transform duration-500 group-hover:scale-105">
-                    <div class="h-full w-full rounded-[10px] bg-dark-primary flex items-center justify-center">
-                        <svg class="h-5.5 w-5.5 text-brand-cyan group-hover:text-white transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        </svg>
+                    <div class="h-full w-full rounded-[10px] bg-dark-primary flex items-center justify-center p-1.5">
+                        <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-full w-auto object-contain">
                     </div>
                 </div>
                 <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-transparent group-hover:to-brand-cyan transition-all duration-300">
@@ -214,10 +213,8 @@
             <div class="flex flex-col gap-4">
                 <a href="{{ route('home') }}" class="flex items-center gap-2.5">
                     <div class="h-9 w-9 rounded-lg bg-gradient-to-tr from-brand-cyan to-brand-purple p-0.5 flex items-center justify-center shadow-lg shadow-brand-cyan/25">
-                        <div class="h-full w-full rounded-[7px] bg-dark-primary flex items-center justify-center">
-                            <svg class="h-4.5 w-4.5 text-brand-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                            </svg>
+                        <div class="h-full w-full rounded-[7px] bg-dark-primary flex items-center justify-center p-1.5">
+                            <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-full w-auto object-contain">
                         </div>
                     </div>
                     <span class="text-lg font-bold tracking-tight text-white">

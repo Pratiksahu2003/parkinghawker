@@ -13,7 +13,7 @@
     </div>
 
     <!-- Edit Form -->
-    <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         @csrf
         @method('PUT')
 
@@ -43,8 +43,14 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label for="featured_image" class="block text-sm font-semibold text-neutral-300 mb-1.5">Featured Image URL</label>
-                        <input type="url" name="featured_image" id="featured_image" value="{{ old('featured_image', $post->featured_image) }}" placeholder="https://unsplash.com/photos/..." class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan placeholder:text-neutral-600">
+                        <label for="featured_image" class="block text-sm font-semibold text-neutral-300 mb-1.5">Featured Image File</label>
+                        @if($post->featured_image)
+                            <div class="mb-3 relative group">
+                                <img src="{{ $post->featured_image }}" alt="Current featured image" class="h-20 w-32 object-cover rounded-xl border border-white/10">
+                                <span class="text-[10px] text-neutral-500 mt-1 block">Current Image</span>
+                            </div>
+                        @endif
+                        <input type="file" name="featured_image" id="featured_image" accept="image/*" class="w-full px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-neutral-400 text-sm focus:outline-none focus:border-brand-cyan">
                     </div>
 
                     <div>

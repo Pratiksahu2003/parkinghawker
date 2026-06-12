@@ -24,10 +24,10 @@
                 </a>
                 @foreach($categories as $cat)
                     <a 
-                        href="{{ route('blog.index', ['category' => $cat]) }}" 
-                        class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors {{ ($filters['category'] ?? '') == $cat ? 'bg-white text-dark-primary' : 'text-neutral-400 hover:text-white hover:bg-white/5' }}"
+                        href="{{ route('blog.category', $cat->slug) }}" 
+                        class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors {{ ($filters['category'] ?? '') == $cat->name ? 'bg-white text-dark-primary' : 'text-neutral-400 hover:text-white hover:bg-white/5' }}"
                     >
-                        {{ $cat }}
+                        {{ $cat->name }}
                     </a>
                 @endforeach
             </div>

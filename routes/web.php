@@ -33,7 +33,13 @@ Route::post('/contact', [PageController::class, 'submitContact'])->name('contact
 
 // Blog Pages
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/category/{categorySlug}', [BlogController::class, 'category'])->name('blog.category');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+
+// Auth Routes
+Route::get('/login', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class, 'login']);
+Route::post('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 // ─── Admin Dashboard ─────────────────────────────────────
 Route::prefix('admin')->middleware(['admin'])->name('admin.')->group(function () {

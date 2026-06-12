@@ -18,9 +18,20 @@ class BlogController extends Controller
     {
         $filters = $request->only(['query', 'category']);
         $articles = $this->blogService->searchArticles($filters);
-        $categories = $this->blogService->getCategories();
+        $categories = \App\Models\BlogCategory::active()->ordered()->get();
 
         return view('blog.index', compact('articles', 'categories', 'filters'));
+    }
+
+    public function category($categorySlug)
+    {
+        $categoryModel = \App\Models\BlogCategory::active()->where('slug', $categorySlug)->firstOrFail();
+        $filters = ['category' => $categoryModel->name];
+        $articles = $this->blogService->searchArticles($filters);
+        $categories = \App\Models\BlogCategory::active()->ordered()->get();
+        $activeCategory = $categoryModel->name;
+
+        return view('blog.index', compact('articles', 'categories', 'filters', 'activeCategory'));
     }
 
     public function show($slug)
