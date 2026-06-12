@@ -109,7 +109,7 @@
                 parkingType: 'all',
                 evRequired: false,
                 suggestions: [],
-                allLocations: {!! json_encode($locations) !!},
+                allLocations: @js($locations),
                 errors: {},
                 showSuggestions: false,
                 
