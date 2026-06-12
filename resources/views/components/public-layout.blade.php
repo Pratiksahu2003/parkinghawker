@@ -77,30 +77,30 @@
                     <div x-show="activeMegamenu === 'parking'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-2" class="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-[600px] z-50" style="display: none;">
                         <div class="glass-panel rounded-2xl p-6 grid grid-cols-2 gap-6 shadow-2xl">
                             <div>
-                                <h4 class="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">Popular Locations</h4>
+                                <h4 class="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">Global Locations</h4>
                                 <ul class="space-y-2">
                                     <li>
-                                        <a href="{{ route('parking.index', ['city' => 'San Francisco']) }}" class="flex items-center gap-2 text-sm text-neutral-300 hover:text-brand-cyan transition-colors">
+                                        <a href="{{ route('parking.index', ['city' => 'London']) }}" class="flex items-center gap-2 text-sm text-neutral-300 hover:text-brand-cyan transition-colors">
                                             <span class="h-1.5 w-1.5 rounded-full bg-brand-cyan"></span>
-                                            San Francisco
+                                            London, UK
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('parking.index', ['city' => 'New York']) }}" class="flex items-center gap-2 text-sm text-neutral-300 hover:text-brand-cyan transition-colors">
+                                        <a href="{{ route('parking.index', ['city' => 'Tokyo']) }}" class="flex items-center gap-2 text-sm text-neutral-300 hover:text-brand-cyan transition-colors">
                                             <span class="h-1.5 w-1.5 rounded-full bg-brand-purple"></span>
-                                            New York
+                                            Tokyo, JP
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('parking.index', ['city' => 'Los Angeles']) }}" class="flex items-center gap-2 text-sm text-neutral-300 hover:text-brand-cyan transition-colors">
+                                        <a href="{{ route('parking.index', ['city' => 'Paris']) }}" class="flex items-center gap-2 text-sm text-neutral-300 hover:text-brand-cyan transition-colors">
                                             <span class="h-1.5 w-1.5 rounded-full bg-brand-accent"></span>
-                                            Los Angeles
+                                            Paris, FR
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('parking.index', ['city' => 'Chicago']) }}" class="flex items-center gap-2 text-sm text-neutral-300 hover:text-brand-cyan transition-colors">
+                                        <a href="{{ route('parking.index', ['city' => 'Singapore']) }}" class="flex items-center gap-2 text-sm text-neutral-300 hover:text-brand-cyan transition-colors">
                                             <span class="h-1.5 w-1.5 rounded-full bg-brand-cyan"></span>
-                                            Chicago
+                                            Singapore, SG
                                         </a>
                                     </li>
                                 </ul>
@@ -256,10 +256,12 @@
             <div class="flex flex-col gap-4">
                 <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-300">Parking Cities</h3>
                 <ul class="space-y-2.5 text-sm">
-                    <li><a href="{{ route('parking.index', ['city' => 'San Francisco']) }}" class="text-neutral-400 hover:text-white transition-colors">San Francisco, CA</a></li>
-                    <li><a href="{{ route('parking.index', ['city' => 'New York']) }}" class="text-neutral-400 hover:text-white transition-colors">New York, NY</a></li>
-                    <li><a href="{{ route('parking.index', ['city' => 'Los Angeles']) }}" class="text-neutral-400 hover:text-white transition-colors">Los Angeles, CA</a></li>
-                    <li><a href="{{ route('parking.index', ['city' => 'Chicago']) }}" class="text-neutral-400 hover:text-white transition-colors">Chicago, IL</a></li>
+                    <li><a href="{{ route('parking.index', ['city' => 'London']) }}" class="text-neutral-400 hover:text-white transition-colors">London, UK</a></li>
+                    <li><a href="{{ route('parking.index', ['city' => 'Tokyo']) }}" class="text-neutral-400 hover:text-white transition-colors">Tokyo, JP</a></li>
+                    <li><a href="{{ route('parking.index', ['city' => 'Paris']) }}" class="text-neutral-400 hover:text-white transition-colors">Paris, FR</a></li>
+                    <li><a href="{{ route('parking.index', ['city' => 'Singapore']) }}" class="text-neutral-400 hover:text-white transition-colors">Singapore, SG</a></li>
+                    <li><a href="{{ route('parking.index', ['city' => 'Sydney']) }}" class="text-neutral-400 hover:text-white transition-colors">Sydney, AU</a></li>
+                    <li><a href="{{ route('parking.index', ['city' => 'New York']) }}" class="text-neutral-400 hover:text-white transition-colors">New York, US</a></li>
                 </ul>
             </div>
 

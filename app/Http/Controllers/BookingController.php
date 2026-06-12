@@ -35,11 +35,15 @@ class BookingController extends Controller
         $request->validate([
             'spot_id' => 'required|integer',
             'duration' => 'required|string',
+            'ev_addon' => 'nullable|boolean',
+            'wash_addon' => 'nullable|boolean',
         ]);
 
         $calculation = $this->parkingService->calculatePrice(
             $request->input('spot_id'),
-            $request->input('duration')
+            $request->input('duration'),
+            (bool) $request->input('ev_addon', false),
+            (bool) $request->input('wash_addon', false)
         );
 
         return response()->json($calculation);
@@ -55,6 +59,8 @@ class BookingController extends Controller
             'entry_date' => 'required|date|after_or_equal:today',
             'entry_time' => 'required|string',
             'payment_method' => 'required|string',
+            'ev_addon' => 'nullable|string',
+            'wash_addon' => 'nullable|string',
         ]);
 
         $spot = $this->parkingService->getParkingById($request->input('spot_id'));
@@ -65,7 +71,9 @@ class BookingController extends Controller
         // Generate fake reservation summary
         $pricing = $this->parkingService->calculatePrice(
             $request->input('spot_id'),
-            $request->input('duration')
+            $request->input('duration'),
+            $request->has('ev_addon'),
+            $request->has('wash_addon')
         );
 
         $booking = [
@@ -77,6 +85,8 @@ class BookingController extends Controller
             'entry_datetime' => $request->input('entry_date') . ' ' . $request->input('entry_time'),
             'duration' => $pricing['duration_label'],
             'total_price' => $pricing['final_total'],
+            'currency_symbol' => $pricing['currency_symbol'],
+            'currency_code' => $pricing['currency_code'],
             'passcode' => rand(100000, 999999),
         ];
 

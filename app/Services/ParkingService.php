@@ -33,7 +33,7 @@ class ParkingService
         return $this->parkingRepository->getUniqueLocations();
     }
 
-    public function calculatePrice(int $spotId, string $duration): array
+    public function calculatePrice(int $spotId, string $duration, bool $evAddon = false, bool $washAddon = false): array
     {
         $spot = $this->getParkingById($spotId);
         if (!$spot) {
@@ -42,6 +42,10 @@ class ParkingService
 
         $pricePerHour = $spot['price_per_hour'];
         $pricePerDay = $spot['price_per_day'];
+        $evFee = $spot['ev_fee'] ?? 15.00;
+        $washFee = $spot['wash_fee'] ?? 30.00;
+        $currencySymbol = $spot['currency_symbol'] ?? '$';
+        $currencyCode = $spot['currency_code'] ?? 'USD';
 
         // Determine price based on duration string (e.g. "2 hours", "1 day", "3 days")
         $value = (int) filter_var($duration, FILTER_SANITIZE_NUMBER_INT);
@@ -65,6 +69,12 @@ class ParkingService
             }
         }
 
+        $evSurcharge = $evAddon ? $evFee : 0;
+        $washSurcharge = $washAddon ? $washFee : 0;
+        $subtotal = $totalPrice + $evSurcharge + $washSurcharge;
+        $tax = round($subtotal * 0.08, 2);
+        $finalTotal = round($subtotal + $tax, 2);
+
         return [
             'spot_id' => $spotId,
             'spot_name' => $spot['name'],
@@ -72,9 +82,12 @@ class ParkingService
             'duration_label' => $label,
             'unit_price' => $pricePerHour,
             'total_price' => $totalPrice,
-            'ev_surcharge' => 15.00,
-            'tax' => round($totalPrice * 0.08, 2),
-            'final_total' => round($totalPrice * 1.08, 2),
+            'ev_surcharge' => $evSurcharge,
+            'wash_surcharge' => $washSurcharge,
+            'tax' => $tax,
+            'final_total' => $finalTotal,
+            'currency_symbol' => $currencySymbol,
+            'currency_code' => $currencyCode,
         ];
     }
 }

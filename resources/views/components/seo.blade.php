@@ -43,41 +43,41 @@
 @else
     <!-- Default LocalBusiness Schema -->
     <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "ParkingFacility",
-            "name": "ParkingHawker Premium Parking",
-            "description": "Premium automated parking and EV charging reservations nationwide.",
-            "url": "{{ url('/') }}",
-            "logo": "{{ $defaultImage }}",
-            "priceRange": "$$",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "455 Mission St",
-                "addressLocality": "San Francisco",
-                "addressRegion": "CA",
-                "postalCode": "94105",
-                "addressCountry": "US"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 37.7897,
-                "longitude": -122.4014
-            },
-            "openingHoursSpecification": {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday",
-                    "Sunday"
+        {!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'ParkingFacility',
+            'name' => 'ParkingHawker Premium Parking',
+            'description' => 'Premium automated parking and EV charging reservations nationwide.',
+            'url' => url('/'),
+            'logo' => $defaultImage,
+            'priceRange' => '$$',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => '455 Mission St',
+                'addressLocality' => 'San Francisco',
+                'addressRegion' => 'CA',
+                'postalCode' => '94105',
+                'addressCountry' => 'US'
+            ],
+            'geo' => [
+                '@type' => 'GeoCoordinates',
+                'latitude' => 37.7897,
+                'longitude' => -122.4014
+            ],
+            'openingHoursSpecification' => [
+                '@type' => 'OpeningHoursSpecification',
+                'dayOfWeek' => [
+                    'Monday',
+                    'Tuesday',
+                    'Wednesday',
+                    'Thursday',
+                    'Friday',
+                    'Saturday',
+                    'Sunday'
                 ],
-                "opens": "00:00",
-                "closes": "23:59"
-            }
-        }
+                'opens' => '00:00',
+                'closes' => '23:59'
+            ]
+        ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
 @endif

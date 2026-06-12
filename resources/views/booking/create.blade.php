@@ -21,12 +21,15 @@
         cardCvc: '',
         evAddon: false,
         washAddon: false,
+        currencySymbol: '{{ $spot['currency_symbol'] ?? '$' }}',
+        currencyCode: '{{ $spot['currency_code'] ?? 'USD' }}',
         
         // Dynamic Pricing states
         pricing: {
             unit_price: {{ $spot['price_per_hour'] }},
             total_price: {{ $spot['price_per_hour'] * 3 }},
             ev_surcharge: 0,
+            wash_surcharge: 0,
             tax: 0,
             final_total: 0
         },
@@ -40,6 +43,13 @@
             this.$watch('washAddon', value => this.updatePricing());
         },
 
+        formatMoney(amount) {
+            if (this.currencyCode === 'JPY') {
+                return this.currencySymbol + Math.round(amount).toLocaleString();
+            }
+            return this.currencySymbol + parseFloat(amount).toFixed(2);
+        },
+
         updatePricing() {
             fetch('{{ route('booking.calculate') }}', {
                 method: 'POST',
@@ -49,24 +59,21 @@
                 },
                 body: JSON.stringify({
                     spot_id: this.spotId,
-                    duration: this.duration
+                    duration: this.duration,
+                    ev_addon: this.evAddon,
+                    wash_addon: this.washAddon
                 })
             })
             .then(res => res.json())
             .then(data => {
                 if (!data.error) {
-                    let total = data.total_price;
-                    let evFee = this.evAddon ? 15.00 : 0;
-                    let washFee = this.washAddon ? 30.00 : 0;
-                    let calculatedTax = (total + evFee + washFee) * 0.08;
-                    
                     this.pricing = {
                         unit_price: data.unit_price,
-                        total_price: total,
-                        ev_surcharge: evFee,
-                        wash_surcharge: washFee,
-                        tax: parseFloat(calculatedTax.toFixed(2)),
-                        final_total: parseFloat((total + evFee + washFee + calculatedTax).toFixed(2))
+                        total_price: data.total_price,
+                        ev_surcharge: data.ev_surcharge,
+                        wash_surcharge: data.wash_surcharge,
+                        tax: data.tax,
+                        final_total: data.final_total
                     };
                 }
             });
@@ -198,9 +205,17 @@
                             <!-- EV charger addon -->
                             @if($spot['amenities']['ev_charging'])
                                 <label class="flex items-start gap-4 p-5 rounded-2xl border cursor-pointer transition-colors" :class="evAddon ? 'bg-brand-cyan/5 border-brand-cyan' : 'bg-white/5 border-white/10'">
-                                    <input type="checkbox" x-model="evAddon" class="h-5 w-5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0 mt-1">
+                                    <input type="checkbox" x-model="evAddon" name="ev_addon" value="1" class="h-5 w-5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0 mt-1">
                                     <div>
-                                        <strong class="text-sm text-white block mb-0.5">EV Supercharging Station (+ $15.00 flat)</strong>
+                                        <strong class="text-sm text-white block mb-0.5">
+                                            EV Supercharging Station (+ 
+                                            @if(($spot['currency_code'] ?? '') === 'JPY')
+                                                {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['ev_fee'] ?? 15, 0) }}
+                                            @else
+                                                {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['ev_fee'] ?? 15, 2) }}
+                                            @endif
+                                            flat)
+                                        </strong>
                                         <p class="text-xs text-neutral-400">Secure a dedicated spot equipped with a Level-3 supercharger. Your battery status can be tracked dynamically.</p>
                                     </div>
                                 </label>
@@ -209,9 +224,17 @@
                             <!-- Wash addon -->
                             @if($spot['amenities']['wash'])
                                 <label class="flex items-start gap-4 p-5 rounded-2xl border cursor-pointer transition-colors" :class="washAddon ? 'bg-brand-cyan/5 border-brand-cyan' : 'bg-white/5 border-white/10'">
-                                    <input type="checkbox" x-model="washAddon" class="h-5 w-5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0 mt-1">
+                                    <input type="checkbox" x-model="washAddon" name="wash_addon" value="1" class="h-5 w-5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0 mt-1">
                                     <div>
-                                        <strong class="text-sm text-white block mb-0.5">Deluxe Car Wash Service (+ $30.00 flat)</strong>
+                                        <strong class="text-sm text-white block mb-0.5">
+                                            Deluxe Car Wash Service (+ 
+                                            @if(($spot['currency_code'] ?? '') === 'JPY')
+                                                {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['wash_fee'] ?? 30, 0) }}
+                                            @else
+                                                {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['wash_fee'] ?? 30, 2) }}
+                                            @endif
+                                            flat)
+                                        </strong>
                                         <p class="text-xs text-neutral-400">Professional exterior eco-friendly hand-wash while you park. Return to a perfectly cleaned, glossy vehicle.</p>
                                     </div>
                                 </label>
