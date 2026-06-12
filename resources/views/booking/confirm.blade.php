@@ -95,19 +95,50 @@
                 </div>
             </div>
 
+            <!-- Live Transit Checklist -->
+            <div class="p-6 border-t border-white/5 space-y-3">
+                <span class="text-[10px] text-neutral-500 uppercase tracking-widest block font-semibold">Live System Sync Status</span>
+                <ul class="space-y-2 text-xs">
+                    <li class="flex items-center gap-2 text-brand-accent font-medium">
+                        <span>✓</span>
+                        <span>License Plate <strong class="font-mono text-white">{{ $booking['vehicle_plate'] }}</strong> registered in camera scanner API</span>
+                    </li>
+                    <li class="flex items-center gap-2 text-brand-accent font-medium">
+                        <span>✓</span>
+                        <span>Dedicated slot blocked under Booking Ref ID</span>
+                    </li>
+                    <li class="flex items-center gap-2 text-brand-accent font-medium">
+                        <span>✓</span>
+                        <span>Support Attendants notified for check-in assistance</span>
+                    </li>
+                </ul>
+            </div>
+
             <!-- Footer terms -->
             <div class="px-6 py-4 bg-white/5 text-[10px] text-neutral-500 border-t border-white/5">
                 ⚠ Please align your license plate clearly at gate cameras for automated ticketless check-in.
             </div>
         </div>
 
-        <div class="flex items-center justify-center gap-4">
-            <button onclick="window.print()" class="px-6 py-3 rounded-xl border border-white/10 hover:bg-white/5 text-neutral-400 hover:text-white transition-colors text-sm font-semibold">
-                Print Pass
-            </button>
-            <a href="{{ route('home') }}" class="magnetic-btn px-6 py-3 rounded-xl bg-brand-cyan hover:bg-brand-cyan/95 text-dark-primary font-bold text-sm transition-colors">
-                Return Home
-            </a>
+        <div class="flex flex-col items-center gap-4">
+            <div class="flex items-center justify-center gap-4">
+                <button onclick="window.print()" class="px-6 py-3 rounded-xl border border-white/10 hover:bg-white/5 text-neutral-400 hover:text-white transition-colors text-sm font-semibold">
+                    Print Pass
+                </button>
+                <a href="{{ route('home') }}" class="magnetic-btn px-6 py-3 rounded-xl bg-brand-cyan hover:bg-brand-cyan/95 text-dark-primary font-bold text-sm transition-colors">
+                    Return Home
+                </a>
+            </div>
+            
+            <!-- Google/Apple Wallet Integration -->
+            <div class="flex gap-3 pt-2">
+                <a href="#" onclick="alert('Google Wallet Sync Active')" class="px-4 py-2 rounded-xl bg-slate-900 border border-white/10 hover:border-white/20 text-white text-[10px] font-bold flex items-center gap-2 transition-all">
+                    <span>🍏 Add to Apple Wallet</span>
+                </a>
+                <a href="#" onclick="alert('Google Wallet Sync Active')" class="px-4 py-2 rounded-xl bg-slate-900 border border-white/10 hover:border-white/20 text-white text-[10px] font-bold flex items-center gap-2 transition-all">
+                    <span>🤖 Add to Google Wallet</span>
+                </a>
+            </div>
         </div>
     </div>
 </x-public-layout>

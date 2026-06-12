@@ -134,4 +134,120 @@
         </div>
     </section>
 
+    <!-- Pillar Values Section -->
+    <section class="py-20 relative border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan">Operational Core</h2>
+                <h3 class="text-3xl font-bold text-white tracking-tight">Our Core Value Pillars</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/5 space-y-3">
+                    <span class="text-2xl">🔒</span>
+                    <strong class="text-white block font-bold text-sm">Compromise-Free Security</strong>
+                    <p class="text-xs text-neutral-500 leading-relaxed">
+                        Continuous surveillance, audited hosts, and high-frequency guard patrols to protect your assets.
+                    </p>
+                </div>
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/5 space-y-3">
+                    <span class="text-2xl">🤖</span>
+                    <strong class="text-white block font-bold text-sm">Full Smart Automation</strong>
+                    <p class="text-xs text-neutral-500 leading-relaxed">
+                        Say goodbye to paper tickets and lost gate keys. License plates are your modern digital access key.
+                    </p>
+                </div>
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/5 space-y-3">
+                    <span class="text-2xl">📈</span>
+                    <strong class="text-white block font-bold text-sm">Elastic Scalability</strong>
+                    <p class="text-xs text-neutral-500 leading-relaxed">
+                        Expanding rapidly across urban centers. Driveways, corporate spaces, and airports unified under one platform.
+                    </p>
+                </div>
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/5 space-y-3">
+                    <span class="text-2xl">🤝</span>
+                    <strong class="text-white block font-bold text-sm">Client-First Design</strong>
+                    <p class="text-xs text-neutral-500 leading-relaxed">
+                        Seamless interfaces, rapid digital bookings, instant cancellations, and a friendly 24/7 support channel.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability Section -->
+    <section class="py-24 relative overflow-hidden bg-dark-secondary">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            <div class="lg:col-span-7 space-y-6">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-accent">Green Initiative</span>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                    Commitment to Net-Zero <br>
+                    <span class="text-gradient-emerald">Urban Transit & Charging</span>
+                </h3>
+                <p class="text-sm text-neutral-400 leading-relaxed">
+                    ParkHawker is committed to reducing environmental impact in dense cities. We actively prioritize partner garages that utilize solar panels, optimize grid usage, and offer level-3 DC chargers powered by 100% renewable electricity.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-6 pt-2 text-xs">
+                    <div>
+                        <strong class="text-white block text-2xl font-bold font-mono">400+ MT</strong>
+                        <span class="text-neutral-500 mt-1 block">Carbon emissions prevented annually</span>
+                    </div>
+                    <div>
+                        <strong class="text-brand-accent block text-2xl font-bold font-mono">100%</strong>
+                        <span class="text-neutral-500 mt-1 block">Renewable power at premium EV decks</span>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-5 flex justify-center">
+                <!-- Visual Decarbonization card graphic -->
+                <div class="glass-panel rounded-3xl p-6 w-full max-w-sm border border-brand-accent/20 bg-brand-accent/5">
+                    <span class="text-3xl block mb-4">🍃</span>
+                    <strong class="text-white block text-sm mb-2">Solar Net-Meter Status</strong>
+                    <div class="space-y-3 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">Total Generation</span>
+                            <span class="text-white font-semibold">14,250 kWh this month</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">Grid Offset Rate</span>
+                            <span class="text-brand-accent font-bold">120% (Net Positive)</span>
+                        </div>
+                        <div class="w-full bg-white/5 h-1.5 rounded-full overflow-hidden mt-1">
+                            <div class="bg-brand-accent h-full rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regional Corporate Offices -->
+    <section class="py-24 animate-reveal-up">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan">Our Presence</h2>
+                <h3 class="text-3xl font-bold text-white tracking-tight">Regional Offices</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-panel rounded-3xl p-6 space-y-3 animate-reveal-fade">
+                    <strong class="text-white block text-md">Mumbai (HQ)</strong>
+                    <span class="text-xs text-brand-cyan font-mono block">Plot 12, Maker Chambers VI, Nariman Point</span>
+                    <p class="text-xs text-neutral-500">Corporate strategy, executive lounge, and core platform development operations.</p>
+                </div>
+                <div class="glass-panel rounded-3xl p-6 space-y-3 animate-reveal-fade">
+                    <strong class="text-white block text-md">New Delhi (CP Hub)</strong>
+                    <span class="text-xs text-brand-purple font-mono block">Block E, Connaught Place, New Delhi</span>
+                    <p class="text-xs text-neutral-500">Government relations, national partnerships, and northern zone hosting operations.</p>
+                </div>
+                <div class="glass-panel rounded-3xl p-6 space-y-3 animate-reveal-fade">
+                    <strong class="text-white block text-md">Bengaluru (R&D)</strong>
+                    <span class="text-xs text-brand-accent font-mono block">100 Feet Rd, Indiranagar, Bengaluru</span>
+                    <p class="text-xs text-neutral-500">Smart hardware testing, automated bollard R&D, and computer vision API engineering.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </x-public-layout>

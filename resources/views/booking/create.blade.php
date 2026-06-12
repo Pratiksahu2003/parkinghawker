@@ -152,6 +152,24 @@
                                 <span x-show="errors.vehiclePlate" x-text="errors.vehiclePlate" class="text-xs text-red-400 mt-1" style="display: none;"></span>
                             </div>
 
+                            <!-- Vehicle Nickname & Color -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col">
+                                    <label class="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">Vehicle Nickname</label>
+                                    <input type="text" placeholder="e.g. White SUV" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
+                                </div>
+                                <div class="flex flex-col" x-data="{ selectedColor: 'silver' }">
+                                    <label class="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">Vehicle Color</label>
+                                    <div class="flex items-center gap-2 py-2.5">
+                                        <button type="button" @click="selectedColor = 'white'" :class="selectedColor === 'white' ? 'ring-2 ring-brand-cyan' : ''" class="h-6 w-6 rounded-full bg-white border border-white/20 focus:outline-none"></button>
+                                        <button type="button" @click="selectedColor = 'black'" :class="selectedColor === 'black' ? 'ring-2 ring-brand-cyan' : ''" class="h-6 w-6 rounded-full bg-black border border-white/20 focus:outline-none"></button>
+                                        <button type="button" @click="selectedColor = 'silver'" :class="selectedColor === 'silver' ? 'ring-2 ring-brand-cyan' : ''" class="h-6 w-6 rounded-full bg-slate-400 border border-white/20 focus:outline-none"></button>
+                                        <button type="button" @click="selectedColor = 'blue'" :class="selectedColor === 'blue' ? 'ring-2 ring-brand-cyan' : ''" class="h-6 w-6 rounded-full bg-blue-600 border border-white/20 focus:outline-none"></button>
+                                        <button type="button" @click="selectedColor = 'red'" :class="selectedColor === 'red' ? 'ring-2 ring-brand-cyan' : ''" class="h-6 w-6 rounded-full bg-red-600 border border-white/20 focus:outline-none"></button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Vehicle Type -->
                             <div class="flex flex-col">
                                 <label class="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">Vehicle Classification</label>
@@ -239,6 +257,24 @@
                                     </div>
                                 </label>
                             @endif
+
+                            <!-- Valet addon -->
+                            <label class="flex items-start gap-4 p-5 rounded-2xl border cursor-pointer transition-colors bg-white/5 border-white/10" x-data="{ valetSelected: false }" :class="valetSelected ? 'bg-brand-cyan/5 border-brand-cyan' : 'bg-white/5 border-white/10'">
+                                <input type="checkbox" @click="valetSelected = !valetSelected" class="h-5 w-5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0 mt-1">
+                                <div>
+                                    <strong class="text-sm text-white block mb-0.5">Smart Valet Service (Promo: FREE)</strong>
+                                    <p class="text-xs text-neutral-400">Leave your keys with our certified attendant. Your car will be parked securely and brought to the exit bay upon return.</p>
+                                </div>
+                            </label>
+
+                            <!-- Luggage storage addon -->
+                            <label class="flex items-start gap-4 p-5 rounded-2xl border cursor-pointer transition-colors bg-white/5 border-white/10" x-data="{ luggageSelected: false }" :class="luggageSelected ? 'bg-brand-cyan/5 border-brand-cyan' : 'bg-white/5 border-white/10'">
+                                <input type="checkbox" @click="luggageSelected = !luggageSelected" class="h-5 w-5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0 mt-1">
+                                <div>
+                                    <strong class="text-sm text-white block mb-0.5">Complimentary Luggage Protection (FREE)</strong>
+                                    <p class="text-xs text-neutral-400">Drop off heavy bags at the service hub. They will be stored in our climate-controlled lockbox and returned to your car trunk.</p>
+                                </div>
+                            </label>
                         </div>
 
                         <div class="pt-6 flex justify-between">
@@ -359,9 +395,24 @@
                             <span class="text-white" x-text="formatMoney(pricing.tax)"></span>
                         </div>
                         
-                        <div class="flex justify-between font-bold text-white pt-4 border-t border-white/5">
-                            <span>Total Billing</span>
-                            <span class="text-lg text-brand-cyan" x-text="formatMoney(pricing.final_total)"></span>
+                        <!-- Coupon code input -->
+                        <div class="space-y-2 pt-4 border-t border-white/5" x-data="{ couponCode: '', couponApplied: false, discountAmount: 0 }">
+                            <label class="text-xs font-semibold text-neutral-400 uppercase tracking-wider block">Discount Coupon</label>
+                            <div class="flex gap-2">
+                                <input type="text" x-model="couponCode" placeholder="e.g. PARK15" class="flex-1 px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-brand-cyan uppercase">
+                                <button type="button" @click="if(couponCode.toUpperCase() === 'PARK15') { couponApplied = true; discountAmount = pricing.final_total * 0.15; } else { alert('Invalid Coupon Code'); }" class="px-3.5 rounded-xl bg-brand-cyan text-dark-primary font-bold text-xs hover:bg-brand-cyan/90 transition-colors">
+                                    Apply
+                                </button>
+                            </div>
+                            <div x-show="couponApplied" x-transition class="text-xxs font-semibold text-brand-accent flex justify-between mt-1" style="display: none;">
+                                <span>✓ Coupon PARK15 (15% Off) Applied!</span>
+                                <span x-text="'-' + formatMoney(discountAmount)"></span>
+                            </div>
+                            
+                            <div class="flex justify-between font-bold text-white pt-4 border-t border-white/5">
+                                <span>Total Billing</span>
+                                <span class="text-lg text-brand-cyan" x-text="formatMoney(couponApplied ? pricing.final_total - discountAmount : pricing.final_total)"></span>
+                            </div>
                         </div>
                     </div>
                 </div>

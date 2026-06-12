@@ -307,6 +307,274 @@
         </div>
     </section>
 
+    <!-- Section A: How It Works (Interactive Process Stepper) -->
+    <section class="py-24 relative overflow-hidden bg-dark-secondary/40 border-t border-b border-white/5" x-data="{ currentStep: 1 }">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan">Seamless Transit</h2>
+                <p class="text-3xl sm:text-4xl font-bold tracking-tight text-white">How Smart Parking Works</p>
+            </div>
+
+            <!-- Stepper Buttons -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                <button @click="currentStep = 1" :class="currentStep === 1 ? 'border-brand-cyan bg-brand-cyan/5 text-brand-cyan' : 'border-white/5 bg-white/5 text-neutral-400 hover:text-white'" class="flex items-center gap-3 p-5 rounded-2xl border text-left transition-all duration-300">
+                    <span class="text-xl font-bold font-mono">01</span>
+                    <div>
+                        <span class="block text-xs font-bold uppercase tracking-wider">Search & Filter</span>
+                        <span class="block text-[10px] text-neutral-500 font-normal mt-0.5">Find nearby spots</span>
+                    </div>
+                </button>
+                <button @click="currentStep = 2" :class="currentStep === 2 ? 'border-brand-cyan bg-brand-cyan/5 text-brand-cyan' : 'border-white/5 bg-white/5 text-neutral-400 hover:text-white'" class="flex items-center gap-3 p-5 rounded-2xl border text-left transition-all duration-300">
+                    <span class="text-xl font-bold font-mono">02</span>
+                    <div>
+                        <span class="block text-xs font-bold uppercase tracking-wider">Book Spot</span>
+                        <span class="block text-[10px] text-neutral-500 font-normal mt-0.5">Add EV charging & detailing</span>
+                    </div>
+                </button>
+                <button @click="currentStep = 3" :class="currentStep === 3 ? 'border-brand-cyan bg-brand-cyan/5 text-brand-cyan' : 'border-white/5 bg-white/5 text-neutral-400 hover:text-white'" class="flex items-center gap-3 p-5 rounded-2xl border text-left transition-all duration-300">
+                    <span class="text-xl font-bold font-mono">03</span>
+                    <div>
+                        <span class="block text-xs font-bold uppercase tracking-wider">Get Smart Pass</span>
+                        <span class="block text-[10px] text-neutral-500 font-normal mt-0.5">Instantly in your portal</span>
+                    </div>
+                </button>
+                <button @click="currentStep = 4" :class="currentStep === 4 ? 'border-brand-cyan bg-brand-cyan/5 text-brand-cyan' : 'border-white/5 bg-white/5 text-neutral-400 hover:text-white'" class="flex items-center gap-3 p-5 rounded-2xl border text-left transition-all duration-300">
+                    <span class="text-xl font-bold font-mono">04</span>
+                    <div>
+                        <span class="block text-xs font-bold uppercase tracking-wider">Park & Charge</span>
+                        <span class="block text-[10px] text-neutral-500 font-normal mt-0.5">Automated check-in scans</span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Stepper Content Cards -->
+            <div class="glass-panel rounded-3xl p-8 relative overflow-hidden">
+                <div x-show="currentStep === 1" x-transition.opacity.duration.300ms class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-6 space-y-4">
+                        <span class="inline-block px-3 py-1 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-[10px] font-bold uppercase text-brand-cyan">Phase One: Search</span>
+                        <h4 class="text-2xl font-bold text-white">Find Your Perfect Spot Instantly</h4>
+                        <p class="text-sm text-neutral-400 leading-relaxed">
+                            Enter your destination city and date/time. Our smart engine filters covered, underground, or open decks, matching vehicle limits, heights, and security standards.
+                        </p>
+                        <ul class="space-y-2 text-xs text-neutral-300">
+                            <li class="flex items-center gap-2">✔ Filter by EV Charging, valet services, or security guards</li>
+                            <li class="flex items-center gap-2">✔ Live distance updates to your final destination</li>
+                            <li class="flex items-center gap-2">✔ Check peak hourly rates and real-time occupancy</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-6 flex justify-center">
+                        <div class="relative bg-dark-primary/60 border border-white/5 rounded-2xl p-6 w-full max-w-sm font-mono text-xs text-neutral-400 space-y-4">
+                            <div class="flex items-center justify-between border-b border-white/5 pb-2">
+                                <span class="text-brand-cyan font-bold">query_status.bin</span>
+                                <span class="h-2 w-2 rounded-full bg-brand-cyan animate-pulse"></span>
+                            </div>
+                            <div class="space-y-1">
+                                <p>&gt; Scanning Mumbai Bandra Kurla Complex...</p>
+                                <p class="text-brand-accent">&gt; 3 garages found with EV level-3 capacity</p>
+                                <p>&gt; Sorting by closest distance (120m, 180m, 290m)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div x-show="currentStep === 2" x-transition.opacity.duration.300ms class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center" style="display: none;">
+                    <div class="md:col-span-6 space-y-4">
+                        <span class="inline-block px-3 py-1 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-[10px] font-bold uppercase text-brand-purple">Phase Two: Reservation</span>
+                        <h4 class="text-2xl font-bold text-white">Customize & Confirm Details</h4>
+                        <p class="text-sm text-neutral-400 leading-relaxed">
+                            Select check-in add-ons. Need a quick top-up charge while you attend a meeting? Opt for EV Supercharging. Want a pristine vehicle upon return? Add a professional waterless car wash.
+                        </p>
+                        <ul class="space-y-2 text-xs text-neutral-300">
+                            <li class="flex items-center gap-2">✔ Flexible parking options (hourly, daily, monthly billing)</li>
+                            <li class="flex items-center gap-2">✔ Complete insurance add-ons up to ₹2,00,000</li>
+                            <li class="flex items-center gap-2">✔ Secure checkout using cards, UPI, net banking</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-6 flex justify-center">
+                        <div class="relative bg-dark-primary/60 border border-white/5 rounded-2xl p-6 w-full max-w-sm font-mono text-xs text-neutral-400 space-y-3">
+                            <div class="flex justify-between text-white border-b border-white/5 pb-2 font-bold">
+                                <span>Reservation Addons</span>
+                                <span>Selected</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>1x Premium Spot BKC</span>
+                                <span class="text-white">₹150.00 / hr</span>
+                            </div>
+                            <div class="flex justify-between text-brand-cyan">
+                                <span>+ Level-3 EV Plug</span>
+                                <span>₹150.00 (Fixed)</span>
+                            </div>
+                            <div class="flex justify-between text-brand-purple">
+                                <span>+ Eco Waterless Wash</span>
+                                <span>₹300.00 (Fixed)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div x-show="currentStep === 3" x-transition.opacity.duration.300ms class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center" style="display: none;">
+                    <div class="md:col-span-6 space-y-4">
+                        <span class="inline-block px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-[10px] font-bold uppercase text-brand-accent">Phase Three: Pass Code</span>
+                        <h4 class="text-2xl font-bold text-white">Receive Your Smart Gate Pass</h4>
+                        <p class="text-sm text-neutral-400 leading-relaxed">
+                            Once booked, a digital boarding pass is instantly generated. This contains your slot location details, navigation link, entry/exit guidelines, and a high-security encrypted QR code.
+                        </p>
+                        <ul class="space-y-2 text-xs text-neutral-300">
+                            <li class="flex items-center gap-2">✔ Digital PDF or print-ready gate check pass</li>
+                            <li class="flex items-center gap-2">✔ Integrated Apple and Google Wallet pass sync</li>
+                            <li class="flex items-center gap-2">✔ Real-time status update link</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-6 flex justify-center">
+                        <div class="bg-gradient-to-tr from-brand-cyan to-brand-purple p-0.5 rounded-2xl shadow-xl w-60 overflow-hidden">
+                            <div class="bg-dark-primary rounded-[14px] p-5 text-center space-y-4 text-xs">
+                                <span class="text-xxs uppercase tracking-wider text-brand-cyan font-bold">Digital Smart Pass</span>
+                                <div class="bg-white p-3 rounded-lg flex items-center justify-center">
+                                    <!-- Embedded Mock Passcode QR Code SVG -->
+                                    <svg class="h-28 w-28 text-dark-primary" viewBox="0 0 100 100" fill="currentColor">
+                                        <path d="M5,5 h30 v30 h-30 z M10,10 v20 h20 v-20 z M15,15 h10 v10 h-10 z M65,5 h30 v30 h-30 z M70,10 v20 h20 v-20 z M75,15 h10 v10 h-10 z M5,65 h30 v30 h-30 z M10,70 v20 h20 v-20 z M15,75 h10 v10 h-10 z M45,45 h10 v10 h-10 z M55,55 h10 v10 h-10 z M45,65 h10 v10 h-10 z M75,45 h10 v15 h-10 z M65,75 h10 v10 h-10 z M75,75 h20 v20 h-20 z M85,85 h5 v5 h-5 z"/>
+                                    </svg>
+                                </div>
+                                <span class="font-mono text-white block tracking-widest text-[11px]">PASS-7782-HKR</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div x-show="currentStep === 4" x-transition.opacity.duration.300ms class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center" style="display: none;">
+                    <div class="md:col-span-6 space-y-4">
+                        <span class="inline-block px-3 py-1 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-[10px] font-bold uppercase text-brand-cyan">Phase Four: Access</span>
+                        <h4 class="text-2xl font-bold text-white">Automated Entry Verification</h4>
+                        <p class="text-sm text-neutral-400 leading-relaxed">
+                            Drive up to the gate. Advanced optical cameras read your registered license plate, or scan the QR pass at the console. The barrier lifts within 1.5 seconds. Pull in and relax.
+                        </p>
+                        <ul class="space-y-2 text-xs text-neutral-300">
+                            <li class="flex items-center gap-2">✔ Zero-contact, ticketless scan-in system</li>
+                            <li class="flex items-center gap-2">✔ Automated charging activation upon plug-in</li>
+                            <li class="flex items-center gap-2">✔ 24/7 security attendant checks for complete protection</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-6 flex justify-center">
+                        <div class="relative bg-dark-primary/60 border border-white/5 rounded-2xl p-6 w-full max-w-sm text-center space-y-3">
+                            <span class="text-xxs uppercase tracking-wider text-neutral-500 font-bold block">Plate Scanner Terminal</span>
+                            <div class="inline-block px-5 py-2.5 rounded bg-slate-900 border border-white/10 text-white font-mono font-bold text-sm tracking-wider">
+                                MH 12 PK 8842
+                            </div>
+                            <span class="text-brand-accent text-xs font-bold block animate-pulse">✓ Verification Successful. Gate Opening.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section B: EV Charging Infrastructure Grid & Simulator -->
+    <section class="py-24 relative overflow-hidden" x-data="{ 
+        charging: false, 
+        percent: 45, 
+        speed: 150, 
+        cost: 0, 
+        timer: null,
+        toggleCharging() {
+            this.charging = !this.charging;
+            if(this.charging) {
+                this.timer = setInterval(() => {
+                    if(this.percent < 100) {
+                        this.percent += 1;
+                        this.cost = (this.cost + 4.25);
+                    } else {
+                        clearInterval(this.timer);
+                        this.charging = false;
+                    }
+                }, 1000);
+            } else {
+                clearInterval(this.timer);
+            }
+        }
+    }">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Specs & Info -->
+            <div class="lg:col-span-7 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-xs font-semibold tracking-wide text-brand-accent uppercase">
+                    <span class="h-2 w-2 rounded-full bg-brand-accent animate-pulse"></span>
+                    Green Infrastructure Active
+                </div>
+                
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
+                    Level-3 DC Supercharging <br>
+                    <span class="text-gradient-cyan-purple">At Your Fingertips.</span>
+                </h2>
+                
+                <p class="text-sm sm:text-base text-neutral-400 leading-relaxed">
+                    Leave your electric vehicle parked and connected to our ultra-fast DC dispensers. Our infrastructure operates on clean energy, replenishing battery cells efficiently while protecting battery lifespan.
+                </p>
+
+                <!-- Plug Specs Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-1">
+                        <span class="text-[10px] uppercase font-bold text-neutral-500 block">Fast Charge Specs</span>
+                        <strong class="text-white text-md block">150 kW DC Fast</strong>
+                        <span class="text-[10px] text-brand-cyan block">CCS2 Compatible</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-1">
+                        <span class="text-[10px] uppercase font-bold text-neutral-500 block">Medium Charge Specs</span>
+                        <strong class="text-white text-md block">50 kW DC</strong>
+                        <span class="text-[10px] text-brand-purple block">CCS2 Compatible</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-1">
+                        <span class="text-[10px] uppercase font-bold text-neutral-500 block">Standard Charge Specs</span>
+                        <strong class="text-white text-md block">22 kW AC</strong>
+                        <span class="text-[10px] text-brand-accent block">Type 2 Connector</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Simulator Interactive Card -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="glass-card w-full max-w-sm p-6 rounded-3xl relative overflow-hidden">
+                    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none"></div>
+
+                    <div class="relative z-10 space-y-5">
+                        <div class="flex items-center justify-between border-b border-white/5 pb-3">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Live Charger Simulation</span>
+                            <span class="px-2 py-0.5 rounded bg-brand-accent/15 border border-brand-accent/20 text-[9px] font-mono text-brand-accent font-bold">DC Bay #12</span>
+                        </div>
+
+                        <!-- Graphic Gauge -->
+                        <div class="flex flex-col items-center justify-center py-4 relative">
+                            <!-- Circular status border decoration -->
+                            <div class="h-32 w-32 rounded-full border-4 border-white/5 flex items-center justify-center relative">
+                                <div class="absolute inset-0 rounded-full border-4 border-transparent border-t-brand-cyan border-r-brand-cyan transition-all duration-1000" :style="'transform: rotate(' + (percent * 3.6) + 'deg)'"></div>
+                                <div class="text-center">
+                                    <span class="text-3xl font-extrabold text-white tracking-tight" x-text="percent + '%'">45%</span>
+                                    <span class="text-[9px] text-neutral-500 block uppercase font-bold mt-1">Battery Level</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar & Rates -->
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-xs">
+                                <span class="text-neutral-400">Power Speed</span>
+                                <span class="text-white font-bold" x-text="speed + ' kW DC'">150 kW DC</span>
+                            </div>
+                            <div class="flex justify-between text-xs">
+                                <span class="text-neutral-400">Accrued Cost</span>
+                                <span class="text-brand-accent font-bold" x-text="'₹' + cost.toFixed(2)">₹0.00</span>
+                            </div>
+                            
+                            <!-- Trigger Button -->
+                            <button type="button" @click="toggleCharging()" :class="charging ? 'bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20' : 'bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan hover:bg-brand-cyan/20'" class="w-full py-3.5 rounded-xl font-bold text-xs tracking-wider uppercase transition-all duration-300">
+                                <span x-text="charging ? '🛑 Stop Charging Session' : '⚡ Simulate Charger Plug-In'">⚡ Simulate Charger Plug-In</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Statistics Section -->
     <section class="py-20 relative bg-dark-secondary">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
@@ -379,6 +647,206 @@
         </div>
     </section>
 
+    <!-- Section C: Driveway Hosting Earnings Calculator -->
+    <section class="py-24 relative overflow-hidden bg-dark-secondary/20 border-t border-b border-white/5" x-data="{ 
+        hours: 8, 
+        days: 5, 
+        city: 'mumbai',
+        getEstimate() {
+            let baseRate = 80; 
+            if (this.city === 'mumbai') baseRate = 120;
+            else if (this.city === 'delhi') baseRate = 100;
+            else if (this.city === 'bengaluru') baseRate = 90;
+            else if (this.city === 'pune') baseRate = 70;
+            else if (this.city === 'kolkata') baseRate = 60;
+            
+            let weekly = this.hours * this.days * baseRate;
+            let monthly = Math.round(weekly * 4.33);
+            let yearly = monthly * 12;
+
+            return {
+                weekly: weekly.toLocaleString('en-IN'),
+                monthly: monthly.toLocaleString('en-IN'),
+                yearly: yearly.toLocaleString('en-IN')
+            };
+        }
+    }">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Details left -->
+            <div class="lg:col-span-6 space-y-6">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-purple">Monetize Empty Space</span>
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
+                    Turn Your Idle Driveway <br>
+                    Into <span class="text-gradient-cyan-purple">Passive Income.</span>
+                </h2>
+                <p class="text-sm text-neutral-400 leading-relaxed">
+                    Have a vacant parking spot, garage, or front driveway? Join our national network of parking hosts. Simply set your pricing, specify when your spot is available, and scan cars in automatically using our platform controls.
+                </p>
+
+                <div class="space-y-4">
+                    <div class="flex items-start gap-3 text-xs">
+                        <span class="text-brand-cyan">✔</span>
+                        <div>
+                            <strong class="text-white block font-bold">100% Control</strong>
+                            <span class="text-neutral-500">Decide exactly who parks and when. Pause or modify availability in one tap.</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 text-xs">
+                        <span class="text-brand-purple">✔</span>
+                        <div>
+                            <strong class="text-white block font-bold">Automated Payments</strong>
+                            <span class="text-neutral-500">Earnings accrue per second. Withdraw directly to your linked bank account.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculator right -->
+            <div class="lg:col-span-6 flex justify-center">
+                <div class="glass-panel w-full max-w-md p-8 rounded-3xl relative overflow-hidden">
+                    <h3 class="text-lg font-bold text-white mb-6">Estimate Your Earnings</h3>
+
+                    <div class="space-y-6">
+                        <!-- City selection -->
+                        <div class="flex flex-col">
+                            <label class="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">Select Spot Location</label>
+                            <select x-model="city" class="px-4 py-3 rounded-xl bg-dark-primary border border-white/10 text-neutral-300 text-sm focus:outline-none focus:border-brand-cyan">
+                                <option value="mumbai">Mumbai (Bandra/Colaba)</option>
+                                <option value="delhi">New Delhi (CP/Dwarka)</option>
+                                <option value="bengaluru">Bengaluru (Indiranagar)</option>
+                                <option value="pune">Pune (Koregaon Park)</option>
+                                <option value="kolkata">Kolkata (Salt Lake)</option>
+                            </select>
+                        </div>
+
+                        <!-- Hours range -->
+                        <div class="flex flex-col">
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Hours Shared Per Day</label>
+                                <span class="text-sm font-bold text-brand-cyan" x-text="hours + ' hrs'">8 hrs</span>
+                            </div>
+                            <input type="range" min="1" max="24" x-model="hours" class="w-full h-1 bg-white/5 rounded-lg appearance-none cursor-pointer accent-brand-cyan">
+                        </div>
+
+                        <!-- Days range -->
+                        <div class="flex flex-col">
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Days Shared Per Week</label>
+                                <span class="text-sm font-bold text-brand-purple" x-text="days + ' days'">5 days</span>
+                            </div>
+                            <input type="range" min="1" max="7" x-model="days" class="w-full h-1 bg-white/5 rounded-lg appearance-none cursor-pointer accent-brand-purple">
+                        </div>
+
+                        <!-- Estimates outputs -->
+                        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/5 text-center">
+                            <div>
+                                <span class="text-[10px] text-neutral-500 uppercase tracking-wider font-bold block">Weekly</span>
+                                <strong class="text-white text-md font-bold block mt-1" x-text="'₹' + getEstimate().weekly">₹0</strong>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-neutral-500 uppercase tracking-wider font-bold block">Monthly</span>
+                                <strong class="text-brand-cyan text-lg font-extrabold block mt-0.5" x-text="'₹' + getEstimate().monthly">₹0</strong>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-neutral-500 uppercase tracking-wider font-bold block">Yearly Est.</span>
+                                <strong class="text-brand-purple text-md font-bold block mt-1" x-text="'₹' + getEstimate().yearly">₹0</strong>
+                            </div>
+                        </div>
+
+                        <a href="{{ route('contact') }}" class="block text-center py-4 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-purple text-white font-bold text-sm tracking-wide shadow-lg shadow-brand-cyan/15 hover:opacity-95 transition-all mt-4">
+                            Start Hosting Driveway
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section D: City Occupancy & Live Spot Metrics -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan">Live Metrics</h2>
+                <p class="text-3xl sm:text-4xl font-bold tracking-tight text-white">National Capacity Status</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Mumbai -->
+                <div class="glass-card rounded-3xl p-6 relative overflow-hidden space-y-5">
+                    <div class="flex items-center justify-between border-b border-white/5 pb-3">
+                        <strong class="text-white text-md">Mumbai Metro</strong>
+                        <span class="flex h-2 w-2 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-cyan opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-cyan"></span>
+                        </span>
+                    </div>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">Total Managed Lots</span>
+                            <span class="text-white font-semibold">4 Garages (1,250 slots)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">Average Occupancy</span>
+                            <span class="text-brand-cyan font-bold">84% Occupied</span>
+                        </div>
+                        <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden mt-1">
+                            <div class="bg-brand-cyan h-full rounded-full" style="width: 84%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Delhi -->
+                <div class="glass-card rounded-3xl p-6 relative overflow-hidden space-y-5">
+                    <div class="flex items-center justify-between border-b border-white/5 pb-3">
+                        <strong class="text-white text-md">New Delhi CP Zone</strong>
+                        <span class="flex h-2 w-2 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-purple opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-purple"></span>
+                        </span>
+                    </div>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">Total Managed Lots</span>
+                            <span class="text-white font-semibold">3 Garages (900 slots)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">Average Occupancy</span>
+                            <span class="text-brand-purple font-bold">68% Occupied</span>
+                        </div>
+                        <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden mt-1">
+                            <div class="bg-brand-purple h-full rounded-full" style="width: 68%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bengaluru -->
+                <div class="glass-card rounded-3xl p-6 relative overflow-hidden space-y-5">
+                    <div class="flex items-center justify-between border-b border-white/5 pb-3">
+                        <strong class="text-white text-md">Bengaluru Region</strong>
+                        <span class="flex h-2 w-2 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+                        </span>
+                    </div>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">Total Managed Lots</span>
+                            <span class="text-white font-semibold">3 Garages (750 slots)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">Average Occupancy</span>
+                            <span class="text-brand-accent font-bold">75% Occupied</span>
+                        </div>
+                        <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden mt-1">
+                            <div class="bg-brand-accent h-full rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Testimonials Section -->
     <section class="py-24 bg-dark-secondary relative overflow-hidden" x-data="{ 
         active: 0,
@@ -415,6 +883,102 @@
                         :aria-label="'Go to slide ' + (index + 1)"
                     ></button>
                 </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section E: Trust, Safety & Insurance Guarantee -->
+    <section class="py-24 relative overflow-hidden bg-dark-secondary/40 border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan">Guaranteed Safety</h2>
+                <p class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Drive & Park with Absolute Peace of Mind</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1: Insurance -->
+                <div class="glass-panel rounded-3xl p-8 space-y-4 relative overflow-hidden">
+                    <span class="text-4xl block mb-2">🛡</span>
+                    <h3 class="text-lg font-bold text-white">₹2,00,000 Damage Cover</h3>
+                    <p class="text-xs text-neutral-400 leading-relaxed">
+                        Every reservation is backed by our comprehensive damage shield policy. Your vehicle is protected against accidental scrapes, vandalism, or theft during the booking period.
+                    </p>
+                </div>
+
+                <!-- Card 2: Verification -->
+                <div class="glass-panel rounded-3xl p-8 space-y-4 relative overflow-hidden">
+                    <span class="text-4xl block mb-2">🔍</span>
+                    <h3 class="text-lg font-bold text-white">14-Point Space Inspection</h3>
+                    <p class="text-xs text-neutral-400 leading-relaxed">
+                        We manually check structural integrity, accessibility, overhead clearances, street-level hazards, lighting density, and camera blindspots before listing any parking space.
+                    </p>
+                </div>
+
+                <!-- Card 3: CCTV surveillance -->
+                <div class="glass-panel rounded-3xl p-8 space-y-4 relative overflow-hidden">
+                    <span class="text-4xl block mb-2">📹</span>
+                    <h3 class="text-lg font-bold text-white">24/7 Remote Video Patrols</h3>
+                    <p class="text-xs text-neutral-400 leading-relaxed">
+                        Our centralized operations center monitors garage live feeds. Any anomalous entry or movement triggers an immediate alert to local municipal responders.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section F: Mobile App Connectivity & Integration Banner -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 to-brand-purple/20 border border-white/5 p-8 sm:p-12 lg:p-16">
+                <!-- Ambient glow inside card -->
+                <div class="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-brand-cyan/20 blur-[100px] pointer-events-none"></div>
+
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-8 space-y-6">
+                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-wide text-brand-cyan uppercase">
+                            📱 Smart App Integration
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+                            Elevate Your Commute. <br>
+                            Get the ParkHawker App.
+                        </h2>
+                        <p class="text-xs sm:text-sm text-neutral-400 max-w-xl leading-relaxed">
+                            Control gates directly using secure Bluetooth triggers, receive notifications when EV charging is complete, check lock-screen timers, and navigate using Apple or Google Maps APIs.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <!-- Download App Store -->
+                            <a href="#" class="px-5 py-3.5 rounded-xl bg-white text-dark-primary font-bold text-xs hover:bg-neutral-200 transition-colors flex items-center gap-2.5">
+                                <span>🍏 Download for iOS</span>
+                            </a>
+                            <!-- Download Play Store -->
+                            <a href="#" class="px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold text-xs transition-colors flex items-center gap-2.5">
+                                <span>🤖 Download for Android</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-4 flex justify-center lg:justify-end">
+                        <!-- Simulated Lockscreen Widget Mockup -->
+                        <div class="w-64 bg-slate-900/90 border border-white/15 rounded-3xl p-5 shadow-2xl space-y-4">
+                            <div class="flex items-center justify-between border-b border-white/5 pb-2">
+                                <span class="text-[9px] uppercase tracking-wider text-neutral-500 font-bold">Lockscreen Widget</span>
+                                <span class="h-1.5 w-1.5 rounded-full bg-brand-cyan animate-pulse"></span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-xl">🚘</span>
+                                <div>
+                                    <strong class="text-white text-xs block">Bandra BKC Spot A-12</strong>
+                                    <span class="text-[10px] text-neutral-400">Reservation ends in <strong class="text-brand-cyan font-mono">02:14:52</strong></span>
+                                </div>
+                            </div>
+                            <!-- Unlock barrier slider simulator mock -->
+                            <div class="bg-white/5 border border-white/10 rounded-xl p-2.5 text-center text-[10px] font-bold text-brand-cyan cursor-pointer hover:bg-white/10 transition-colors">
+                                📶 Tap to Open Smart Entry Gate
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

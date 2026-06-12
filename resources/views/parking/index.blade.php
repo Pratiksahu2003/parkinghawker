@@ -41,16 +41,42 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <!-- Sidebar Filters -->
-            <aside class="lg:col-span-3 lg:block" :class="filterOpen ? 'block fixed inset-0 z-50 bg-dark-primary/95 p-6 overflow-y-auto' : 'hidden'">
-                <div class="flex items-center justify-between lg:hidden mb-6">
-                    <h3 class="font-bold text-white text-lg">Filters</h3>
-                    <button @click="filterOpen = false" class="text-neutral-400 hover:text-white">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                    </button>
-                </div>
+        <!-- Mobile Filter Overlay Backdrop -->
+        <div x-show="filterOpen" x-transition.opacity class="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden" style="display: none;" @click="filterOpen = false"></div>
 
+        <!-- Mobile Filter Drawer -->
+        <div x-show="filterOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="fixed top-0 right-0 bottom-0 z-50 w-80 max-w-full bg-dark-secondary border-l border-white/5 px-6 pt-8 pb-8 overflow-y-auto lg:hidden" style="display: none;">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="font-bold text-white text-lg">Filters</h3>
+                <button @click="filterOpen = false" class="text-neutral-400 hover:text-white">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <form action="{{ route('parking.index') }}" method="GET" class="space-y-6">
+                <div class="space-y-2">
+                    <label class="text-xs font-semibold text-neutral-500 uppercase tracking-wider">City/Area</label>
+                    <input type="text" name="city" value="{{ $filters['city'] ?? '' }}" placeholder="e.g. Mumbai" class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-semibold text-neutral-500 uppercase tracking-wider">Structure</label>
+                    <select name="parking_type" class="w-full px-4 py-2.5 rounded-xl bg-dark-primary border border-white/10 text-neutral-300 text-sm focus:outline-none focus:border-brand-cyan">
+                        <option value="all">All Types</option>
+                        <option value="covered">Covered</option>
+                        <option value="underground">Underground</option>
+                        <option value="rooftop">Rooftop</option>
+                        <option value="open">Open Lots</option>
+                    </select>
+                </div>
+                <div class="pt-4 flex gap-3">
+                    <button type="submit" class="flex-1 py-3 rounded-xl bg-brand-cyan text-dark-primary font-bold text-sm">Apply</button>
+                    <a href="{{ route('parking.index') }}" class="px-4 py-3 rounded-xl border border-white/10 text-neutral-400 text-sm font-semibold flex items-center justify-center">Reset</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Sidebar Filters (Desktop only — always visible on lg) -->
+            <aside class="hidden lg:block lg:col-span-3">
                 <form action="{{ route('parking.index') }}" method="GET" class="space-y-6">
                     <!-- City Search -->
                     <div class="space-y-2">
@@ -81,7 +107,7 @@
                         </select>
                     </div>
 
-                    <!-- Amenities Toggle Toggles -->
+                    <!-- Amenities Checkboxes -->
                     <div class="space-y-4 pt-4 border-t border-white/5">
                         <span class="text-xs font-semibold text-neutral-500 uppercase tracking-wider block">Amenities</span>
                         
@@ -99,6 +125,19 @@
                         </label>
                     </div>
 
+                    <!-- Extra Specifications -->
+                    <div class="space-y-4 pt-4 border-t border-white/5">
+                        <span class="text-xs font-semibold text-neutral-500 uppercase tracking-wider block">Space Specs</span>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" name="height_limit" value="yes" class="h-4.5 w-4.5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0">
+                            <span class="text-sm text-neutral-300">Tall Vehicle (Clearance > 2.1m)</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" name="wheelchair" value="yes" class="h-4.5 w-4.5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0">
+                            <span class="text-sm text-neutral-300">Wheelchair Access</span>
+                        </label>
+                    </div>
+
                     <div class="pt-4 flex gap-3">
                         <button type="submit" class="flex-1 py-3 rounded-xl bg-brand-cyan hover:bg-brand-cyan/95 text-dark-primary font-bold text-sm tracking-wide transition-colors">
                             Apply
@@ -108,14 +147,29 @@
                         </a>
                     </div>
                 </form>
+
+                <!-- Live Activity Feed inside sidebar -->
+                <div class="pt-6 mt-6 border-t border-white/5 space-y-4">
+                    <span class="text-xs font-semibold text-neutral-500 uppercase tracking-wider block">Live Spot Activity</span>
+                    <div class="space-y-3 font-mono text-[10px] text-neutral-400">
+                        <div class="flex items-start gap-2">
+                            <span class="text-brand-cyan">●</span>
+                            <p>MH-12-PK-8842 checked out of BKC Indiranagar <span class="text-neutral-600 font-normal">3m ago</span></p>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="text-brand-purple">●</span>
+                            <p>DL-03-XX-1192 reserved Nariman Point Garage <span class="text-neutral-600 font-normal">8m ago</span></p>
+                        </div>
+                    </div>
+                </div>
             </aside>
 
             <!-- Main Results Layout Area -->
-            <div class="lg:col-span-9" :class="viewMode === 'map' ? 'lg:col-span-9' : ''">
+            <div class="lg:col-span-9">
                 <!-- GRID VIEW -->
                 <div x-show="viewMode === 'grid'" class="grid grid-cols-1 md:grid-cols-2 gap-6" x-transition:enter="transition ease-out duration-300">
                     @forelse($spots as $spot)
-                        <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between h-full reveal-fade">
+                        <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between h-full">
                             <div class="relative h-56 overflow-hidden">
                                 <img src="{{ $spot['image'] }}" alt="{{ $spot['name'] }}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
                                 <div class="absolute inset-0 bg-gradient-to-t from-dark-primary/60 via-transparent to-transparent pointer-events-none"></div>

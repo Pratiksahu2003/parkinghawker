@@ -13,11 +13,13 @@
             booking: [
                 { q: 'How early can I book a parking spot?', a: 'You can reserve a spot up to 30 days in advance. Pre-booking secures the best rates and guarantees availability.' },
                 { q: 'Can I cancel or modify my reservation?', a: 'Yes, cancel up to 2 hours before entry time for a full refund. Modifications can be made from your booking details link.' },
-                { q: 'Do you offer monthly parking contracts?', a: 'Yes, corporate and individual monthly subscriptions can be requested via our Contact page.' }
+                { q: 'Do you offer monthly parking contracts?', a: 'Yes, corporate and individual monthly subscriptions can be requested via our Contact page.' },
+                { q: 'How do modifications work?', a: 'Modifications are permitted up to 2 hours before check-in. You can adjust vehicle details, change check-in time, or select add-ons directly in the confirmation link.' }
             ],
             payments: [
-                { q: 'What payment methods are supported?', a: 'We accept all major credit cards (Visa, Mastercard, Amex), Apple Pay, and Google Pay.' },
-                { q: 'Is there a booking transaction fee?', a: 'No hidden booking fees. The final price you see on checkout includes parking and standard local taxes.' }
+                { q: 'What payment methods are supported?', a: 'We accept all major credit cards (Visa, Mastercard, Amex), Apple Pay, UPI, and Google Pay.' },
+                { q: 'Is there a booking transaction fee?', a: 'No hidden booking fees. The final price you see on checkout includes parking and standard local taxes.' },
+                { q: 'Do you support cash payments?', a: 'No, our network is fully automated and ticketless. All payments are securely processed digitally prior to gate entry.' }
             ],
             security: [
                 { q: 'Are your parking structures safe?', a: 'Yes, all locations features constant HD CCTV surveillance, well-lit bays, automated entry scanner gates, and security staff.' },
@@ -25,6 +27,15 @@
             ],
             refunds: [
                 { q: 'How long does a refund take to process?', a: 'Refunds are triggered immediately upon cancellation and typically appear back in your account within 3-5 business days.' }
+            ],
+            hosting: [
+                { q: 'How do I become a driveway parking host?', a: 'You can list your space by signing up on our Contact page under \'Monetize space\'. Our verification team will contact you to perform the 14-point audit.' },
+                { q: 'Is there a host service fee?', a: 'We take a flat 10% commission on bookings to cover gate software licensing, camera plate recognition, and payout transaction processing.' },
+                { q: 'What happens if a guest refuses to leave my space?', a: 'You can report them directly from your occupancy dashboard. Our 24/7 dispatcher will contact the driver or dispatch local towing.' }
+            ],
+            ev_charging: [
+                { q: 'Can I book a charger spot if I drive a non-EV?', a: 'No, EV charging bays are strictly reserved for electric vehicles. Parking a non-electric vehicle in these slots will result in unauthorized parking flags.' },
+                { q: 'How do I trigger charging after parking?', a: 'Plug the connector into your car\'s charging port. Our sensors will detect the connection and automatically activate charging based on your digital pass token.' }
             ],
             membership: [
                 { q: 'What is the ParkClub Membership?', a: 'It is a premium loyalty program offering 10% cash back on parking, free deluxe washes, and priority booking lanes.' }
@@ -39,7 +50,6 @@
             let query = this.searchQuery.toLowerCase();
             let results = [];
             
-            // Search through all tabs
             Object.values(this.faqs).forEach(tabItems => {
                 tabItems.forEach(item => {
                     if (item.q.toLowerCase().includes(query) || item.a.toLowerCase().includes(query)) {
@@ -60,7 +70,7 @@
                 <input 
                     type="text" 
                     x-model="searchQuery" 
-                    placeholder="Search for questions (e.g. refund, plate)..." 
+                    placeholder="Search for questions (e.g. refund, plate, host)..." 
                     class="w-full px-5 py-3.5 rounded-2xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan transition-colors"
                 >
             </div>
@@ -69,12 +79,12 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             <!-- Category Tabs Sidebar -->
             <aside class="md:col-span-3 flex flex-row md:flex-col gap-2 overflow-x-auto pb-4 md:pb-0 border-b md:border-b-0 md:border-r border-white/5 pr-0 md:pr-4">
-                <template x-for="tab in ['booking', 'payments', 'security', 'refunds', 'membership']">
+                <template x-for="tab in ['booking', 'payments', 'security', 'refunds', 'hosting', 'ev_charging', 'membership']">
                     <button 
                         @click="activeTab = tab; searchQuery = ''" 
                         class="px-4 py-2.5 rounded-xl text-left text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap focus:outline-none"
                         :class="activeTab === tab && !searchQuery ? 'bg-white text-dark-primary shadow-lg shadow-white/5' : 'text-neutral-400 hover:text-white hover:bg-white/5'"
-                        x-text="tab"
+                        x-text="tab.replace('_', ' ')"
                     ></button>
                 </template>
             </aside>
@@ -104,6 +114,22 @@
                 <div x-show="filteredFaqs().length === 0" class="text-center py-12 border border-dashed border-white/10 rounded-2xl" style="display: none;">
                     <p class="text-sm text-neutral-500">No results match your search keywords.</p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Still Have Questions Section -->
+        <div class="mt-20 glass-panel rounded-3xl p-8 text-center space-y-6">
+            <h3 class="text-xl font-bold text-white">Still Have Unresolved Inquiries?</h3>
+            <p class="text-xs sm:text-sm text-neutral-400 max-w-xl mx-auto leading-relaxed">
+                Our customer ops desk is available 24/7. Whether you want to discuss enterprise corporate fleet contracts or need help with a current active charging session, we are ready to assist.
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <a href="{{ route('contact') }}" class="px-6 py-3 rounded-xl bg-brand-cyan text-dark-primary font-bold text-xs tracking-wide shadow-lg">
+                    Submit Support Ticket
+                </a>
+                <a href="tel:18002007275" class="px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold text-xs">
+                    Call 1800 200 PARK
+                </a>
             </div>
         </div>
     </div>

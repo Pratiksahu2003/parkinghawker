@@ -94,6 +94,41 @@
                         </div>
                     </div>
 
+                    <!-- Safety Checklist & EV Specs -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-white/5">
+                        <!-- Safety checklist -->
+                        <div class="space-y-3">
+                            <h3 class="text-lg font-bold text-white">Security Checklist</h3>
+                            <ul class="space-y-2 text-xs text-neutral-400">
+                                <li class="flex items-center gap-2 text-brand-accent">✓ 24/7 Remote Video Monitoring</li>
+                                <li class="flex items-center gap-2 text-brand-accent">✓ Guard Patrols on Ground</li>
+                                <li class="flex items-center gap-2 text-brand-accent">✓ Hazard & Fire Suppression Systems</li>
+                                <li class="flex items-center gap-2 text-brand-accent">✓ Well-Lit Covered Pedestrian Ramps</li>
+                            </ul>
+                        </div>
+
+                        <!-- EV Details -->
+                        @if($spot['amenities']['ev_charging'])
+                            <div class="space-y-3">
+                                <h3 class="text-lg font-bold text-white">EV Charger Details</h3>
+                                <div class="bg-white/5 border border-white/10 rounded-2xl p-4 text-xs space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-neutral-500">Dispenser Power</span>
+                                        <strong class="text-white font-bold">150 kW DC Fast</strong>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-neutral-500">Connector Interface</span>
+                                        <strong class="text-brand-cyan font-bold">CCS Type 2</strong>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-neutral-500">Charging Surcharge</span>
+                                        <strong class="text-white font-bold">{{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['ev_fee'] ?? 150, 2) }} flat</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+
                     <!-- Rules list -->
                     <div class="space-y-3 pt-4 border-t border-white/5">
                         <h3 class="text-lg font-bold text-white">Facility Regulations</h3>
@@ -123,6 +158,16 @@
                                     <p class="text-xs sm:text-sm text-neutral-400 leading-relaxed">
                                         “{{ $rev['comment'] }}”
                                     </p>
+                                    <!-- Host Response -->
+                                    <div class="p-3 bg-white/5 rounded-xl border border-white/5 text-xs text-neutral-400 space-y-1 mt-2">
+                                        <div class="flex items-center justify-between font-bold">
+                                            <span class="text-brand-purple">💬 Operator Response</span>
+                                            <span class="text-neutral-600 font-normal">Replied 1 day after</span>
+                                        </div>
+                                        <p class="italic text-[11px] leading-relaxed">
+                                            "Thank you for your feedback! We strive to maintain absolute security and clean charging stations for all drivers. Safe travels!"
+                                        </p>
+                                    </div>
                                 </div>
                             @endforeach
                         </div>

@@ -46,6 +46,38 @@
                                 <span class="text-neutral-400">Plot No. 12, Maker Chambers VI, Nariman Point, Mumbai, MH 400021</span>
                             </div>
                         </div>
+
+                        <!-- Live SLA Indicator -->
+                        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-xs">
+                            <span class="text-neutral-500 font-semibold uppercase tracking-wider">Queue SLA Status</span>
+                            <span class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-brand-accent/15 border border-brand-accent/25 text-brand-accent font-bold font-mono">
+                                <span class="h-1.5 w-1.5 rounded-full bg-brand-accent animate-pulse"></span>
+                                Live Response: < 3 mins
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Department Contacts -->
+                <div class="glass-panel rounded-3xl p-6 space-y-4">
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider border-b border-white/5 pb-2">Department Directories</h4>
+                    <div class="grid grid-cols-2 gap-4 text-xs">
+                        <div class="space-y-1">
+                            <strong class="text-white block font-bold">Media & PR</strong>
+                            <a href="mailto:media@parkinghawker.com" class="text-neutral-400 hover:text-brand-cyan transition-colors">media@parkinghawker.com</a>
+                        </div>
+                        <div class="space-y-1">
+                            <strong class="text-white block font-bold">Corporate Fleet</strong>
+                            <a href="mailto:corporate@parkinghawker.com" class="text-neutral-400 hover:text-brand-cyan transition-colors">corporate@parkinghawker.com</a>
+                        </div>
+                        <div class="space-y-1">
+                            <strong class="text-white block font-bold">Hosting Ops</strong>
+                            <a href="mailto:host@parkinghawker.com" class="text-neutral-400 hover:text-brand-cyan transition-colors">host@parkinghawker.com</a>
+                        </div>
+                        <div class="space-y-1">
+                            <strong class="text-white block font-bold">EV Integrations</strong>
+                            <a href="mailto:ev@parkinghawker.com" class="text-neutral-400 hover:text-brand-cyan transition-colors">ev@parkinghawker.com</a>
+                        </div>
                     </div>
                 </div>
 
@@ -54,7 +86,7 @@
                     <div class="absolute inset-0 bg-[radial-gradient(rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:16px_16px]"></div>
                     <div class="relative z-10 text-center space-y-2 p-6">
                         <span class="text-2xl">🗺️</span>
-                        <strong class="text-white block text-sm">Nariman Point Corporate HQ</strong>
+                        <strong class="text-white block text-sm font-bold">Nariman Point Corporate HQ</strong>
                         <p class="text-xs text-neutral-500">Directions and customer lounge open M-F 9am - 6pm.</p>
                     </div>
                 </div>
@@ -76,8 +108,31 @@
 
                     <!-- Server Success Notice -->
                     @if(session('success'))
-                        <div class="mb-6 p-4 rounded-2xl bg-brand-accent/10 border border-brand-accent/20 text-sm font-medium text-brand-accent">
-                            {{ session('success') }}
+                        <div class="mb-6 p-6 rounded-2xl bg-brand-accent/5 border border-brand-accent/20 text-xs text-neutral-400 space-y-4 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none"></div>
+                            
+                            <div class="flex items-center justify-between border-b border-white/5 pb-3">
+                                <div>
+                                    <strong class="text-white text-sm block">Support Ticket Generated</strong>
+                                    <span class="text-brand-accent font-semibold block mt-0.5">Reference ID: PK-TK-{{ rand(100000, 999999) }}</span>
+                                </div>
+                                <span class="h-8 w-8 rounded-full bg-brand-accent/20 text-brand-accent flex items-center justify-center text-md font-bold">✓</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 text-xs font-mono">
+                                <div>
+                                    <span class="text-neutral-500 uppercase block tracking-wider text-[9px]">Queue Assigned</span>
+                                    <strong class="text-white font-medium">Client Operations</strong>
+                                </div>
+                                <div>
+                                    <span class="text-neutral-500 uppercase block tracking-wider text-[9px]">Estimated SLA</span>
+                                    <strong class="text-brand-cyan font-medium">12 Minutes</strong>
+                                </div>
+                            </div>
+
+                            <p class="text-neutral-400 leading-relaxed border-t border-white/5 pt-3">
+                                {{ session('success') }}
+                            </p>
                         </div>
                     @endif
 
