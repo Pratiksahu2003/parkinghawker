@@ -57,6 +57,25 @@
                     Categories
                 </a>
 
+                @if(auth()->check() && (auth()->user()->hasRole('admin') || auth()->user()->is_admin))
+                    <span class="px-3 text-[10px] font-bold uppercase tracking-widest text-neutral-600 block mt-6 mb-3">Security & Access</span>
+
+                    <a href="{{ route('admin.users.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.users.*') ? 'bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20' : 'text-neutral-400 hover:text-white hover:bg-white/5' }}">
+                        <svg class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.35v15.3m0-15.3L6.3 9.75M12 4.35l5.7 5.4"/></svg>
+                        Users Role
+                    </a>
+
+                    <a href="{{ route('admin.roles.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.roles.*') ? 'bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20' : 'text-neutral-400 hover:text-white hover:bg-white/5' }}">
+                        <svg class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z"/></svg>
+                        Roles
+                    </a>
+
+                    <a href="{{ route('admin.permissions.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all {{ request()->routeIs('admin.permissions.*') ? 'bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20' : 'text-neutral-400 hover:text-white hover:bg-white/5' }}">
+                        <svg class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+                        Permissions
+                    </a>
+                @endif
+
                 <span class="px-3 text-[10px] font-bold uppercase tracking-widest text-neutral-600 block mt-6 mb-3">Quick Actions</span>
 
                 <a href="{{ route('admin.posts.create') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-brand-accent hover:bg-brand-accent/10 transition-all">
@@ -68,6 +87,14 @@
                     <svg class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                     View Site
                 </a>
+
+                <form action="{{ route('logout') }}" method="POST" class="w-full">
+                    @csrf
+                    <button type="submit" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-400/80 hover:text-red-400 hover:bg-red-500/5 transition-all text-left">
+                        <svg class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                        Log Out
+                    </button>
+                </form>
             </nav>
 
             <!-- Footer branding -->
@@ -96,11 +123,21 @@
                     </nav>
                 </div>
 
-                <div class="flex items-center gap-3">
-                    <span class="text-xs font-medium text-neutral-400">{{ auth()->user()->name ?? 'Admin' }}</span>
-                    <div class="h-8 w-8 rounded-full bg-gradient-to-tr from-brand-cyan to-brand-purple flex items-center justify-center text-xs font-bold text-white">
-                        {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs font-medium text-neutral-400">{{ auth()->user()->name ?? 'Admin' }}</span>
+                        <div class="h-8 w-8 rounded-full bg-gradient-to-tr from-brand-cyan to-brand-purple flex items-center justify-center text-xs font-bold text-white">
+                            {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
+                        </div>
                     </div>
+                    <div class="h-5 w-px bg-white/10 hidden sm:block"></div>
+                    <form action="{{ route('logout') }}" method="POST" class="hidden sm:inline">
+                        @csrf
+                        <button type="submit" class="text-neutral-500 hover:text-red-400 text-xs font-bold transition-colors flex items-center gap-1.5 focus:outline-none">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                            Log Out
+                        </button>
+                    </form>
                 </div>
             </header>
 

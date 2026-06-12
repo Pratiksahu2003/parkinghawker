@@ -46,4 +46,7 @@ Route::prefix('admin')->middleware(['admin'])->name('admin.')->group(function ()
     Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::resource('posts', AdminBlogPostController::class);
     Route::resource('categories', AdminCategoryController::class);
+    Route::resource('roles', \App\Http\Controllers\Admin\AdminRoleController::class);
+    Route::resource('permissions', \App\Http\Controllers\Admin\AdminPermissionController::class);
+    Route::resource('users', \App\Http\Controllers\Admin\AdminUserController::class);
 });
