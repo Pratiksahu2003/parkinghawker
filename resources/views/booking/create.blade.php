@@ -326,7 +326,13 @@
                         </div>
                         <div class="flex justify-between">
                             <span>Base Rate (Hourly)</span>
-                            <span class="text-white font-medium">${{ number_format($spot['price_per_hour'], 2) }}</span>
+                            <span class="text-white font-medium">
+                                @if(($spot['currency_code'] ?? '') === 'JPY')
+                                    {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 0) }}
+                                @else
+                                    {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 2) }}
+                                @endif
+                            </span>
                         </div>
                         <div class="flex justify-between">
                             <span>Rent Time</span>
@@ -338,24 +344,24 @@
                     <div class="space-y-3.5 text-sm">
                         <div class="flex justify-between text-neutral-400">
                             <span class="text-xs">Parking subtotal</span>
-                            <span class="text-white" x-text="'$' + pricing.total_price.toFixed(2)"></span>
+                            <span class="text-white" x-text="formatMoney(pricing.total_price)"></span>
                         </div>
                         <div class="flex justify-between text-neutral-400" x-show="pricing.ev_surcharge > 0">
                             <span class="text-xs">EV Charger spot</span>
-                            <span class="text-white" x-text="'$' + pricing.ev_surcharge.toFixed(2)"></span>
+                            <span class="text-white" x-text="formatMoney(pricing.ev_surcharge)"></span>
                         </div>
                         <div class="flex justify-between text-neutral-400" x-show="pricing.wash_surcharge > 0">
                             <span class="text-xs">Eco Car Wash</span>
-                            <span class="text-white" x-text="'$' + pricing.wash_surcharge.toFixed(2)"></span>
+                            <span class="text-white" x-text="formatMoney(pricing.wash_surcharge)"></span>
                         </div>
                         <div class="flex justify-between text-neutral-400">
                             <span class="text-xs">Taxes & Fees (8%)</span>
-                            <span class="text-white" x-text="'$' + pricing.tax.toFixed(2)"></span>
+                            <span class="text-white" x-text="formatMoney(pricing.tax)"></span>
                         </div>
                         
                         <div class="flex justify-between font-bold text-white pt-4 border-t border-white/5">
                             <span>Total Billing</span>
-                            <span class="text-lg text-brand-cyan" x-text="'$' + pricing.final_total.toFixed(2)"></span>
+                            <span class="text-lg text-brand-cyan" x-text="formatMoney(pricing.final_total)"></span>
                         </div>
                     </div>
                 </div>

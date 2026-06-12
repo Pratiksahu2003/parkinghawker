@@ -55,7 +55,24 @@
                     </div>
                     <div>
                         <span class="text-neutral-500 block mb-0.5">Duration</span>
-                        <strong class="text-brand-cyan font-semibold">{{ $booking['duration'] }}</strong>
+                        <strong class="text-white font-medium">{{ $booking['duration'] }}</strong>
+                    </div>
+                    <div>
+                        <span class="text-neutral-500 block mb-0.5">Amount Paid</span>
+                        <strong class="text-brand-cyan font-semibold">
+                            @if(($booking['currency_code'] ?? '') === 'JPY')
+                                {{ $booking['currency_symbol'] ?? '$' }}{{ number_format($booking['total_price'], 0) }}
+                            @else
+                                {{ $booking['currency_symbol'] ?? '$' }}{{ number_format($booking['total_price'], 2) }}
+                            @endif
+                        </strong>
+                    </div>
+                    <div>
+                        <span class="text-neutral-500 block mb-0.5">Transaction Status</span>
+                        <strong class="text-brand-accent font-semibold flex items-center gap-1">
+                            <span class="h-1.5 w-1.5 rounded-full bg-brand-accent animate-pulse"></span>
+                            Paid • Secured
+                        </strong>
                     </div>
                 </div>
 

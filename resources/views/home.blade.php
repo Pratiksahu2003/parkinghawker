@@ -70,7 +70,20 @@
                         <div class="grid grid-cols-2 gap-4 pt-2 border-t border-white/5 text-xs">
                             <div>
                                 <span class="text-neutral-500 block">Peak Hours Rate</span>
-                                <strong class="text-white font-medium">$12.00 / hr</strong>
+                                <strong class="text-white font-medium">
+                                    @php
+                                        $svSpot = collect($parkingSpots)->firstWhere('id', 1);
+                                    @endphp
+                                    @if($svSpot)
+                                        @if(($svSpot['currency_code'] ?? '') === 'JPY')
+                                            {{ $svSpot['currency_symbol'] ?? '$' }}{{ number_format($svSpot['price_per_hour'], 0) }} / hr
+                                        @else
+                                            {{ $svSpot['currency_symbol'] ?? '$' }}{{ number_format($svSpot['price_per_hour'], 2) }} / hr
+                                        @endif
+                                    @else
+                                        $12.00 / hr
+                                    @endif
+                                </strong>
                             </div>
                             <div>
                                 <span class="text-neutral-500 block">Active EV Plugs</span>
@@ -336,7 +349,11 @@
                         <div class="relative h-52 overflow-hidden">
                             <img src="{{ $spot['image'] }}" alt="{{ $spot['name'] }}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
                             <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-dark-primary/80 backdrop-blur text-[11px] font-bold text-brand-cyan uppercase tracking-wider">
-                                ${{ number_format($spot['price_per_hour'], 2) }} / hr
+                                @if(($spot['currency_code'] ?? '') === 'JPY')
+                                    {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 0) }} / hr
+                                @else
+                                    {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 2) }} / hr
+                                @endif
                             </span>
                         </div>
                         <div class="p-6 flex-1 flex flex-col justify-between gap-6">
