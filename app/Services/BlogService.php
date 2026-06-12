@@ -23,6 +23,11 @@ class BlogService
         return $this->blogRepository->findBySlug($slug);
     }
 
+    public function getArticleById(int $id): ?array
+    {
+        return $this->blogRepository->findById($id);
+    }
+
     public function getRelatedArticles(array $article, int $limit = 3): array
     {
         return $this->blogRepository->getRelated($article, $limit);
@@ -36,5 +41,20 @@ class BlogService
     public function getCategories(): array
     {
         return $this->blogRepository->getCategories();
+    }
+
+    public function createArticle(array $data): array
+    {
+        return $this->blogRepository->create($data);
+    }
+
+    public function updateArticle(int $id, array $data): ?array
+    {
+        return $this->blogRepository->update($id, $data);
+    }
+
+    public function deleteArticle(int $id): bool
+    {
+        return $this->blogRepository->delete($id);
     }
 }

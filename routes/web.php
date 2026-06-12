@@ -5,6 +5,9 @@ use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminBlogPostController;
+use App\Http\Controllers\Admin\AdminCategoryController;
 use Illuminate\Support\Facades\Route;
 
 // Home Page
@@ -31,3 +34,10 @@ Route::post('/contact', [PageController::class, 'submitContact'])->name('contact
 // Blog Pages
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+
+// ─── Admin Dashboard ─────────────────────────────────────
+Route::prefix('admin')->middleware(['admin'])->name('admin.')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::resource('posts', AdminBlogPostController::class);
+    Route::resource('categories', AdminCategoryController::class);
+});

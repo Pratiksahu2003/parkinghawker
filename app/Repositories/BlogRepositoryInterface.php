@@ -6,40 +6,46 @@ interface BlogRepositoryInterface
 {
     /**
      * Get all blog articles.
-     *
-     * @return array
      */
     public function all(): array;
 
     /**
      * Find a blog article by slug.
-     *
-     * @param string $slug
-     * @return array|null
      */
     public function findBySlug(string $slug): ?array;
 
     /**
+     * Find a blog article by ID.
+     */
+    public function findById(int $id): ?array;
+
+    /**
      * Get related blog articles.
-     *
-     * @param array $article
-     * @param int $limit
-     * @return array
      */
     public function getRelated(array $article, int $limit = 3): array;
 
     /**
      * Search and filter blog articles.
-     *
-     * @param array $filters
-     * @return array
      */
     public function search(array $filters): array;
 
     /**
      * Get unique categories.
-     *
-     * @return array
      */
     public function getCategories(): array;
+
+    /**
+     * Create a new blog article.
+     */
+    public function create(array $data): array;
+
+    /**
+     * Update an existing blog article.
+     */
+    public function update(int $id, array $data): ?array;
+
+    /**
+     * Delete a blog article.
+     */
+    public function delete(int $id): bool;
 }

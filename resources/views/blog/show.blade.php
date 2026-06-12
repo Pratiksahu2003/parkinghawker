@@ -42,18 +42,41 @@
                     <span class="text-neutral-500 block">Written By</span>
                     <strong class="text-white">{{ $article['author'] }} ({{ $article['author_role'] }})</strong>
                 </div>
+                <div class="h-6 w-px bg-white/5 hidden sm:block"></div>
+                <div>
+                    <span class="text-neutral-500 block">Views</span>
+                    <strong class="text-white">{{ number_format($article['views_count'] ?? 0) }}</strong>
+                </div>
             </div>
         </header>
 
-        <!-- Big Banner Image -->
-        <div class="h-[350px] w-full rounded-3xl overflow-hidden border border-white/5 mb-10">
-            <img src="{{ $article['image'] }}" alt="{{ $article['title'] }}" class="w-full h-full object-cover">
-        </div>
+        <!-- YouTube Video Player or Banner Image -->
+        @if(!empty($article['youtube_embed_url']))
+            <div class="aspect-video w-full rounded-3xl overflow-hidden border border-white/5 mb-10 shadow-2xl">
+                <iframe class="w-full h-full" src="{{ $article['youtube_embed_url'] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        @elseif(!empty($article['image']))
+            <!-- Big Banner Image -->
+            <div class="h-[350px] w-full rounded-3xl overflow-hidden border border-white/5 mb-10">
+                <img src="{{ $article['image'] }}" alt="{{ $article['title'] }}" class="w-full h-full object-cover">
+            </div>
+        @endif
 
         <!-- Rich Text content -->
         <div class="prose prose-invert max-w-none text-neutral-300 space-y-6 leading-relaxed">
             {!! $article['content'] !!}
         </div>
+
+        <!-- Tags -->
+        @if(!empty($article['tags']) && is_array($article['tags']))
+            <div class="flex flex-wrap gap-2 mt-8 pt-8 border-t border-white/5">
+                @foreach($article['tags'] as $tag)
+                    <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-neutral-400 hover:text-white hover:border-brand-cyan/30 transition-all text-xs font-semibold cursor-pointer">
+                        #{{ $tag }}
+                    </span>
+                @endforeach
+            </div>
+        @endif
 
         <!-- Author bio card -->
         <div class="bg-white/5 border border-white/5 rounded-3xl p-6 mt-16 flex items-start gap-5">

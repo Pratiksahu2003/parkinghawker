@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
         );
         $this->app->bind(
             \App\Repositories\BlogRepositoryInterface::class,
-            \App\Repositories\InMemoryBlogRepository::class
+            \App\Repositories\EloquentBlogRepository::class
         );
     }
 
