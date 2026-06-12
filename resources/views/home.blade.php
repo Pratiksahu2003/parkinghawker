@@ -58,7 +58,7 @@
                             <h3 class="text-3xl font-bold text-white tracking-tight" x-data="{ count: 142 }" x-init="setInterval(() => { count = Math.max(130, Math.min(150, count + (Math.random() > 0.5 ? 1 : -1))) }, 4000)">
                                 <span x-text="count">142</span> <span class="text-sm font-medium text-neutral-500">/ 350 Spots</span>
                             </h3>
-                            <p class="text-xs text-neutral-400">Available at Silicon Valley Premium Garage</p>
+                            <p class="text-xs text-neutral-400">Available at Mumbai Nariman Point Garage</p>
                         </div>
 
                         <!-- Progress Bar -->
@@ -76,12 +76,12 @@
                                     @endphp
                                     @if($svSpot)
                                         @if(($svSpot['currency_code'] ?? '') === 'JPY')
-                                            {{ $svSpot['currency_symbol'] ?? '$' }}{{ number_format($svSpot['price_per_hour'], 0) }} / hr
+                                            {{ $svSpot['currency_symbol'] ?? '₹' }}{{ number_format($svSpot['price_per_hour'], 0) }} / hr
                                         @else
-                                            {{ $svSpot['currency_symbol'] ?? '$' }}{{ number_format($svSpot['price_per_hour'], 2) }} / hr
+                                            {{ $svSpot['currency_symbol'] ?? '₹' }}{{ number_format($svSpot['price_per_hour'], 2) }} / hr
                                         @endif
                                     @else
-                                        $12.00 / hr
+                                        ₹150.00 / hr
                                     @endif
                                 </strong>
                             </div>
@@ -165,7 +165,7 @@
                                 @input="searchLocations()"
                                 @focus="showSuggestions = true"
                                 @click.away="showSuggestions = false"
-                                placeholder="Enter city (e.g. San Francisco)" 
+                                placeholder="Enter city (e.g. Mumbai)" 
                                 class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan placeholder-neutral-600 transition-colors"
                             >
                             <!-- Error display -->
@@ -350,9 +350,9 @@
                             <img src="{{ $spot['image'] }}" alt="{{ $spot['name'] }}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
                             <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-dark-primary/80 backdrop-blur text-[11px] font-bold text-brand-cyan uppercase tracking-wider">
                                 @if(($spot['currency_code'] ?? '') === 'JPY')
-                                    {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 0) }} / hr
+                                    {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_hour'], 0) }} / hr
                                 @else
-                                    {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 2) }} / hr
+                                    {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_hour'], 2) }} / hr
                                 @endif
                             </span>
                         </div>

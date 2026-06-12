@@ -9,9 +9,9 @@ class PageController extends Controller
     public function about()
     {
         $team = [
-            ['name' => 'Marcus Vance', 'role' => 'Chief Executive Officer', 'image' => 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=300'],
-            ['name' => 'Sophia Lin', 'role' => 'VP of Smart Infrastructure', 'image' => 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=300'],
-            ['name' => 'Devon Carter', 'role' => 'Director of Product Engineering', 'image' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300'],
+            ['name' => 'Rahul Sharma', 'role' => 'Chief Executive Officer', 'image' => 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=300'],
+            ['name' => 'Priya Patel', 'role' => 'VP of Smart Infrastructure', 'image' => 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=300'],
+            ['name' => 'Aditya Rao', 'role' => 'Director of Product Engineering', 'image' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300'],
         ];
 
         $awards = [

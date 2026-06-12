@@ -61,9 +61,9 @@
                         <span class="text-neutral-500 block mb-0.5">Amount Paid</span>
                         <strong class="text-brand-cyan font-semibold">
                             @if(($booking['currency_code'] ?? '') === 'JPY')
-                                {{ $booking['currency_symbol'] ?? '$' }}{{ number_format($booking['total_price'], 0) }}
+                                {{ $booking['currency_symbol'] ?? '₹' }}{{ number_format($booking['total_price'], 0) }}
                             @else
-                                {{ $booking['currency_symbol'] ?? '$' }}{{ number_format($booking['total_price'], 2) }}
+                                {{ $booking['currency_symbol'] ?? '₹' }}{{ number_format($booking['total_price'], 2) }}
                             @endif
                         </strong>
                     </div>

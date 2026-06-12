@@ -56,7 +56,7 @@
                     <span class="absolute -left-12 top-1.5 h-8 w-8 rounded-full bg-brand-cyan border-4 border-dark-primary flex items-center justify-center text-[10px] text-dark-primary font-bold">2026</span>
                     <div class="space-y-1.5">
                         <h4 class="text-md font-bold text-white">Next-Gen AI Launch</h4>
-                        <p class="text-sm text-neutral-400">Deployed dynamic green pricing algorithms and automated charger waitlist notifications across SOMA decks.</p>
+                        <p class="text-sm text-neutral-400">Deployed dynamic green pricing algorithms and automated charger waitlist notifications across BKC (Bandra Kurla Complex) decks.</p>
                     </div>
                 </div>
 
@@ -64,8 +64,8 @@
                 <div class="relative">
                     <span class="absolute -left-12 top-1.5 h-8 w-8 rounded-full bg-brand-purple border-4 border-dark-primary flex items-center justify-center text-[10px] text-dark-primary font-bold">2025</span>
                     <div class="space-y-1.5">
-                        <h4 class="text-md font-bold text-white">East Coast Expansion</h4>
-                        <p class="text-sm text-neutral-400">Broke ground in New York Times Square, scaling capacity by 200% with premium partner garages.</p>
+                        <h4 class="text-md font-bold text-white">National Capital Expansion</h4>
+                        <p class="text-sm text-neutral-400">Broke ground in New Delhi Connaught Place, scaling capacity by 200% with premium partner garages.</p>
                     </div>
                 </div>
 
@@ -74,7 +74,7 @@
                     <span class="absolute -left-12 top-1.5 h-8 w-8 rounded-full bg-neutral-700 border-4 border-dark-primary flex items-center justify-center text-[10px] text-dark-primary font-bold">2024</span>
                     <div class="space-y-1.5">
                         <h4 class="text-md font-bold text-white">Seed Operations Began</h4>
-                        <p class="text-sm text-neutral-400">Founded with a single automated garage test bed in San Francisco, deploying the first plate recognition API.</p>
+                        <p class="text-sm text-neutral-400">Founded with a single automated garage test bed in Bandra, Mumbai, deploying the first plate recognition API.</p>
                     </div>
                 </div>
             </div>

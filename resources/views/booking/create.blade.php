@@ -21,8 +21,8 @@
         cardCvc: '',
         evAddon: false,
         washAddon: false,
-        currencySymbol: '{{ $spot['currency_symbol'] ?? '$' }}',
-        currencyCode: '{{ $spot['currency_code'] ?? 'USD' }}',
+        currencySymbol: '{{ $spot['currency_symbol'] ?? '₹' }}',
+        currencyCode: '{{ $spot['currency_code'] ?? 'INR' }}',
         
         // Dynamic Pricing states
         pricing: {
@@ -148,7 +148,7 @@
                             <!-- Vehicle Plate -->
                             <div class="flex flex-col">
                                 <label class="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">License Plate Number</label>
-                                <input type="text" x-model="vehiclePlate" name="vehicle_plate" placeholder="e.g. 7XYZ99" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan uppercase">
+                                <input type="text" x-model="vehiclePlate" name="vehicle_plate" placeholder="e.g. MH-01-AB-1234" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan uppercase">
                                 <span x-show="errors.vehiclePlate" x-text="errors.vehiclePlate" class="text-xs text-red-400 mt-1" style="display: none;"></span>
                             </div>
 
@@ -210,9 +210,9 @@
                                         <strong class="text-sm text-white block mb-0.5">
                                             EV Supercharging Station (+ 
                                             @if(($spot['currency_code'] ?? '') === 'JPY')
-                                                {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['ev_fee'] ?? 15, 0) }}
+                                                {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['ev_fee'] ?? 150, 0) }}
                                             @else
-                                                {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['ev_fee'] ?? 15, 2) }}
+                                                {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['ev_fee'] ?? 150, 2) }}
                                             @endif
                                             flat)
                                         </strong>
@@ -229,9 +229,9 @@
                                         <strong class="text-sm text-white block mb-0.5">
                                             Deluxe Car Wash Service (+ 
                                             @if(($spot['currency_code'] ?? '') === 'JPY')
-                                                {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['wash_fee'] ?? 30, 0) }}
+                                                {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['wash_fee'] ?? 300, 0) }}
                                             @else
-                                                {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['wash_fee'] ?? 30, 2) }}
+                                                {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['wash_fee'] ?? 300, 2) }}
                                             @endif
                                             flat)
                                         </strong>
@@ -328,9 +328,9 @@
                             <span>Base Rate (Hourly)</span>
                             <span class="text-white font-medium">
                                 @if(($spot['currency_code'] ?? '') === 'JPY')
-                                    {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 0) }}
+                                    {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_hour'], 0) }}
                                 @else
-                                    {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 2) }}
+                                    {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_hour'], 2) }}
                                 @endif
                             </span>
                         </div>

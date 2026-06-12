@@ -42,10 +42,10 @@ class ParkingService
 
         $pricePerHour = $spot['price_per_hour'];
         $pricePerDay = $spot['price_per_day'];
-        $evFee = $spot['ev_fee'] ?? 15.00;
-        $washFee = $spot['wash_fee'] ?? 30.00;
-        $currencySymbol = $spot['currency_symbol'] ?? '$';
-        $currencyCode = $spot['currency_code'] ?? 'USD';
+        $evFee = $spot['ev_fee'] ?? 150.00;
+        $washFee = $spot['wash_fee'] ?? 300.00;
+        $currencySymbol = $spot['currency_symbol'] ?? '₹';
+        $currencyCode = $spot['currency_code'] ?? 'INR';
 
         // Determine price based on duration string (e.g. "2 hours", "1 day", "3 days")
         $value = (int) filter_var($duration, FILTER_SANITIZE_NUMBER_INT);

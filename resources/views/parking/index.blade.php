@@ -55,7 +55,7 @@
                     <!-- City Search -->
                     <div class="space-y-2">
                         <label class="text-xs font-semibold text-neutral-500 uppercase tracking-wider">City/Area</label>
-                        <input type="text" name="city" value="{{ $filters['city'] ?? '' }}" placeholder="e.g. San Francisco" class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
+                        <input type="text" name="city" value="{{ $filters['city'] ?? '' }}" placeholder="e.g. Mumbai" class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
                     </div>
 
                     <!-- Structure Type -->
@@ -121,9 +121,9 @@
                                 <div class="absolute inset-0 bg-gradient-to-t from-dark-primary/60 via-transparent to-transparent pointer-events-none"></div>
                                 <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-dark-primary/80 backdrop-blur text-xs font-bold text-brand-cyan uppercase tracking-wider">
                                     @if(($spot['currency_code'] ?? '') === 'JPY')
-                                        {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 0) }} / hr
+                                        {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_hour'], 0) }} / hr
                                     @else
-                                        {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 2) }} / hr
+                                        {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_hour'], 2) }} / hr
                                     @endif
                                 </span>
                             </div>
@@ -185,9 +185,9 @@
                                     <div class="flex items-center justify-between text-xs mt-1">
                                         <span class="text-brand-cyan font-bold">
                                             @if(($spot['currency_code'] ?? '') === 'JPY')
-                                                {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 0) }}/hr
+                                                {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_hour'], 0) }}/hr
                                             @else
-                                                {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 2) }}/hr
+                                                {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_hour'], 2) }}/hr
                                             @endif
                                         </span>
                                         <a href="{{ route('parking.show', $spot['id']) }}" class="text-white hover:text-brand-cyan font-bold transition-colors">Select</a>
@@ -209,7 +209,7 @@
                         </div>
 
                         <!-- Map coordinates label -->
-                        <span class="absolute top-4 left-4 font-mono text-[10px] text-neutral-600">GRID SYS: CA_SF_NEON_94105</span>
+                        <span class="absolute top-4 left-4 font-mono text-[10px] text-neutral-600">GRID SYS: MH_MUM_NEON_400021</span>
 
                         <!-- Interactive mockup Pins -->
                         @foreach($spots as $spot)
@@ -243,9 +243,9 @@
                                     <span class="text-[10px] text-neutral-400 block mb-1">🚘 {{ $spot['available_spots'] }} spots free</span>
                                     <span class="text-xs font-bold text-brand-cyan">
                                         @if(($spot['currency_code'] ?? '') === 'JPY')
-                                            {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 0) }}/hr
+                                            {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_hour'], 0) }}/hr
                                         @else
-                                            {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 2) }}/hr
+                                            {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_hour'], 2) }}/hr
                                         @endif
                                     </span>
                                 </div>

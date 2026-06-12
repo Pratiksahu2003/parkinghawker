@@ -25,7 +25,7 @@
                             <span class="text-lg">📞</span>
                             <div>
                                 <strong class="text-white block font-semibold">Client Hotline</strong>
-                                <a href="tel:+18005557275" class="text-neutral-400 hover:text-brand-cyan transition-colors">+1 (800) 555-PARK</a>
+                                <a href="tel:18002007275" class="text-neutral-400 hover:text-brand-cyan transition-colors">1800 200 PARK (7275)</a>
                             </div>
                         </div>
 
@@ -43,7 +43,7 @@
                             <span class="text-lg">📍</span>
                             <div>
                                 <strong class="text-white block font-semibold">Corporate HQ</strong>
-                                <span class="text-neutral-400">455 Mission St, San Francisco, CA 94105</span>
+                                <span class="text-neutral-400">Plot No. 12, Maker Chambers VI, Nariman Point, Mumbai, MH 400021</span>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                     <div class="absolute inset-0 bg-[radial-gradient(rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:16px_16px]"></div>
                     <div class="relative z-10 text-center space-y-2 p-6">
                         <span class="text-2xl">🗺️</span>
-                        <strong class="text-white block text-sm">SOMA Corporate Campus</strong>
+                        <strong class="text-white block text-sm">Nariman Point Corporate HQ</strong>
                         <p class="text-xs text-neutral-500">Directions and customer lounge open M-F 9am - 6pm.</p>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                             <!-- Phone -->
                             <div class="flex flex-col">
                                 <label class="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">Phone Number (Optional)</label>
-                                <input type="text" name="phone" x-model="phone" placeholder="e.g. +1 (555) 019-2834" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
+                                <input type="text" name="phone" x-model="phone" placeholder="e.g. +91 98765 43210" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
                                 @error('phone') <span class="text-xs text-red-400 mt-1">{{ $message }}</span> @enderror
                             </div>
 

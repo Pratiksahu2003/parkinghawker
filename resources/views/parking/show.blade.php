@@ -138,9 +138,9 @@
                         <div class="text-right">
                             <span class="text-2xl font-bold text-white">
                                 @if(($spot['currency_code'] ?? '') === 'JPY')
-                                    {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 0) }}
+                                    {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_hour'], 0) }}
                                 @else
-                                    {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_hour'], 2) }}
+                                    {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_hour'], 2) }}
                                 @endif
                             </span>
                             <span class="text-xs text-neutral-500 font-medium">/ hr</span>
@@ -163,9 +163,9 @@
                             <span>Daily Pass</span>
                             <span class="text-white font-medium">
                                 @if(($spot['currency_code'] ?? '') === 'JPY')
-                                    {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_day'], 0) }} / 24 hrs
+                                    {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_day'], 0) }} / 24 hrs
                                 @else
-                                    {{ $spot['currency_symbol'] ?? '$' }}{{ number_format($spot['price_per_day'], 2) }} / 24 hrs
+                                    {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_day'], 2) }} / 24 hrs
                                 @endif
                             </span>
                         </div>
@@ -203,9 +203,9 @@
                                 <img src="{{ $near['image'] }}" alt="{{ $near['name'] }}" class="w-full h-full object-cover">
                                 <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-dark-primary/80 text-[10px] font-bold text-brand-cyan uppercase">
                                     @if(($near['currency_code'] ?? '') === 'JPY')
-                                        {{ $near['currency_symbol'] ?? '$' }}{{ number_format($near['price_per_hour'], 0) }}/hr
+                                        {{ $near['currency_symbol'] ?? '₹' }}{{ number_format($near['price_per_hour'], 0) }}/hr
                                     @else
-                                        {{ $near['currency_symbol'] ?? '$' }}{{ number_format($near['price_per_hour'], 2) }}/hr
+                                        {{ $near['currency_symbol'] ?? '₹' }}{{ number_format($near['price_per_hour'], 2) }}/hr
                                     @endif
                                 </span>
                             </div>

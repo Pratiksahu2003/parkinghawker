@@ -53,16 +53,16 @@
             'priceRange' => '$$',
             'address' => [
                 '@type' => 'PostalAddress',
-                'streetAddress' => '455 Mission St',
-                'addressLocality' => 'San Francisco',
-                'addressRegion' => 'CA',
-                'postalCode' => '94105',
-                'addressCountry' => 'US'
+                'streetAddress' => 'Plot No. 12, Maker Chambers VI, Nariman Point',
+                'addressLocality' => 'Mumbai',
+                'addressRegion' => 'MH',
+                'postalCode' => '400021',
+                'addressCountry' => 'IN'
             ],
             'geo' => [
                 '@type' => 'GeoCoordinates',
-                'latitude' => 37.7897,
-                'longitude' => -122.4014
+                'latitude' => 18.9256,
+                'longitude' => 72.8242
             ],
             'openingHoursSpecification' => [
                 '@type' => 'OpeningHoursSpecification',
