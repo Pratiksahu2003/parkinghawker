@@ -40,13 +40,13 @@
     class="min-h-screen flex flex-col font-sans overflow-x-hidden selection:bg-brand-cyan/30 selection:text-brand-cyan">
 
     <!-- Main Navigation Header -->
-    <header id="main-nav"
-        class="fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-out border-b border-white/5 py-6"
+    <header class="fixed top-0 left-0 right-0 z-40  border-b border-white/5"
         x-data="{ mobileMenuOpen: false, searchOpen: false, activeMegamenu: null }">
-        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto  flex items-center justify-between">
             <!-- Animated Logo -->
             <a href="{{ route('home') }}" class="group z-50">
-                <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-10 w-auto object-contain transition-transform duration-500 group-hover:scale-105">
+                <img src="{{ asset('logo/logo.png') }}" alt="Logo"
+                    class="h-18 w-auto object-contain transition-transform duration-500 group-hover:scale-105">
             </a>
 
             <!-- Desktop Nav Links -->
@@ -284,7 +284,7 @@
             <!-- Col 1: About -->
             <div class="flex flex-col gap-4">
                 <a href="{{ route('home') }}">
-                    <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-8 w-auto object-contain">
+                    <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-18 w-auto object-contain">
                 </a>
                 <p class="text-sm text-neutral-400 mt-2 leading-relaxed">
                     Pioneering seamless urban mobility with premium, Apple-level automated booking decks. Smart
