@@ -36,12 +36,8 @@
         <header class="sticky top-0 z-50 backdrop-blur-md border-b border-slate-900 bg-slate-950/80 transition-all duration-300">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
                 <!-- Logo -->
-                <a href="{{ route('home') }}" class="group flex items-center gap-2.5 z-50">
-                    <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-teal-400 to-violet-600 p-0.5 flex items-center justify-center shadow-lg shadow-teal-500/20 transition-transform duration-500 group-hover:scale-105">
-                        <div class="h-full w-full rounded-[10px] bg-slate-950 flex items-center justify-center p-1.5">
-                            <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-full w-auto object-contain">
-                        </div>
-                    </div>
+                <a href="{{ route('home') }}" class="group z-50">
+                    <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-10 w-auto object-contain transition-transform duration-500 group-hover:scale-105">
                 </a>
 
                 <!-- Navigation Links -->
@@ -300,12 +296,8 @@
         <!-- Footer -->
         <footer class="border-t border-slate-900 bg-slate-950/60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-                <a href="{{ route('home') }}" class="flex items-center gap-2.5">
-                    <div class="h-9 w-9 rounded-lg bg-gradient-to-tr from-teal-400 to-violet-600 p-0.5 flex items-center justify-center shadow-lg shadow-teal-500/10">
-                        <div class="h-full w-full rounded-[7px] bg-slate-950 flex items-center justify-center p-1.5">
-                            <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-full w-auto object-contain">
-                        </div>
-                    </div>
+                <a href="{{ route('home') }}">
+                    <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-8 w-auto object-contain">
                 </a>
                 <p class="text-xs text-slate-500">
                     &copy; 2026 Parking Hawker. All rights reserved. Created for verification.

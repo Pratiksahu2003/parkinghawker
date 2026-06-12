@@ -14,11 +14,7 @@
         <div class="w-full max-w-md space-y-8 relative z-10">
             <!-- Header branding -->
             <div class="text-center space-y-3">
-                <div class="inline-flex h-12 w-12 rounded-2xl bg-gradient-to-tr from-brand-cyan to-brand-purple p-0.5 items-center justify-center shadow-lg shadow-brand-cyan/25">
-                    <div class="h-full w-full rounded-[14px] bg-dark-primary flex items-center justify-center">
-                        <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-6 w-auto object-contain">
-                    </div>
-                </div>
+                <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-12 w-auto object-contain mx-auto">
                 <h1 class="text-2xl font-bold tracking-tight text-white">Welcome Back</h1>
                 <p class="text-xs text-neutral-500">Sign in to access the ParkingHawker administration portal.</p>
             </div>

@@ -25,12 +25,8 @@
 
         <aside class="fixed inset-y-0 left-0 z-50 w-64 bg-dark-secondary border-r border-white/5 flex flex-col transition-transform duration-300 lg:translate-x-0" :class="mobileSidebar ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'">
             <!-- Logo -->
-            <div class="h-16 flex items-center gap-2.5 px-6 border-b border-white/5">
-                <div class="h-8 w-8 rounded-lg bg-gradient-to-tr from-brand-cyan to-brand-purple p-0.5 flex items-center justify-center">
-                    <div class="h-full w-full rounded-[6px] bg-dark-primary flex items-center justify-center p-1">
-                        <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-full w-auto object-contain">
-                    </div>
-                </div>
+            <div class="h-16 flex items-center px-6 border-b border-white/5">
+                <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-8 w-auto object-contain">
             </div>
 
             <!-- Navigation -->

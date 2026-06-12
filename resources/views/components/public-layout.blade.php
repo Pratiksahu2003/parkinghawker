@@ -45,13 +45,8 @@
         x-data="{ mobileMenuOpen: false, searchOpen: false, activeMegamenu: null }">
         <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
             <!-- Animated Logo -->
-            <a href="{{ route('home') }}" class="group flex items-center gap-2.5 z-50">
-                <div
-                    class="h-80 w-100 rounded-xl bg-gradient-to-tr from-brand-cyan to-brand-purple p-0.5 flex items-center justify-center shadow-lg shadow-brand-cyan/25 transition-transform duration-500 group-hover:scale-105">
-                    <div class="h-full w-full rounded-[10px] bg-dark-primary flex items-center justify-center p-1.5">
-                        <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-full w-auto object-contain">
-                    </div>
-                </div>
+            <a href="{{ route('home') }}" class="group z-50">
+                <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-10 w-auto object-contain transition-transform duration-500 group-hover:scale-105">
             </a>
 
             <!-- Desktop Nav Links -->
@@ -288,13 +283,8 @@
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 relative z-10">
             <!-- Col 1: About -->
             <div class="flex flex-col gap-4">
-                <a href="{{ route('home') }}" class="flex items-center gap-2.5">
-                    <div
-                        class="h-9 w-9 rounded-lg bg-gradient-to-tr from-brand-cyan to-brand-purple p-0.5 flex items-center justify-center shadow-lg shadow-brand-cyan/25">
-                        <div class="h-full w-full rounded-[7px] bg-dark-primary flex items-center justify-center p-1.5">
-                            <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-full w-auto object-contain">
-                        </div>
-                    </div>
+                <a href="{{ route('home') }}">
+                    <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-8 w-auto object-contain">
                 </a>
                 <p class="text-sm text-neutral-400 mt-2 leading-relaxed">
                     Pioneering seamless urban mobility with premium, Apple-level automated booking decks. Smart
