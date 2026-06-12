@@ -1,0 +1,96 @@
+<x-public-layout>
+    <x-slot name="seo">
+        <x-seo 
+            title="Reservation Confirmed" 
+            description="Your parking space reservation is confirmed. Download your digital entry voucher."
+        />
+    </x-slot>
+
+    <div class="max-w-xl mx-auto px-6 py-12 text-center space-y-8">
+        <!-- Success Check Circle -->
+        <div class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-brand-accent/15 border border-brand-accent/30 text-brand-accent animate-bounce">
+            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        </div>
+
+        <div class="space-y-2">
+            <h1 class="text-3xl font-bold text-white tracking-tight">Booking Confirmed!</h1>
+            <p class="text-sm text-neutral-400">Your digital parking permit is active and ready for entry.</p>
+        </div>
+
+        <!-- Ticket Card Showcase -->
+        <div class="glass-card rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative text-left">
+            <!-- Top perforation border decoration -->
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-cyan"></div>
+
+            <div class="p-6 space-y-6">
+                <!-- Pass header -->
+                <div class="flex items-center justify-between border-b border-white/5 pb-4">
+                    <div>
+                        <span class="text-[10px] text-neutral-500 uppercase tracking-widest block font-semibold">Voucher ID</span>
+                        <strong class="text-sm text-white font-mono uppercase">{{ $booking['booking_reference'] }}</strong>
+                    </div>
+                    <span class="px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-[10px] text-brand-accent uppercase font-bold tracking-wider">Active Permit</span>
+                </div>
+
+                <!-- Spot Info -->
+                <div class="space-y-1">
+                    <span class="text-[10px] text-neutral-500 uppercase tracking-widest block font-semibold">Selected Location</span>
+                    <strong class="text-md text-white block">{{ $booking['spot_name'] }}</strong>
+                    <p class="text-xs text-neutral-400">{{ $booking['address'] }}</p>
+                </div>
+
+                <!-- Ticket Grid -->
+                <div class="grid grid-cols-2 gap-4 border-t border-b border-white/5 py-4 text-xs">
+                    <div>
+                        <span class="text-neutral-500 block mb-0.5">License Plate</span>
+                        <strong class="text-white font-mono text-sm uppercase">{{ $booking['vehicle_plate'] }}</strong>
+                    </div>
+                    <div>
+                        <span class="text-neutral-500 block mb-0.5">Vehicle Model</span>
+                        <strong class="text-white font-medium">{{ $booking['vehicle_type'] }}</strong>
+                    </div>
+                    <div>
+                        <span class="text-neutral-500 block mb-0.5">Arrival Schedule</span>
+                        <strong class="text-white font-medium">{{ $booking['entry_datetime'] }}</strong>
+                    </div>
+                    <div>
+                        <span class="text-neutral-500 block mb-0.5">Duration</span>
+                        <strong class="text-brand-cyan font-semibold">{{ $booking['duration'] }}</strong>
+                    </div>
+                </div>
+
+                <!-- Gate passcode info -->
+                <div class="flex items-center justify-between bg-white/5 border border-white/5 rounded-2xl p-4">
+                    <div>
+                        <span class="text-[10px] text-neutral-500 uppercase tracking-widest block font-semibold">Gate Entry PIN</span>
+                        <strong class="text-lg text-white font-mono tracking-widest">{{ $booking['passcode'] }}</strong>
+                    </div>
+                    <!-- Mock QR Code graphic -->
+                    <div class="h-14 w-14 bg-white p-1 rounded-lg flex flex-col justify-between items-center opacity-90">
+                        <!-- Custom styled QR look with inline nested grids -->
+                        <div class="grid grid-cols-4 gap-0.5 h-full w-full">
+                            <div class="bg-black"></div><div class="bg-black"></div><div class="bg-white"></div><div class="bg-black"></div>
+                            <div class="bg-white"></div><div class="bg-black"></div><div class="bg-black"></div><div class="bg-white"></div>
+                            <div class="bg-black"></div><div class="bg-white"></div><div class="bg-black"></div><div class="bg-black"></div>
+                            <div class="bg-black"></div><div class="bg-black"></div><div class="bg-white"></div><div class="bg-black"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer terms -->
+            <div class="px-6 py-4 bg-white/5 text-[10px] text-neutral-500 border-t border-white/5">
+                ⚠ Please align your license plate clearly at gate cameras for automated ticketless check-in.
+            </div>
+        </div>
+
+        <div class="flex items-center justify-center gap-4">
+            <button onclick="window.print()" class="px-6 py-3 rounded-xl border border-white/10 hover:bg-white/5 text-neutral-400 hover:text-white transition-colors text-sm font-semibold">
+                Print Pass
+            </button>
+            <a href="{{ route('home') }}" class="magnetic-btn px-6 py-3 rounded-xl bg-brand-cyan hover:bg-brand-cyan/95 text-dark-primary font-bold text-sm transition-colors">
+                Return Home
+            </a>
+        </div>
+    </div>
+</x-public-layout>
