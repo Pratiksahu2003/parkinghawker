@@ -21,6 +21,9 @@
 
         <!-- Styles / Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="{{ asset('logo/favicon.png') }}">
     </head>
     <body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-teal-500 selection:text-slate-950 overflow-x-hidden">
         
@@ -33,17 +36,13 @@
         <header class="sticky top-0 z-50 backdrop-blur-md border-b border-slate-900 bg-slate-950/80 transition-all duration-300">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
                 <!-- Logo -->
-                <div class="flex items-center space-x-3 group cursor-pointer">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-teal-400 to-violet-600 flex items-center justify-center shadow-lg shadow-teal-500/20 group-hover:scale-105 transition-transform duration-300">
-                        <svg class="w-5.5 h-5.5 text-slate-950" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/>
-                        </svg>
+                <a href="{{ route('home') }}" class="group flex items-center gap-2.5 z-50">
+                    <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-teal-400 to-violet-600 p-0.5 flex items-center justify-center shadow-lg shadow-teal-500/20 transition-transform duration-500 group-hover:scale-105">
+                        <div class="h-full w-full rounded-[10px] bg-slate-950 flex items-center justify-center p-1.5">
+                            <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-full w-auto object-contain">
+                        </div>
                     </div>
-                    <span class="font-display text-2xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
-                        Parking<span class="text-teal-400">Hawker</span>
-                    </span>
-                </div>
+                </a>
 
                 <!-- Navigation Links -->
                 <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
@@ -301,17 +300,13 @@
         <!-- Footer -->
         <footer class="border-t border-slate-900 bg-slate-950/60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-teal-400 to-violet-600 flex items-center justify-center shadow-md shadow-teal-500/10">
-                        <svg class="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/>
-                        </svg>
+                <a href="{{ route('home') }}" class="flex items-center gap-2.5">
+                    <div class="h-9 w-9 rounded-lg bg-gradient-to-tr from-teal-400 to-violet-600 p-0.5 flex items-center justify-center shadow-lg shadow-teal-500/10">
+                        <div class="h-full w-full rounded-[7px] bg-slate-950 flex items-center justify-center p-1.5">
+                            <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-full w-auto object-contain">
+                        </div>
                     </div>
-                    <span class="font-display text-lg font-bold text-white">
-                        Parking<span class="text-teal-400">Hawker</span>
-                    </span>
-                </div>
+                </a>
                 <p class="text-xs text-slate-500">
                     &copy; 2026 Parking Hawker. All rights reserved. Created for verification.
                 </p>

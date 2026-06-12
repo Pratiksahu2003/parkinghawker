@@ -31,9 +31,6 @@
                         <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-full w-auto object-contain">
                     </div>
                 </div>
-                <span class="text-lg font-bold tracking-tight text-white">
-                    PARK<span class="text-brand-cyan font-medium">HAWKER</span>
-                </span>
             </div>
 
             <!-- Navigation -->
