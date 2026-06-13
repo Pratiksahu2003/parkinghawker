@@ -18,8 +18,8 @@ class BlogController extends Controller
     {
         $filters = $request->only(['query', 'category']);
         $articles = $this->blogService->searchArticles($filters);
-        $categories = \Illuminate\Support\Facades\Cache::remember('blog_categories_models', 3600, function () {
-            return \App\Models\BlogCategory::active()->ordered()->get();
+        $categories = \Illuminate\Support\Facades\Cache::remember('blog_categories_array', 3600, function () {
+            return \App\Models\BlogCategory::active()->ordered()->get()->toArray();
         });
 
         return view('blog.index', compact('articles', 'categories', 'filters'));
@@ -27,20 +27,21 @@ class BlogController extends Controller
 
     public function category($categorySlug)
     {
-        $categoryModel = \Illuminate\Support\Facades\Cache::remember("blog_category_slug_{$categorySlug}", 3600, function () use ($categorySlug) {
-            return \App\Models\BlogCategory::active()->where('slug', $categorySlug)->first();
+        $category = \Illuminate\Support\Facades\Cache::remember("blog_category_slug_{$categorySlug}", 3600, function () use ($categorySlug) {
+            $cat = \App\Models\BlogCategory::active()->where('slug', $categorySlug)->first();
+            return $cat ? $cat->toArray() : null;
         });
         
-        if (!$categoryModel) {
+        if (!$category) {
             abort(404, 'Category not found');
         }
 
-        $filters = ['category' => $categoryModel->name];
+        $filters = ['category' => $category['name']];
         $articles = $this->blogService->searchArticles($filters);
-        $categories = \Illuminate\Support\Facades\Cache::remember('blog_categories_models', 3600, function () {
-            return \App\Models\BlogCategory::active()->ordered()->get();
+        $categories = \Illuminate\Support\Facades\Cache::remember('blog_categories_array', 3600, function () {
+            return \App\Models\BlogCategory::active()->ordered()->get()->toArray();
         });
-        $activeCategory = $categoryModel->name;
+        $activeCategory = $category['name'];
 
         return view('blog.index', compact('articles', 'categories', 'filters', 'activeCategory'));
     }

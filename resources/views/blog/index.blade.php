@@ -24,8 +24,8 @@
                 </a>
                 @foreach($categories as $cat)
                     @php
-                        $catSlug = is_object($cat) ? $cat->slug : \Illuminate\Support\Str::slug($cat);
-                        $catName = is_object($cat) ? $cat->name : $cat;
+                        $catSlug = is_array($cat) ? ($cat['slug'] ?? '') : (is_object($cat) ? $cat->slug : \Illuminate\Support\Str::slug($cat));
+                        $catName = is_array($cat) ? ($cat['name'] ?? '') : (is_object($cat) ? $cat->name : $cat);
                     @endphp
                     <a 
                         href="{{ route('blog.category', $catSlug) }}" 

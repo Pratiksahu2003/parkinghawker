@@ -5,9 +5,14 @@
     'class' => 'my-6'
 ])
 
+@php
+    $uniqueId = 'ad-' . ($slot === 'default' ? rand(100000, 999999) : Str::slug($slot));
+@endphp
+
 <div class="google-ad-container {{ $class }}">
     @if(app()->isProduction())
         <ins class="adsbygoogle"
+             id="{{ $uniqueId }}"
              style="display:block"
              data-ad-client="ca-pub-2075682642541479"
              data-ad-slot="{{ $slot === 'default' ? '8842795632' : $slot }}"
@@ -15,6 +20,21 @@
              data-full-width-responsive="{{ $responsive }}"></ins>
         <script>
              (adsbygoogle = window.adsbygoogle || []).push({});
+             
+             // Check if the ad failed to load or was blocked, and collapse space if so
+             setTimeout(function() {
+                 var ins = document.getElementById('{{ $uniqueId }}');
+                 if (ins) {
+                     var isUnfilled = ins.getAttribute('data-ad-status') === 'unfilled';
+                     var isBlocked = ins.offsetHeight === 0;
+                     if (isUnfilled || isBlocked) {
+                         var container = ins.closest('.google-ad-container');
+                         if (container) {
+                             container.style.setProperty('display', 'none', 'important');
+                         }
+                     }
+                 }
+             }, 2000);
         </script>
     @else
         <!-- Beautiful premium glassmorphic ad slot placeholder in local/development environment -->
