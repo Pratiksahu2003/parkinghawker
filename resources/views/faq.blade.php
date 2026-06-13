@@ -6,7 +6,7 @@
         />
     </x-slot>
 
-    <div class="max-w-4xl mx-auto px-6 py-12" x-data="{
+    <div class="max-w-4xl mx-auto px-6 py-6" x-data="{
         activeTab: 'booking',
         searchQuery: '',
         faqs: {
@@ -61,28 +61,28 @@
             return results;
         }
     }">
-        <div class="text-center max-w-xl mx-auto mb-16 space-y-4">
+        <div class="text-center max-w-xl mx-auto mb-8 space-y-3">
             <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan">Help Center</h2>
             <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Got Questions? We Have Answers</h1>
             
             <!-- Quick Search Input -->
-            <div class="pt-4 relative">
+            <div class="pt-2 relative">
                 <input 
                     type="text" 
                     x-model="searchQuery" 
                     placeholder="Search for questions (e.g. refund, plate, host)..." 
-                    class="w-full px-5 py-3.5 rounded-2xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan transition-colors"
+                    class="w-full px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan transition-colors"
                 >
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
             <!-- Category Tabs Sidebar -->
-            <aside class="md:col-span-3 flex flex-row md:flex-col gap-2 overflow-x-auto pb-4 md:pb-0 border-b md:border-b-0 md:border-r border-white/5 pr-0 md:pr-4">
+            <aside class="md:col-span-3 flex flex-row md:flex-col gap-1.5 overflow-x-auto pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/5 pr-0 md:pr-4">
                 <template x-for="tab in ['booking', 'payments', 'security', 'refunds', 'hosting', 'ev_charging', 'membership']">
                     <button 
                         @click="activeTab = tab; searchQuery = ''" 
-                        class="px-4 py-2.5 rounded-xl text-left text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap focus:outline-none"
+                        class="px-3 py-1.5 rounded-xl text-left text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap focus:outline-none"
                         :class="activeTab === tab && !searchQuery ? 'bg-white text-dark-primary shadow-lg shadow-white/5' : 'text-neutral-400 hover:text-white hover:bg-white/5'"
                         x-text="tab.replace('_', ' ')"
                     ></button>
@@ -90,12 +90,12 @@
             </aside>
 
             <!-- FAQs accordion list panel -->
-            <div class="md:col-span-9 space-y-4" x-data="{ openIdx: null }">
+            <div class="md:col-span-9 space-y-3" x-data="{ openIdx: null }">
                 <template x-for="(faq, idx) in filteredFaqs()" :key="idx">
                     <div class="glass-card rounded-2xl overflow-hidden border border-white/5">
                         <button 
                             @click="openIdx = openIdx === idx ? null : idx" 
-                            class="w-full px-6 py-5 text-left flex items-center justify-between font-bold text-white hover:text-brand-cyan transition-colors focus:outline-none text-sm sm:text-base"
+                            class="w-full px-5 py-3.5 text-left flex items-center justify-between font-bold text-white hover:text-brand-cyan transition-colors focus:outline-none text-sm sm:text-base"
                         >
                             <span x-text="faq.q"></span>
                             <svg class="h-4.5 w-4.5 transform transition-transform duration-300 text-neutral-500" :class="openIdx === idx ? 'rotate-180 text-brand-cyan' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
@@ -104,7 +104,7 @@
                             x-show="openIdx === idx" 
                             x-collapse 
                             x-transition 
-                            class="px-6 pb-6 text-sm text-neutral-400 leading-relaxed border-t border-white/5 pt-4"
+                            class="px-5 pb-4 text-sm text-neutral-400 leading-relaxed border-t border-white/5 pt-3"
                             x-html="faq.a"
                         ></div>
                     </div>
@@ -118,16 +118,16 @@
         </div>
 
         <!-- Still Have Questions Section -->
-        <div class="mt-20 glass-panel rounded-3xl p-8 text-center space-y-6">
+        <div class="mt-10 glass-panel rounded-3xl p-5 text-center space-y-4">
             <h3 class="text-xl font-bold text-white">Still Have Unresolved Inquiries?</h3>
             <p class="text-xs sm:text-sm text-neutral-400 max-w-xl mx-auto leading-relaxed">
                 Our customer ops desk is available 24/7. Whether you want to discuss enterprise corporate fleet contracts or need help with a current active charging session, we are ready to assist.
             </p>
-            <div class="flex flex-wrap items-center justify-center gap-4">
-                <a href="{{ route('contact') }}" class="px-6 py-3 rounded-xl bg-brand-cyan text-dark-primary font-bold text-xs tracking-wide shadow-lg">
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <a href="{{ route('contact') }}" class="px-5 py-2.5 rounded-xl bg-brand-cyan text-dark-primary font-bold text-xs tracking-wide shadow-lg">
                     Submit Support Ticket
                 </a>
-                <a href="tel:18002007275" class="px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold text-xs">
+                <a href="tel:18002007275" class="px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold text-xs">
                     Call 1800 200 PARK
                 </a>
             </div>

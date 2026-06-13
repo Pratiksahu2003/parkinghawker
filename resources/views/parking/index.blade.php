@@ -6,9 +6,9 @@
         />
     </x-slot>
 
-    <div class="max-w-7xl mx-auto px-6 py-10" x-data="{ viewMode: 'grid', filterOpen: false }">
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-white/5 pb-6 mb-8 gap-4">
-            <div class="space-y-1">
+    <div class="max-w-7xl mx-auto px-6 py-5" x-data="{ viewMode: 'grid', filterOpen: false }">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-white/5 pb-3 mb-4 gap-4">
+            <div class="space-y-0.5">
                 <h1 class="text-3xl font-bold text-white tracking-tight">Available Spaces</h1>
                 <p class="text-sm text-neutral-400">Discover premium decks in prime locations.</p>
             </div>
@@ -74,18 +74,18 @@
             </form>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
             <!-- Sidebar Filters (Desktop only — always visible on lg) -->
             <aside class="hidden lg:block lg:col-span-3">
-                <form action="{{ route('parking.index') }}" method="GET" class="space-y-6">
+                <form action="{{ route('parking.index') }}" method="GET" class="space-y-4">
                     <!-- City Search -->
-                    <div class="space-y-2">
+                    <div class="space-y-1.5">
                         <label class="text-xs font-semibold text-neutral-500 uppercase tracking-wider">City/Area</label>
-                        <input type="text" name="city" value="{{ $filters['city'] ?? '' }}" placeholder="e.g. Mumbai" class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
+                        <input type="text" name="city" value="{{ $filters['city'] ?? '' }}" placeholder="e.g. Mumbai" class="w-full px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
                     </div>
 
                     <!-- Structure Type -->
-                    <div class="space-y-2">
+                    <div class="space-y-1.5">
                         <label class="text-xs font-semibold text-neutral-500 uppercase tracking-wider">Structure</label>
                         <select name="parking_type" class="w-full px-4 py-2.5 rounded-xl bg-dark-secondary border border-white/10 text-neutral-300 text-sm focus:outline-none focus:border-brand-cyan">
                             <option value="all" {{ ($filters['parking_type'] ?? '') == 'all' ? 'selected' : '' }}>All Types</option>
@@ -97,7 +97,7 @@
                     </div>
 
                     <!-- Sort -->
-                    <div class="space-y-2">
+                    <div class="space-y-1.5">
                         <label class="text-xs font-semibold text-neutral-500 uppercase tracking-wider">Sort By</label>
                         <select name="sort" class="w-full px-4 py-2.5 rounded-xl bg-dark-secondary border border-white/10 text-neutral-300 text-sm focus:outline-none focus:border-brand-cyan">
                             <option value="rating" {{ ($filters['sort'] ?? '') == 'rating' ? 'selected' : '' }}>Top Rated</option>
@@ -108,55 +108,55 @@
                     </div>
 
                     <!-- Amenities Checkboxes -->
-                    <div class="space-y-4 pt-4 border-t border-white/5">
+                    <div class="space-y-3 pt-3 border-t border-white/5">
                         <span class="text-xs font-semibold text-neutral-500 uppercase tracking-wider block">Amenities</span>
                         
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" name="ev_charging" value="yes" {{ ($filters['ev_charging'] ?? '') == 'yes' ? 'checked' : '' }} class="h-4.5 w-4.5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0">
+                        <label class="flex items-center gap-2.5 cursor-pointer">
+                            <input type="checkbox" name="ev_charging" value="yes" {{ ($filters['ev_charging'] ?? '') == 'yes' ? 'checked' : '' }} class="h-4 w-4 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0">
                             <span class="text-sm text-neutral-300">EV Supercharger</span>
                         </label>
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" name="valet" value="yes" {{ ($filters['valet'] ?? '') == 'yes' ? 'checked' : '' }} class="h-4.5 w-4.5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0">
+                        <label class="flex items-center gap-2.5 cursor-pointer">
+                            <input type="checkbox" name="valet" value="yes" {{ ($filters['valet'] ?? '') == 'yes' ? 'checked' : '' }} class="h-4 w-4 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0">
                             <span class="text-sm text-neutral-300">Smart Valet</span>
                         </label>
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" name="security" value="yes" {{ ($filters['security'] ?? '') == 'yes' ? 'checked' : '' }} class="h-4.5 w-4.5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0">
+                        <label class="flex items-center gap-2.5 cursor-pointer">
+                            <input type="checkbox" name="security" value="yes" {{ ($filters['security'] ?? '') == 'yes' ? 'checked' : '' }} class="h-4 w-4 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0">
                             <span class="text-sm text-neutral-300">CCTV & Guards</span>
                         </label>
                     </div>
 
                     <!-- Extra Specifications -->
-                    <div class="space-y-4 pt-4 border-t border-white/5">
+                    <div class="space-y-3 pt-3 border-t border-white/5">
                         <span class="text-xs font-semibold text-neutral-500 uppercase tracking-wider block">Space Specs</span>
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" name="height_limit" value="yes" class="h-4.5 w-4.5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0">
+                        <label class="flex items-center gap-2.5 cursor-pointer">
+                            <input type="checkbox" name="height_limit" value="yes" class="h-4 w-4 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0">
                             <span class="text-sm text-neutral-300">Tall Vehicle (Clearance > 2.1m)</span>
                         </label>
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" name="wheelchair" value="yes" class="h-4.5 w-4.5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0">
+                        <label class="flex items-center gap-2.5 cursor-pointer">
+                            <input type="checkbox" name="wheelchair" value="yes" class="h-4 w-4 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0">
                             <span class="text-sm text-neutral-300">Wheelchair Access</span>
                         </label>
                     </div>
 
-                    <div class="pt-4 flex gap-3">
-                        <button type="submit" class="flex-1 py-3 rounded-xl bg-brand-cyan hover:bg-brand-cyan/95 text-dark-primary font-bold text-sm tracking-wide transition-colors">
+                    <div class="pt-3 flex gap-2.5">
+                        <button type="submit" class="flex-1 py-2.5 rounded-xl bg-brand-cyan hover:bg-brand-cyan/95 text-dark-primary font-bold text-sm tracking-wide transition-colors">
                             Apply
                         </button>
-                        <a href="{{ route('parking.index') }}" class="px-4 py-3 rounded-xl border border-white/10 hover:bg-white/5 text-neutral-400 hover:text-white transition-colors text-sm font-semibold flex items-center justify-center">
+                        <a href="{{ route('parking.index') }}" class="px-3 py-2.5 rounded-xl border border-white/10 hover:bg-white/5 text-neutral-400 hover:text-white transition-colors text-sm font-semibold flex items-center justify-center">
                             Reset
                         </a>
                     </div>
                 </form>
 
                 <!-- Live Activity Feed inside sidebar -->
-                <div class="pt-6 mt-6 border-t border-white/5 space-y-4">
+                <div class="pt-4 mt-4 border-t border-white/5 space-y-3">
                     <span class="text-xs font-semibold text-neutral-500 uppercase tracking-wider block">Live Spot Activity</span>
-                    <div class="space-y-3 font-mono text-[10px] text-neutral-400">
-                        <div class="flex items-start gap-2">
+                    <div class="space-y-2 font-mono text-[10px] text-neutral-400">
+                        <div class="flex items-start gap-1.5">
                             <span class="text-brand-cyan">●</span>
                             <p>MH-12-PK-8842 checked out of BKC Indiranagar <span class="text-neutral-600 font-normal">3m ago</span></p>
                         </div>
-                        <div class="flex items-start gap-2">
+                        <div class="flex items-start gap-1.5">
                             <span class="text-brand-purple">●</span>
                             <p>DL-03-XX-1192 reserved Nariman Point Garage <span class="text-neutral-600 font-normal">8m ago</span></p>
                         </div>
@@ -167,13 +167,13 @@
             <!-- Main Results Layout Area -->
             <div class="lg:col-span-9">
                 <!-- GRID VIEW -->
-                <div x-show="viewMode === 'grid'" class="grid grid-cols-1 md:grid-cols-2 gap-6" x-transition:enter="transition ease-out duration-300">
+                <div x-show="viewMode === 'grid'" class="grid grid-cols-1 md:grid-cols-2 gap-4" x-transition:enter="transition ease-out duration-300">
                     @forelse($spots as $spot)
                         <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between h-full">
-                            <div class="relative h-56 overflow-hidden">
+                            <div class="relative h-48 overflow-hidden">
                                 <img src="{{ $spot['image'] }}" alt="{{ $spot['name'] }}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
                                 <div class="absolute inset-0 bg-gradient-to-t from-dark-primary/60 via-transparent to-transparent pointer-events-none"></div>
-                                <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-dark-primary/80 backdrop-blur text-xs font-bold text-brand-cyan uppercase tracking-wider">
+                                <span class="absolute top-3.5 right-3.5 px-2.5 py-0.5 rounded-full bg-dark-primary/80 backdrop-blur text-xs font-bold text-brand-cyan uppercase tracking-wider">
                                     @if(($spot['currency_code'] ?? '') === 'JPY')
                                         {{ $spot['currency_symbol'] ?? '₹' }}{{ number_format($spot['price_per_hour'], 0) }} / hr
                                     @else
@@ -182,8 +182,8 @@
                                 </span>
                             </div>
 
-                            <div class="p-6 flex-1 flex flex-col justify-between gap-5">
-                                <div class="space-y-2">
+                            <div class="p-4.5 flex-1 flex flex-col justify-between gap-3.5">
+                                <div class="space-y-1.5">
                                     <div class="flex items-center justify-between text-xs text-neutral-500">
                                         <span>📍 {{ $spot['city'] }}, {{ $spot['area'] }}</span>
                                         <span class="flex items-center gap-0.5 text-brand-cyan font-bold">★ {{ $spot['rating'] }}</span>
@@ -205,9 +205,9 @@
                                     </div>
                                 </div>
 
-                                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                                <div class="flex items-center justify-between pt-3 border-t border-white/5">
                                     <span class="text-xs font-semibold text-neutral-400">🚘 {{ $spot['available_spots'] }} / {{ $spot['total_spots'] }} spots free</span>
-                                    <a href="{{ route('parking.show', $spot['id']) }}" class="px-5 py-2.5 rounded-xl bg-white text-dark-primary font-bold text-xs hover:bg-neutral-100 transition-colors">
+                                    <a href="{{ route('parking.show', $spot['id']) }}" class="px-4 py-2 rounded-xl bg-white text-dark-primary font-bold text-xs hover:bg-neutral-100 transition-colors">
                                         Book Spot
                                     </a>
                                 </div>
@@ -225,12 +225,12 @@
                 </div>
 
                 <!-- MAP VIEW -->
-                <div x-show="viewMode === 'map'" class="grid grid-cols-1 lg:grid-cols-12 gap-6" x-transition:enter="transition ease-out duration-300" style="display: none;">
+                <div x-show="viewMode === 'map'" class="grid grid-cols-1 lg:grid-cols-12 gap-4" x-transition:enter="transition ease-out duration-300" style="display: none;">
                     <!-- List panel -->
-                    <div class="lg:col-span-5 space-y-4 max-h-[600px] overflow-y-auto pr-2">
+                    <div class="lg:col-span-5 space-y-3 max-h-[450px] overflow-y-auto pr-2">
                         @foreach($spots as $spot)
-                            <div class="glass-card rounded-2xl p-4 flex gap-4 cursor-pointer hover:border-brand-cyan/30 transition-all">
-                                <img src="{{ $spot['image'] }}" alt="{{ $spot['name'] }}" class="h-20 w-20 rounded-xl object-cover">
+                            <div class="glass-card rounded-2xl p-3 flex gap-3 cursor-pointer hover:border-brand-cyan/30 transition-all">
+                                <img src="{{ $spot['image'] }}" alt="{{ $spot['name'] }}" class="h-16 w-16 rounded-xl object-cover">
                                 <div class="flex-grow flex flex-col justify-between">
                                     <div class="space-y-0.5">
                                         <h4 class="text-sm font-bold text-white line-clamp-1">{{ $spot['name'] }}</h4>
@@ -252,7 +252,7 @@
                     </div>
 
                     <!-- Interactive Map Mock -->
-                    <div class="lg:col-span-7 h-[600px] rounded-3xl bg-dark-secondary border border-white/5 relative overflow-hidden flex items-center justify-center">
+                    <div class="lg:col-span-7 h-[450px] rounded-3xl bg-dark-secondary border border-white/5 relative overflow-hidden flex items-center justify-center">
                         <!-- Futuristic grid line design -->
                         <div class="absolute inset-0 bg-[radial-gradient(rgba(6,182,212,0.08)_1px,transparent_1px)] bg-[size:20px_20px] opacity-75"></div>
                         <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:100px_100px]"></div>

@@ -6,7 +6,7 @@
         />
     </x-slot>
 
-    <div class="max-w-4xl mx-auto px-6 py-10" x-data="{
+    <div class="max-w-4xl mx-auto px-6 py-5" x-data="{
         step: 1,
         spotId: {{ $spot['id'] }},
         vehiclePlate: '',
@@ -114,8 +114,8 @@
     }">
 
         <!-- Progress Indicator -->
-        <div class="mb-10">
-            <div class="flex items-center justify-between text-xs font-semibold text-neutral-500 uppercase tracking-widest mb-4">
+        <div class="mb-5">
+            <div class="flex items-center justify-between text-xs font-semibold text-neutral-500 uppercase tracking-widest mb-3">
                 <span :class="step >= 1 ? 'text-brand-cyan' : ''">1. Vehicle Info</span>
                 <span :class="step >= 2 ? 'text-brand-cyan' : ''">2. Add-ons</span>
                 <span :class="step >= 3 ? 'text-brand-cyan' : ''">3. Payment</span>
@@ -126,11 +126,11 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
             <!-- Form wizard panel -->
-            <div class="lg:col-span-8 glass-panel rounded-3xl p-8 shadow-2xl relative">
+            <div class="lg:col-span-8 glass-panel rounded-3xl p-5 shadow-2xl relative">
                 <!-- Floating top highlight -->
-                <div class="absolute top-0 left-8 right-8 h-0.5 bg-gradient-to-r from-transparent via-brand-cyan to-transparent"></div>
+                <div class="absolute top-0 left-5 right-5 h-0.5 bg-gradient-to-r from-transparent via-brand-cyan to-transparent"></div>
 
                 <form action="{{ route('booking.store') }}" method="POST" @submit="if(!validateStep(3)) $event.preventDefault()">
                     @csrf
@@ -141,39 +141,39 @@
                     <input type="hidden" name="entry_time" :value="entryTime">
 
                     <!-- STEP 1: Vehicle Information -->
-                    <div x-show="step === 1" class="space-y-6" x-transition>
+                    <div x-show="step === 1" class="space-y-4" x-transition>
                         <h2 class="text-xl font-bold text-white tracking-tight">1. Vehicle & Schedule Details</h2>
                         
-                        <div class="space-y-4">
+                        <div class="space-y-3">
                             <!-- Vehicle Plate -->
                             <div class="flex flex-col">
-                                <label class="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">License Plate Number</label>
-                                <input type="text" x-model="vehiclePlate" name="vehicle_plate" placeholder="e.g. MH-01-AB-1234" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan uppercase">
+                                <label class="text-xs font-semibold text-neutral-400 mb-1.5 uppercase tracking-wider">License Plate Number</label>
+                                <input type="text" x-model="vehiclePlate" name="vehicle_plate" placeholder="e.g. MH-01-AB-1234" class="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan uppercase">
                                 <span x-show="errors.vehiclePlate" x-text="errors.vehiclePlate" class="text-xs text-red-400 mt-1" style="display: none;"></span>
                             </div>
 
                             <!-- Vehicle Nickname & Color -->
-                            <div class="grid grid-cols-2 gap-4">
+                            <div class="grid grid-cols-2 gap-3">
                                 <div class="flex flex-col">
-                                    <label class="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">Vehicle Nickname</label>
-                                    <input type="text" placeholder="e.g. White SUV" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
+                                    <label class="text-xs font-semibold text-neutral-400 mb-1.5 uppercase tracking-wider">Vehicle Nickname</label>
+                                    <input type="text" placeholder="e.g. White SUV" class="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
                                 </div>
                                 <div class="flex flex-col" x-data="{ selectedColor: 'silver' }">
-                                    <label class="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">Vehicle Color</label>
-                                    <div class="flex items-center gap-2 py-2.5">
-                                        <button type="button" @click="selectedColor = 'white'" :class="selectedColor === 'white' ? 'ring-2 ring-brand-cyan' : ''" class="h-6 w-6 rounded-full bg-white border border-white/20 focus:outline-none"></button>
-                                        <button type="button" @click="selectedColor = 'black'" :class="selectedColor === 'black' ? 'ring-2 ring-brand-cyan' : ''" class="h-6 w-6 rounded-full bg-black border border-white/20 focus:outline-none"></button>
-                                        <button type="button" @click="selectedColor = 'silver'" :class="selectedColor === 'silver' ? 'ring-2 ring-brand-cyan' : ''" class="h-6 w-6 rounded-full bg-slate-400 border border-white/20 focus:outline-none"></button>
-                                        <button type="button" @click="selectedColor = 'blue'" :class="selectedColor === 'blue' ? 'ring-2 ring-brand-cyan' : ''" class="h-6 w-6 rounded-full bg-blue-600 border border-white/20 focus:outline-none"></button>
-                                        <button type="button" @click="selectedColor = 'red'" :class="selectedColor === 'red' ? 'ring-2 ring-brand-cyan' : ''" class="h-6 w-6 rounded-full bg-red-600 border border-white/20 focus:outline-none"></button>
+                                    <label class="text-xs font-semibold text-neutral-400 mb-1.5 uppercase tracking-wider">Vehicle Color</label>
+                                    <div class="flex items-center gap-2 py-2">
+                                        <button type="button" @click="selectedColor = 'white'" :class="selectedColor === 'white' ? 'ring-2 ring-brand-cyan' : ''" class="h-5.5 w-5.5 rounded-full bg-white border border-white/20 focus:outline-none"></button>
+                                        <button type="button" @click="selectedColor = 'black'" :class="selectedColor === 'black' ? 'ring-2 ring-brand-cyan' : ''" class="h-5.5 w-5.5 rounded-full bg-black border border-white/20 focus:outline-none"></button>
+                                        <button type="button" @click="selectedColor = 'silver'" :class="selectedColor === 'silver' ? 'ring-2 ring-brand-cyan' : ''" class="h-5.5 w-5.5 rounded-full bg-slate-400 border border-white/20 focus:outline-none"></button>
+                                        <button type="button" @click="selectedColor = 'blue'" :class="selectedColor === 'blue' ? 'ring-2 ring-brand-cyan' : ''" class="h-5.5 w-5.5 rounded-full bg-blue-600 border border-white/20 focus:outline-none"></button>
+                                        <button type="button" @click="selectedColor = 'red'" :class="selectedColor === 'red' ? 'ring-2 ring-brand-cyan' : ''" class="h-5.5 w-5.5 rounded-full bg-red-600 border border-white/20 focus:outline-none"></button>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Vehicle Type -->
                             <div class="flex flex-col">
-                                <label class="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">Vehicle Classification</label>
-                                <select x-model="vehicleType" class="px-4 py-3 rounded-xl bg-dark-secondary border border-white/10 text-neutral-300 text-sm focus:outline-none focus:border-brand-cyan">
+                                <label class="text-xs font-semibold text-neutral-400 mb-1.5 uppercase tracking-wider">Vehicle Classification</label>
+                                <select x-model="vehicleType" class="px-4 py-2.5 rounded-xl bg-dark-secondary border border-white/10 text-neutral-300 text-sm focus:outline-none focus:border-brand-cyan">
                                     <option value="car">Standard Sedan / Coupe</option>
                                     <option value="suv">Oversized SUV / Truck</option>
                                     <option value="motorcycle">Motorcycle</option>
@@ -182,8 +182,8 @@
 
                             <!-- Duration Select -->
                             <div class="flex flex-col">
-                                <label class="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">Duration of Stay</label>
-                                <select x-model="duration" class="px-4 py-3 rounded-xl bg-dark-secondary border border-white/10 text-neutral-300 text-sm focus:outline-none focus:border-brand-cyan">
+                                <label class="text-xs font-semibold text-neutral-400 mb-1.5 uppercase tracking-wider">Duration of Stay</label>
+                                <select x-model="duration" class="px-4 py-2.5 rounded-xl bg-dark-secondary border border-white/10 text-neutral-300 text-sm focus:outline-none focus:border-brand-cyan">
                                     <option value="1 hour">1 Hour</option>
                                     <option value="3 hours">3 Hours</option>
                                     <option value="6 hours">6 Hours</option>
@@ -195,35 +195,35 @@
                             </div>
 
                             <!-- Entry Schedule -->
-                            <div class="grid grid-cols-2 gap-4">
+                            <div class="grid grid-cols-2 gap-3">
                                 <div class="flex flex-col">
-                                    <label class="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">Arrival Date</label>
-                                    <input type="date" x-model="entryDate" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-neutral-300 text-sm focus:outline-none focus:border-brand-cyan">
+                                    <label class="text-xs font-semibold text-neutral-400 mb-1.5 uppercase tracking-wider">Arrival Date</label>
+                                    <input type="date" x-model="entryDate" class="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-neutral-300 text-sm focus:outline-none focus:border-brand-cyan">
                                     <span x-show="errors.entryDate" x-text="errors.entryDate" class="text-xs text-red-400 mt-1" style="display: none;"></span>
                                 </div>
                                 <div class="flex flex-col">
-                                    <label class="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">Arrival Time</label>
-                                    <input type="time" x-model="entryTime" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-neutral-300 text-sm focus:outline-none focus:border-brand-cyan">
+                                    <label class="text-xs font-semibold text-neutral-400 mb-1.5 uppercase tracking-wider">Arrival Time</label>
+                                    <input type="time" x-model="entryTime" class="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-neutral-300 text-sm focus:outline-none focus:border-brand-cyan">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="pt-6 flex justify-end">
-                            <button type="button" @click="nextStep()" class="px-7 py-3 rounded-xl bg-brand-cyan text-dark-primary font-bold text-sm hover:bg-brand-cyan/95 transition-colors">
+                        <div class="pt-4 flex justify-end">
+                            <button type="button" @click="nextStep()" class="px-5 py-2.5 rounded-xl bg-brand-cyan text-dark-primary font-bold text-sm hover:bg-brand-cyan/95 transition-colors">
                                 Next Step
                             </button>
                         </div>
                     </div>
 
                     <!-- STEP 2: Options & Add-ons -->
-                    <div x-show="step === 2" class="space-y-6" x-transition style="display: none;">
+                    <div x-show="step === 2" class="space-y-4" x-transition style="display: none;">
                         <h2 class="text-xl font-bold text-white tracking-tight">2. Select Premium Services</h2>
                         
-                        <div class="space-y-4">
+                        <div class="space-y-3">
                             <!-- EV charger addon -->
                             @if($spot['amenities']['ev_charging'])
-                                <label class="flex items-start gap-4 p-5 rounded-2xl border cursor-pointer transition-colors" :class="evAddon ? 'bg-brand-cyan/5 border-brand-cyan' : 'bg-white/5 border-white/10'">
-                                    <input type="checkbox" x-model="evAddon" name="ev_addon" value="1" class="h-5 w-5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0 mt-1">
+                                <label class="flex items-start gap-3 p-3.5 rounded-2xl border cursor-pointer transition-colors" :class="evAddon ? 'bg-brand-cyan/5 border-brand-cyan' : 'bg-white/5 border-white/10'">
+                                    <input type="checkbox" x-model="evAddon" name="ev_addon" value="1" class="h-4.5 w-4.5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0 mt-0.5">
                                     <div>
                                         <strong class="text-sm text-white block mb-0.5">
                                             EV Supercharging Station (+ 
@@ -241,8 +241,8 @@
 
                             <!-- Wash addon -->
                             @if($spot['amenities']['wash'])
-                                <label class="flex items-start gap-4 p-5 rounded-2xl border cursor-pointer transition-colors" :class="washAddon ? 'bg-brand-cyan/5 border-brand-cyan' : 'bg-white/5 border-white/10'">
-                                    <input type="checkbox" x-model="washAddon" name="wash_addon" value="1" class="h-5 w-5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0 mt-1">
+                                <label class="flex items-start gap-3 p-3.5 rounded-2xl border cursor-pointer transition-colors" :class="washAddon ? 'bg-brand-cyan/5 border-brand-cyan' : 'bg-white/5 border-white/10'">
+                                    <input type="checkbox" x-model="washAddon" name="wash_addon" value="1" class="h-4.5 w-4.5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0 mt-0.5">
                                     <div>
                                         <strong class="text-sm text-white block mb-0.5">
                                             Deluxe Car Wash Service (+ 
@@ -259,8 +259,8 @@
                             @endif
 
                             <!-- Valet addon -->
-                            <label class="flex items-start gap-4 p-5 rounded-2xl border cursor-pointer transition-colors bg-white/5 border-white/10" x-data="{ valetSelected: false }" :class="valetSelected ? 'bg-brand-cyan/5 border-brand-cyan' : 'bg-white/5 border-white/10'">
-                                <input type="checkbox" @click="valetSelected = !valetSelected" class="h-5 w-5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0 mt-1">
+                            <label class="flex items-start gap-3 p-3.5 rounded-2xl border cursor-pointer transition-colors bg-white/5 border-white/10" x-data="{ valetSelected: false }" :class="valetSelected ? 'bg-brand-cyan/5 border-brand-cyan' : 'bg-white/5 border-white/10'">
+                                <input type="checkbox" @click="valetSelected = !valetSelected" class="h-4.5 w-4.5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0 mt-0.5">
                                 <div>
                                     <strong class="text-sm text-white block mb-0.5">Smart Valet Service (Promo: FREE)</strong>
                                     <p class="text-xs text-neutral-400">Leave your keys with our certified attendant. Your car will be parked securely and brought to the exit bay upon return.</p>
@@ -268,8 +268,8 @@
                             </label>
 
                             <!-- Luggage storage addon -->
-                            <label class="flex items-start gap-4 p-5 rounded-2xl border cursor-pointer transition-colors bg-white/5 border-white/10" x-data="{ luggageSelected: false }" :class="luggageSelected ? 'bg-brand-cyan/5 border-brand-cyan' : 'bg-white/5 border-white/10'">
-                                <input type="checkbox" @click="luggageSelected = !luggageSelected" class="h-5 w-5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0 mt-1">
+                            <label class="flex items-start gap-3 p-3.5 rounded-2xl border cursor-pointer transition-colors bg-white/5 border-white/10" x-data="{ luggageSelected: false }" :class="luggageSelected ? 'bg-brand-cyan/5 border-brand-cyan' : 'bg-white/5 border-white/10'">
+                                <input type="checkbox" @click="luggageSelected = !luggageSelected" class="h-4.5 w-4.5 rounded bg-white/5 border border-white/10 text-brand-cyan focus:ring-0 mt-0.5">
                                 <div>
                                     <strong class="text-sm text-white block mb-0.5">Complimentary Luggage Protection (FREE)</strong>
                                     <p class="text-xs text-neutral-400">Drop off heavy bags at the service hub. They will be stored in our climate-controlled lockbox and returned to your car trunk.</p>
@@ -277,22 +277,22 @@
                             </label>
                         </div>
 
-                        <div class="pt-6 flex justify-between">
-                            <button type="button" @click="prevStep()" class="px-6 py-3 rounded-xl border border-white/10 text-neutral-400 hover:text-white transition-colors text-sm font-semibold">
+                        <div class="pt-4 flex justify-between">
+                            <button type="button" @click="prevStep()" class="px-5 py-2.5 rounded-xl border border-white/10 text-neutral-400 hover:text-white transition-colors text-sm font-semibold">
                                 Back
                             </button>
-                            <button type="button" @click="nextStep()" class="px-7 py-3 rounded-xl bg-brand-cyan text-dark-primary font-bold text-sm hover:bg-brand-cyan/95 transition-colors">
+                            <button type="button" @click="nextStep()" class="px-6 py-2.5 rounded-xl bg-brand-cyan text-dark-primary font-bold text-sm hover:bg-brand-cyan/95 transition-colors">
                                 Next Step
                             </button>
                         </div>
                     </div>
 
                     <!-- STEP 3: Secure Payment Mock -->
-                    <div x-show="step === 3" class="space-y-6" x-transition style="display: none;">
+                    <div x-show="step === 3" class="space-y-4" x-transition style="display: none;">
                         <h2 class="text-xl font-bold text-white tracking-tight">3. Complete Secure Checkout</h2>
                         
-                        <div class="space-y-5">
-                            <div class="flex gap-4 border-b border-white/5 pb-4">
+                        <div class="space-y-4">
+                            <div class="flex gap-4 border-b border-white/5 pb-3">
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="radio" name="payment_method" value="card" x-model="paymentMethod" class="text-brand-cyan focus:ring-0">
                                     <span class="text-sm text-neutral-300">Credit / Debit Card</span>
@@ -303,46 +303,46 @@
                                 </label>
                             </div>
 
-                            <div x-show="paymentMethod === 'card'" class="space-y-4" x-transition>
+                            <div x-show="paymentMethod === 'card'" class="space-y-3.5" x-transition>
                                 <!-- Name -->
                                 <div class="flex flex-col">
-                                    <label class="text-xs font-semibold text-neutral-400 mb-2">Cardholder Name</label>
-                                    <input type="text" x-model="cardName" placeholder="e.g. Jane Doe" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
+                                    <label class="text-xs font-semibold text-neutral-400 mb-1.5">Cardholder Name</label>
+                                    <input type="text" x-model="cardName" placeholder="e.g. Jane Doe" class="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
                                     <span x-show="errors.cardName" x-text="errors.cardName" class="text-xs text-red-400 mt-1" style="display: none;"></span>
                                 </div>
                                 
                                 <!-- Card Number -->
                                 <div class="flex flex-col">
-                                    <label class="text-xs font-semibold text-neutral-400 mb-2">Card Number</label>
-                                    <input type="text" x-model="cardNumber" placeholder="•••• •••• •••• ••••" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
+                                    <label class="text-xs font-semibold text-neutral-400 mb-1.5">Card Number</label>
+                                    <input type="text" x-model="cardNumber" placeholder="•••• •••• •••• ••••" class="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
                                     <span x-show="errors.cardNumber" x-text="errors.cardNumber" class="text-xs text-red-400 mt-1" style="display: none;"></span>
                                 </div>
 
                                 <!-- Expiry & CVC -->
-                                <div class="grid grid-cols-2 gap-4">
+                                <div class="grid grid-cols-2 gap-3">
                                     <div class="flex flex-col">
-                                        <label class="text-xs font-semibold text-neutral-400 mb-2">Expiry Date</label>
-                                        <input type="text" x-model="cardExpiry" placeholder="MM/YY" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
+                                        <label class="text-xs font-semibold text-neutral-400 mb-1.5">Expiry Date</label>
+                                        <input type="text" x-model="cardExpiry" placeholder="MM/YY" class="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
                                         <span x-show="errors.cardExpiry" x-text="errors.cardExpiry" class="text-xs text-red-400 mt-1" style="display: none;"></span>
                                     </div>
                                     <div class="flex flex-col">
-                                        <label class="text-xs font-semibold text-neutral-400 mb-2">CVC / CVV</label>
-                                        <input type="text" x-model="cardCvc" placeholder="•••" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
+                                        <label class="text-xs font-semibold text-neutral-400 mb-1.5">CVC / CVV</label>
+                                        <input type="text" x-model="cardCvc" placeholder="•••" class="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-cyan">
                                         <span x-show="errors.cardCvc" x-text="errors.cardCvc" class="text-xs text-red-400 mt-1" style="display: none;"></span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div x-show="paymentMethod === 'apple'" class="py-8 text-center bg-white/5 border border-white/5 rounded-2xl" x-transition style="display: none;">
+                            <div x-show="paymentMethod === 'apple'" class="py-6 text-center bg-white/5 border border-white/5 rounded-2xl" x-transition style="display: none;">
                                 <span class="text-sm text-neutral-400">Express integration active. You will authorize with your secure wallet upon confirming.</span>
                             </div>
                         </div>
 
-                        <div class="pt-6 flex justify-between">
-                            <button type="button" @click="prevStep()" class="px-6 py-3 rounded-xl border border-white/10 text-neutral-400 hover:text-white transition-colors text-sm font-semibold">
+                        <div class="pt-4 flex justify-between">
+                            <button type="button" @click="prevStep()" class="px-5 py-2.5 rounded-xl border border-white/10 text-neutral-400 hover:text-white transition-colors text-sm font-semibold">
                                 Back
                             </button>
-                            <button type="submit" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-purple text-white font-bold text-sm tracking-wide shadow-lg hover:opacity-95 transition-all">
+                            <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-purple text-white font-bold text-sm tracking-wide shadow-lg hover:opacity-95 transition-all">
                                 Confirm & Book Spot
                             </button>
                         </div>
@@ -351,11 +351,11 @@
             </div>
 
             <!-- Price Breakdown Sticky Sidebar -->
-            <div class="lg:col-span-4 lg:sticky lg:top-28">
-                <div class="glass-panel rounded-3xl p-6 shadow-2xl space-y-6">
+            <div class="lg:col-span-4 lg:sticky lg:top-20">
+                <div class="glass-panel rounded-3xl p-4.5 shadow-2xl space-y-4">
                     <h3 class="text-md font-bold text-white">Billing Breakdown</h3>
                     
-                    <div class="space-y-4 text-xs text-neutral-400 border-b border-white/5 pb-4">
+                    <div class="space-y-3 text-xs text-neutral-400 border-b border-white/5 pb-3">
                         <div class="flex justify-between">
                             <span>Selected Deck</span>
                             <span class="text-white font-medium">{{ $spot['name'] }}</span>
@@ -377,7 +377,7 @@
                     </div>
 
                     <!-- Computations list -->
-                    <div class="space-y-3.5 text-sm">
+                    <div class="space-y-2.5 text-sm">
                         <div class="flex justify-between text-neutral-400">
                             <span class="text-xs">Parking subtotal</span>
                             <span class="text-white" x-text="formatMoney(pricing.total_price)"></span>
@@ -396,11 +396,11 @@
                         </div>
                         
                         <!-- Coupon code input -->
-                        <div class="space-y-2 pt-4 border-t border-white/5" x-data="{ couponCode: '', couponApplied: false, discountAmount: 0 }">
+                        <div class="space-y-2 pt-3 border-t border-white/5" x-data="{ couponCode: '', couponApplied: false, discountAmount: 0 }">
                             <label class="text-xs font-semibold text-neutral-400 uppercase tracking-wider block">Discount Coupon</label>
                             <div class="flex gap-2">
-                                <input type="text" x-model="couponCode" placeholder="e.g. PARK15" class="flex-1 px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-brand-cyan uppercase">
-                                <button type="button" @click="if(couponCode.toUpperCase() === 'PARK15') { couponApplied = true; discountAmount = pricing.final_total * 0.15; } else { alert('Invalid Coupon Code'); }" class="px-3.5 rounded-xl bg-brand-cyan text-dark-primary font-bold text-xs hover:bg-brand-cyan/90 transition-colors">
+                                <input type="text" x-model="couponCode" placeholder="e.g. PARK15" class="flex-1 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-white text-xs focus:outline-none focus:border-brand-cyan uppercase">
+                                <button type="button" @click="if(couponCode.toUpperCase() === 'PARK15') { couponApplied = true; discountAmount = pricing.final_total * 0.15; } else { alert('Invalid Coupon Code'); }" class="px-3 py-1.5 rounded-xl bg-brand-cyan text-dark-primary font-bold text-xs hover:bg-brand-cyan/90 transition-colors">
                                     Apply
                                 </button>
                             </div>
@@ -409,7 +409,7 @@
                                 <span x-text="'-' + formatMoney(discountAmount)"></span>
                             </div>
                             
-                            <div class="flex justify-between font-bold text-white pt-4 border-t border-white/5">
+                            <div class="flex justify-between font-bold text-white pt-3 border-t border-white/5">
                                 <span>Total Billing</span>
                                 <span class="text-lg text-brand-cyan" x-text="formatMoney(couponApplied ? pricing.final_total - discountAmount : pricing.final_total)"></span>
                             </div>

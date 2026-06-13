@@ -23,12 +23,14 @@
     <script>
         window.addEventListener('scroll', function () {
             const nav = document.getElementById('main-nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('py-3', 'glass-panel', 'shadow-lg');
-                nav.classList.remove('py-6', 'border-transparent');
-            } else {
-                nav.classList.remove('py-3', 'glass-panel', 'shadow-lg');
-                nav.classList.add('py-6', 'border-transparent');
+            if (nav) {
+                if (window.scrollY > 50) {
+                    nav.classList.add('py-1.5', 'glass-panel', 'shadow-lg');
+                    nav.classList.remove('py-3', 'border-transparent');
+                } else {
+                    nav.classList.remove('py-1.5', 'glass-panel', 'shadow-lg');
+                    nav.classList.add('py-3', 'border-transparent');
+                }
             }
         });
     </script>
@@ -40,17 +42,17 @@
     class="min-h-screen flex flex-col font-sans overflow-x-hidden selection:bg-brand-cyan/30 selection:text-brand-cyan">
 
     <!-- Main Navigation Header -->
-    <header class="fixed top-0 left-0 right-0 z-40  border-b border-white/5"
+    <header id="main-nav" class="fixed top-0 left-0 right-0 z-40 border-b border-transparent py-3 transition-all duration-300 bg-dark-primary/90 backdrop-blur-md"
         x-data="{ mobileMenuOpen: false, searchOpen: false, activeMegamenu: null }">
-        <div class="max-w-7xl mx-auto  flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
             <!-- Animated Logo -->
             <a href="{{ route('home') }}" class="group z-50">
                 <img src="{{ asset('logo/logo.png') }}" alt="Logo"
-                    class="h-18 w-auto object-contain transition-transform duration-500 group-hover:scale-105">
+                    class="h-11 w-auto object-contain transition-transform duration-500 group-hover:scale-105">
             </a>
 
             <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-8">
+            <nav class="hidden md:flex items-center gap-5">
                 <a href="{{ route('home') }}"
                     class="relative text-sm font-medium tracking-wide text-neutral-400 hover:text-white transition-colors py-2 group">
                     Home
@@ -162,17 +164,17 @@
             </nav>
 
             <!-- Actions (Search & CTA) -->
-            <div class="hidden md:flex items-center gap-4">
+            <div class="hidden md:flex items-center gap-2.5">
                 <button @click="searchOpen = true"
-                    class="p-2.5 rounded-full bg-white/5 border border-white/5 hover:border-white/15 text-neutral-300 hover:text-white hover:bg-white/10 transition-all focus:outline-none"
+                    class="p-2 rounded-full bg-white/5 border border-white/5 hover:border-white/15 text-neutral-300 hover:text-white hover:bg-white/10 transition-all focus:outline-none"
                     aria-label="Search">
-                    <svg class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </button>
                 <a href="{{ route('parking.index') }}"
-                    class="magnetic-btn px-6 py-2.5 rounded-full bg-white text-dark-primary font-semibold text-sm hover:bg-neutral-100 hover:shadow-xl hover:shadow-white/5 transition-all duration-300">
+                    class="magnetic-btn px-4 py-2 rounded-full bg-white text-dark-primary font-semibold text-xs hover:bg-neutral-100 hover:shadow-xl hover:shadow-white/5 transition-all duration-300">
                     Find Parking
                 </a>
             </div>
@@ -266,12 +268,12 @@
     </header>
 
     <!-- Global App Content -->
-    <main class="flex-grow pt-24">
+    <main class="flex-grow pt-16">
         {{ $slot }}
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark-secondary border-t border-white/5 relative z-10 pt-20 pb-8 overflow-hidden">
+    <footer class="bg-dark-secondary border-t border-white/5 relative z-10 pt-12 pb-6 overflow-hidden">
         <!-- Background decorative ambient lights -->
         <div
             class="absolute -bottom-80 -left-80 h-160 w-160 rounded-full bg-brand-cyan/5 blur-[150px] pointer-events-none">
@@ -280,11 +282,11 @@
             class="absolute -bottom-80 -right-80 h-160 w-160 rounded-full bg-brand-purple/5 blur-[150px] pointer-events-none">
         </div>
 
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-6 mb-10 relative z-10">
             <!-- Col 1: About -->
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-3">
                 <a href="{{ route('home') }}">
-                    <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-18 w-auto object-contain">
+                    <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-11 w-auto object-contain">
                 </a>
                 <p class="text-sm text-neutral-400 mt-2 leading-relaxed">
                     Pioneering seamless urban mobility with premium, Apple-level automated booking decks. Smart
@@ -377,7 +379,7 @@
         </div>
 
         <div
-            class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+            class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-5 relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
             <span>&copy; {{ date('Y') }} ParkingHawker Inc. All rights reserved. Built with premium Laravel
                 architecture.</span>
             <div class="flex items-center gap-6">
