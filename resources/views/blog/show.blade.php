@@ -60,8 +60,14 @@
             </div>
         @elseif(!empty($article['image']))
             <!-- Big Banner Image -->
-            <div class="h-[250px] w-full rounded-3xl overflow-hidden border border-white/5 mb-6">
-                <img src="{{ $article['image'] }}" alt="{{ $article['title'] }}" class="w-full h-full object-cover">
+            <div class="h-[250px] w-full rounded-3xl overflow-hidden border border-white/5 mb-6 bg-white/5">
+                <img src="{{ $article['image'] }}" alt="{{ $article['title'] }}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                <div class="hidden w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-brand-cyan/10 to-brand-purple/10 text-neutral-500">
+                    <svg class="h-12 w-12 text-neutral-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.9 2.9m-18 8.25h21.75a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 002.25 15.75zm10.5-6a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                    </svg>
+                    <span class="text-xs uppercase tracking-wider font-bold text-neutral-600">ParkingHawker News</span>
+                </div>
             </div>
         @endif
 
@@ -109,15 +115,14 @@
                         <div class="bg-white/[0.03] backdrop-blur-md rounded-2xl overflow-hidden flex flex-col justify-between h-full border border-white/10 hover:border-brand-cyan/30 transition-all duration-300 shadow-xl group">
                             <div class="h-28 overflow-hidden relative bg-white/5">
                                 @if(!empty($rel['image']))
-                                    <img src="{{ $rel['image'] }}" alt="{{ $rel['title'] }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                                @else
-                                    <!-- Fallback SVG for related image -->
-                                    <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-brand-cyan/10 to-brand-purple/10 text-neutral-500">
-                                        <svg class="h-8 w-8 text-neutral-600 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.9 2.9m-18 8.25h21.75a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 002.25 15.75zm10.5-6a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-                                        </svg>
-                                    </div>
+                                    <img src="{{ $rel['image'] }}" alt="{{ $rel['title'] }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
                                 @endif
+                                <!-- Fallback SVG for related image -->
+                                <div class="{{ !empty($rel['image']) ? 'hidden' : '' }} w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-brand-cyan/10 to-brand-purple/10 text-neutral-500">
+                                    <svg class="h-8 w-8 text-neutral-600 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.9 2.9m-18 8.25h21.75a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 002.25 15.75zm10.5-6a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                                    </svg>
+                                </div>
                                 <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-dark-primary/80 backdrop-blur text-[9px] font-bold text-brand-cyan uppercase tracking-wider">{{ $rel['category'] }}</span>
                             </div>
                             <div class="p-3.5 space-y-2">

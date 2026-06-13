@@ -63,16 +63,15 @@
                 <article class="bg-white/[0.03] backdrop-blur-md rounded-3xl overflow-hidden flex flex-col justify-between h-full border border-white/10 hover:border-brand-cyan/30 transition-all duration-300 shadow-2xl reveal-fade group">
                     <div class="h-40 overflow-hidden relative bg-white/5">
                         @if(!empty($art['image']))
-                            <img src="{{ $art['image'] }}" alt="{{ $art['title'] }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        @else
-                            <!-- Beautiful premium SVG placeholder for missing images to avoid broken img layout -->
-                            <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-brand-cyan/10 to-brand-purple/10 text-neutral-500">
-                                <svg class="h-10 w-10 text-neutral-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.9 2.9m-18 8.25h21.75a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 002.25 15.75zm10.5-6a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-                                </svg>
-                                <span class="text-[10px] uppercase tracking-wider font-bold text-neutral-600">ParkingHawker News</span>
-                            </div>
+                            <img src="{{ $art['image'] }}" alt="{{ $art['title'] }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
                         @endif
+                        <!-- Beautiful premium SVG placeholder for missing images to avoid broken img layout -->
+                        <div class="{{ !empty($art['image']) ? 'hidden' : '' }} w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-brand-cyan/10 to-brand-purple/10 text-neutral-500">
+                            <svg class="h-10 w-10 text-neutral-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.9 2.9m-18 8.25h21.75a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 002.25 15.75zm10.5-6a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                            </svg>
+                            <span class="text-[10px] uppercase tracking-wider font-bold text-neutral-600">ParkingHawker News</span>
+                        </div>
                         <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-dark-primary/80 backdrop-blur text-[10px] font-bold text-brand-cyan uppercase tracking-wider">{{ $art['category'] }}</span>
                     </div>
 
