@@ -8,6 +8,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminBlogPostController;
 use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\SitemapParkingController;
+use App\Http\Controllers\SitemapLocationController;
 use Illuminate\Support\Facades\Route;
 
 // Home Page
@@ -53,3 +55,16 @@ Route::prefix('admin')->middleware(['admin'])->name('admin.')->group(function ()
     Route::resource('permissions', \App\Http\Controllers\Admin\AdminPermissionController::class);
     Route::resource('users', \App\Http\Controllers\Admin\AdminUserController::class);
 });
+
+// ─── Sitemap Dynamic Pages (no 404 for sitemap URLs) ──────────────────────
+// Pattern: /parking-in/{code}/{city}/{slug}.html
+// e.g. /parking-in/DEL0171/New-Delhi/moti-nagar-metro-station-gate-no-3-and-4-parking.html
+Route::get('/parking-in/{code}/{city}/{slug}', [SitemapParkingController::class, 'show'])
+    ->where('slug', '.*\.html$')
+    ->name('sitemap.parking.show');
+
+// Pattern: /parking-near-me/{locationSlug}.html
+// e.g. /parking-near-me/aali-village-ali-new-delhi-delhi-india.html
+Route::get('/parking-near-me/{locationSlug}', [SitemapLocationController::class, 'show'])
+    ->where('locationSlug', '.*\.html$')
+    ->name('sitemap.location.show');
