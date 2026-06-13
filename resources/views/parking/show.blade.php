@@ -64,6 +64,9 @@
                         <p class="text-sm text-neutral-400 leading-relaxed">{{ $spot['description'] }}</p>
                     </div>
 
+                    <!-- Google Ad Slot -->
+                    <x-ad-slot slot="parking_show_middle" class="my-4" />
+
                     <!-- Amenities Grid -->
                     <div class="space-y-3 pt-3 border-t border-white/5">
                         <h3 class="text-lg font-bold text-white">Offered Amenities</h3>

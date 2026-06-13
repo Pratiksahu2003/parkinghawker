@@ -96,6 +96,11 @@
         </div>
     </section>
 
+    <!-- Google Ad Slot -->
+    <div class="max-w-7xl mx-auto px-6">
+        <x-ad-slot slot="home_top_banner" class="my-4" />
+    </div>
+
     <!-- Search Form Section -->
     <section id="search-section" class="py-8 relative z-20 scroll-mt-20">
         <div class="max-w-6xl mx-auto px-6">
@@ -1027,5 +1032,10 @@
             </div>
         </div>
     </section>
+
+    <!-- Google Ad Slot -->
+    <div class="max-w-7xl mx-auto px-6 pb-12">
+        <x-ad-slot slot="home_bottom_banner" class="my-6" />
+    </div>
 
 </x-public-layout>

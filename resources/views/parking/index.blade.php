@@ -166,6 +166,9 @@
 
             <!-- Main Results Layout Area -->
             <div class="lg:col-span-9">
+                <!-- Google Ad Slot -->
+                <x-ad-slot slot="parking_index_top_banner" class="mb-4" />
+
                 <!-- GRID VIEW -->
                 <div x-show="viewMode === 'grid'" class="grid grid-cols-1 md:grid-cols-2 gap-4" x-transition:enter="transition ease-out duration-300">
                     @forelse($spots as $spot)

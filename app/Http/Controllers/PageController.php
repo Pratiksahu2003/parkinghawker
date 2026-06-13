@@ -60,4 +60,19 @@ class PageController extends Controller
         // Simulating email sending or DB storage
         return back()->with('success', 'Thank you for your message! Our parking support team will contact you shortly.');
     }
+
+    public function privacy()
+    {
+        return view('legal.privacy');
+    }
+
+    public function terms()
+    {
+        return view('legal.terms');
+    }
+
+    public function refund()
+    {
+        return view('legal.refund');
+    }
 }

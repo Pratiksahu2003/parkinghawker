@@ -194,4 +194,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Google Ad Slot -->
+    <div class="max-w-7xl mx-auto px-6 pb-12">
+        <x-ad-slot slot="contact_bottom_banner" class="my-6" />
+    </div>
 </x-public-layout>

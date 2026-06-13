@@ -26,6 +26,9 @@ Route::get('/booking-confirmation', [BookingController::class, 'confirm'])->name
 // Static Pages
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('legal.privacy');
+Route::get('/terms-of-service', [PageController::class, 'terms'])->name('legal.terms');
+Route::get('/refund-policy', [PageController::class, 'refund'])->name('legal.refund');
 
 // Contact Page
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');

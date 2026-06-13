@@ -41,6 +41,11 @@
         </div>
     </section>
 
+    <!-- Google Ad Slot -->
+    <div class="max-w-7xl mx-auto px-6">
+        <x-ad-slot slot="about_middle_banner" class="my-4" />
+    </div>
+
     <!-- Timeline / Milestones -->
     <section class="py-10 bg-dark-secondary relative">
         <div class="max-w-4xl mx-auto px-6 space-y-8">

@@ -10,6 +10,12 @@
 
           gtag('config', 'G-P9XD2BB34G');
         </script>
+
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2075682642541479"
+             crossorigin="anonymous"></script>
+        <meta name="google-adsense-account" content="ca-pub-2075682642541479">
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Parking Hawker - Premium Smart Parking Solutions</title>
@@ -301,6 +307,11 @@
                 </div>
             </div>
         </section>
+
+        <!-- Google Ad Slot -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+            <x-ad-slot slot="welcome_bottom_banner" class="my-6" />
+        </div>
 
         <!-- Footer -->
         <footer class="border-t border-slate-900 bg-slate-950/60">

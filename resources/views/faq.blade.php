@@ -117,6 +117,9 @@
             </div>
         </div>
 
+        <!-- Google Ad Slot -->
+        <x-ad-slot slot="faq_bottom_banner" class="my-6" />
+
         <!-- Still Have Questions Section -->
         <div class="mt-10 glass-panel rounded-3xl p-5 text-center space-y-4">
             <h3 class="text-xl font-bold text-white">Still Have Unresolved Inquiries?</h3>

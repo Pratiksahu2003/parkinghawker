@@ -50,6 +50,9 @@
             </div>
         </header>
 
+        <!-- Google Ad Slot -->
+        <x-ad-slot slot="blog_show_top" class="mb-5" />
+
         <!-- YouTube Video Player or Banner Image -->
         @if(!empty($article['youtube_embed_url']))
             <div class="aspect-video w-full rounded-3xl overflow-hidden border border-white/5 mb-6 shadow-2xl">
@@ -94,22 +97,34 @@
             </div>
         </div>
 
+        <!-- Google Ad Slot -->
+        <x-ad-slot slot="blog_show_bottom" class="my-6" />
+
         <!-- Related articles list -->
         @if(count($related) > 0)
             <div class="space-y-4 pt-10 mt-10 border-t border-white/5">
                 <h3 class="text-xl font-bold text-white tracking-tight">Related Articles</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     @foreach($related as $rel)
-                        <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between h-full border border-white/5">
-                            <div class="h-28 overflow-hidden relative">
-                                <img src="{{ $rel['image'] }}" alt="{{ $rel['title'] }}" class="w-full h-full object-cover">
-                                <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-dark-primary/80 text-[9px] font-bold text-brand-cyan uppercase">{{ $rel['category'] }}</span>
+                        <div class="bg-white/[0.03] backdrop-blur-md rounded-2xl overflow-hidden flex flex-col justify-between h-full border border-white/10 hover:border-brand-cyan/30 transition-all duration-300 shadow-xl group">
+                            <div class="h-28 overflow-hidden relative bg-white/5">
+                                @if(!empty($rel['image']))
+                                    <img src="{{ $rel['image'] }}" alt="{{ $rel['title'] }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                @else
+                                    <!-- Fallback SVG for related image -->
+                                    <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-brand-cyan/10 to-brand-purple/10 text-neutral-500">
+                                        <svg class="h-8 w-8 text-neutral-600 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.9 2.9m-18 8.25h21.75a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 002.25 15.75zm10.5-6a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                                        </svg>
+                                    </div>
+                                @endif
+                                <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-dark-primary/80 backdrop-blur text-[9px] font-bold text-brand-cyan uppercase tracking-wider">{{ $rel['category'] }}</span>
                             </div>
                             <div class="p-3.5 space-y-2">
-                                <h4 class="text-xs sm:text-sm font-bold text-white line-clamp-2 leading-snug">
-                                    <a href="{{ route('blog.show', $rel['slug']) }}" class="hover:text-brand-cyan transition-colors">{{ $rel['title'] }}</a>
+                                <h4 class="text-xs sm:text-sm font-bold leading-snug">
+                                    <a href="{{ route('blog.show', $rel['slug']) }}" class="text-white hover:text-brand-cyan transition-colors duration-200 block">{{ $rel['title'] }}</a>
                                 </h4>
-                                <a href="{{ route('blog.show', $rel['slug']) }}" class="text-brand-cyan hover:text-brand-purple text-xs font-semibold inline-flex items-center gap-1 transition-colors">
+                                <a href="{{ route('blog.show', $rel['slug']) }}" class="text-brand-cyan hover:text-white text-xs font-bold inline-flex items-center gap-1 transition-colors duration-200">
                                     Read Article
                                     <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                                 </a>

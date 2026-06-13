@@ -12,6 +12,12 @@
 
       gtag('config', 'G-P9XD2BB34G');
     </script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2075682642541479"
+         crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-2075682642541479">
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -389,12 +395,11 @@
 
         <div
             class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-5 relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
-            <span>&copy; {{ date('Y') }} ParkingHawker Inc. All rights reserved. Built with premium Laravel
-                architecture.</span>
+            <span>&copy; {{ date('Y') }} ParkingHawker Inc. All rights reserved.</span>
             <div class="flex items-center gap-6">
-                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                <a href="#" class="hover:text-white transition-colors">Sitemap</a>
+                <a href="{{ route('legal.privacy') }}" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="{{ route('legal.terms') }}" class="hover:text-white transition-colors">Terms of Service</a>
+                <a href="{{ route('legal.refund') }}" class="hover:text-white transition-colors">Refund Policy</a>
             </div>
         </div>
     </footer>
