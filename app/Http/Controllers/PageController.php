@@ -75,4 +75,59 @@ class PageController extends Controller
     {
         return view('legal.refund');
     }
+
+    public function rentYourSpace()
+    {
+        return view('rent-your-space');
+    }
+
+    public function press()
+    {
+        return view('press');
+    }
+
+    public function career()
+    {
+        return view('career');
+    }
+
+    public function review()
+    {
+        return view('review');
+    }
+
+    public function cities()
+    {
+        return view('cities');
+    }
+
+    public function valetParking()
+    {
+        return view('valet-parking');
+    }
+
+    public function monthlyParking()
+    {
+        return view('monthly-parking');
+    }
+
+    public function listOfParkings()
+    {
+        return view('list-of-parkings');
+    }
+
+    public function eventParking()
+    {
+        return view('event-parking-spaces');
+    }
+
+    public function paidParking()
+    {
+        return view('paid-parking-spaces');
+    }
+
+    public function freeParking()
+    {
+        return view('free-parking-spaces');
+    }
 }

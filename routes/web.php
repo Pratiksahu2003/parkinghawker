@@ -27,17 +27,59 @@ Route::get('/booking-confirmation', [BookingController::class, 'confirm'])->name
 
 // Static Pages
 Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/about.html', [PageController::class, 'about']);
+
+Route::get('/rent-your-space', [PageController::class, 'rentYourSpace'])->name('rent-your-space');
+Route::get('/rent-your-space.html', [PageController::class, 'rentYourSpace']);
+
+Route::get('/press', [PageController::class, 'press'])->name('press');
+Route::get('/press.html', [PageController::class, 'press']);
+
+Route::get('/career', [PageController::class, 'career'])->name('career');
+Route::get('/career.html', [PageController::class, 'career']);
+
+Route::get('/review', [PageController::class, 'review'])->name('review');
+Route::get('/review.html', [PageController::class, 'review']);
+
+Route::get('/cities', [PageController::class, 'cities'])->name('cities');
+Route::get('/cities.html', [PageController::class, 'cities']);
+
+Route::get('/valet-parking', [PageController::class, 'valetParking'])->name('valet-parking');
+Route::get('/valet-parking.html', [PageController::class, 'valetParking']);
+
+Route::get('/monthly-parking', [PageController::class, 'monthlyParking'])->name('monthly-parking');
+Route::get('/monthly-parking.html', [PageController::class, 'monthlyParking']);
+
+Route::get('/list-of-parkings', [PageController::class, 'listOfParkings'])->name('list-of-parkings');
+Route::get('/list-of-parkings.html', [PageController::class, 'listOfParkings']);
+
+Route::get('/event-parking-spaces', [PageController::class, 'eventParking'])->name('event-parking-spaces');
+Route::get('/event-parking-spaces.html', [PageController::class, 'eventParking']);
+
+Route::get('/paid-parking-spaces', [PageController::class, 'paidParking'])->name('paid-parking-spaces');
+Route::get('/paid-parking-spaces.html', [PageController::class, 'paidParking']);
+
+Route::get('/free-parking-spaces', [PageController::class, 'freeParking'])->name('free-parking-spaces');
+Route::get('/free-parking-spaces.html', [PageController::class, 'freeParking']);
+
 Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+
 Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('legal.privacy');
+Route::get('/privacy-policy.html', [PageController::class, 'privacy']);
+
 Route::get('/terms-of-service', [PageController::class, 'terms'])->name('legal.terms');
+
 Route::get('/refund-policy', [PageController::class, 'refund'])->name('legal.refund');
+Route::get('/cancellations-and-refunds.html', [PageController::class, 'refund']);
 
 // Contact Page
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/contact-us.html', [PageController::class, 'contact']);
 Route::post('/contact', [PageController::class, 'submitContact'])->name('contact.submit');
 
 // Blog Pages
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog.html', [BlogController::class, 'index']);
 Route::get('/blog/category/{categorySlug}', [BlogController::class, 'category'])->name('blog.category');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
@@ -68,3 +110,9 @@ Route::get('/parking-in/{code}/{city}/{slug}', [SitemapParkingController::class,
 Route::get('/parking-near-me/{locationSlug}', [SitemapLocationController::class, 'show'])
     ->where('locationSlug', '.*\.html$')
     ->name('sitemap.location.show');
+
+// Pattern: /book-parking-space-in/{city}.html
+// e.g. /book-parking-space-in/agra.html
+Route::get('/book-parking-space-in/{city}', [SitemapLocationController::class, 'showCity'])
+    ->where('city', '.*\.html$')
+    ->name('sitemap.city.show');

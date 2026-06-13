@@ -7,6 +7,29 @@ use Illuminate\Http\Request;
 class SitemapLocationController extends Controller
 {
     /**
+     * Handle /book-parking-space-in/{city}.html
+     * These are city-level pages listed in sitemap.xml.
+     */
+    public function showCity(string $city)
+    {
+        // Strip trailing .html if captured in slug
+        $citySlug = preg_replace('/\.html$/', '', $city);
+        $cityName = ucwords(str_replace(['-', '_'], ' ', $citySlug));
+
+        // Static parking spot cards for this city (for SEO content + CTA)
+        $nearbySpots = $this->getNearbySpots($cityName);
+
+        $location = [
+            'slug'  => $citySlug,
+            'name'  => 'City Center, ' . $cityName,
+            'city'  => $cityName,
+            'image' => 'https://images.unsplash.com/photo-1573348722427-f1d6819fdf98?auto=format&fit=crop&q=80&w=1200',
+        ];
+
+        return view('sitemap.parking-near-me-show', compact('location', 'nearbySpots'));
+    }
+
+    /**
      * Handle /parking-near-me/{location-slug}.html
      * These are the location-level pages listed in sitemap-locations.xml.
      * The slug encodes a full address / area name.
