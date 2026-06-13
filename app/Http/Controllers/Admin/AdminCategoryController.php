@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class AdminCategoryController extends Controller
 {
@@ -42,6 +43,7 @@ class AdminCategoryController extends Controller
         }
 
         BlogCategory::create($validated);
+        Cache::flush();
 
         return redirect()->route('admin.categories.index')
             ->with('success', 'Category created successfully!');
@@ -79,6 +81,7 @@ class AdminCategoryController extends Controller
         }
 
         $category->update($validated);
+        Cache::flush();
 
         return redirect()->route('admin.categories.index')
             ->with('success', 'Category updated successfully!');
@@ -94,6 +97,7 @@ class AdminCategoryController extends Controller
         }
 
         $category->delete();
+        Cache::flush();
 
         return redirect()->route('admin.categories.index')
             ->with('success', 'Category deleted successfully!');

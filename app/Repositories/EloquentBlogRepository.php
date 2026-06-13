@@ -4,92 +4,111 @@ namespace App\Repositories;
 
 use App\Models\BlogPost;
 use App\Models\BlogCategory;
+use Illuminate\Support\Facades\Cache;
 
 class EloquentBlogRepository implements BlogRepositoryInterface
 {
     public function all(): array
     {
-        return BlogPost::with('category')
-            ->published()
-            ->orderByDesc('published_at')
-            ->get()
-            ->map(fn ($post) => $this->formatPost($post))
-            ->toArray();
+        return Cache::remember('blog_posts_all', 3600, function () {
+            return BlogPost::with('category')
+                ->published()
+                ->orderByDesc('published_at')
+                ->get()
+                ->map(fn ($post) => $this->formatPost($post))
+                ->toArray();
+        });
     }
 
     public function findBySlug(string $slug): ?array
     {
-        $post = BlogPost::with('category')->where('slug', $slug)->first();
+        $post = Cache::remember("blog_post_slug_{$slug}", 3600, function () use ($slug) {
+            $p = BlogPost::with('category')->where('slug', $slug)->first();
+            return $p ? $this->formatPost($p) : null;
+        });
+
         if ($post) {
-            $post->incrementViews();
-            return $this->formatPost($post);
+            BlogPost::where('id', $post['id'])->increment('views_count');
+            $post['views_count']++;
         }
-        return null;
+
+        return $post;
     }
 
     public function findById(int $id): ?array
     {
-        $post = BlogPost::with('category')->find($id);
-        return $post ? $this->formatPost($post) : null;
+        return Cache::remember("blog_post_id_{$id}", 3600, function () use ($id) {
+            $post = BlogPost::with('category')->find($id);
+            return $post ? $this->formatPost($post) : null;
+        });
     }
 
     public function getRelated(array $article, int $limit = 3): array
     {
-        return BlogPost::with('category')
-            ->published()
-            ->where('slug', '!=', $article['slug'])
-            ->where('category_id', function ($q) use ($article) {
-                $q->select('id')
-                  ->from('blog_categories')
-                  ->where('name', $article['category'])
-                  ->limit(1);
-            })
-            ->orderByDesc('published_at')
-            ->limit($limit)
-            ->get()
-            ->map(fn ($post) => $this->formatPost($post))
-            ->toArray();
+        $cacheKey = "blog_related_" . md5($article['slug'] . '_' . $limit);
+        return Cache::remember($cacheKey, 3600, function () use ($article, $limit) {
+            return BlogPost::with('category')
+                ->published()
+                ->where('slug', '!=', $article['slug'])
+                ->where('category_id', function ($q) use ($article) {
+                    $q->select('id')
+                      ->from('blog_categories')
+                      ->where('name', $article['category'])
+                      ->limit(1);
+                })
+                ->orderByDesc('published_at')
+                ->limit($limit)
+                ->get()
+                ->map(fn ($post) => $this->formatPost($post))
+                ->toArray();
+        });
     }
 
     public function search(array $filters): array
     {
-        $query = BlogPost::with('category')->published();
+        $cacheKey = "blog_search_" . md5(serialize($filters));
+        return Cache::remember($cacheKey, 300, function () use ($filters) {
+            $query = BlogPost::with('category')->published();
 
-        if (!empty($filters['query'])) {
-            $search = $filters['query'];
-            $query->where(function ($q) use ($search) {
-                $q->where('title', 'ilike', "%{$search}%")
-                  ->orWhere('excerpt', 'ilike', "%{$search}%")
-                  ->orWhereHas('category', function ($cq) use ($search) {
-                      $cq->where('name', 'ilike', "%{$search}%");
-                  });
-            });
-        }
+            if (!empty($filters['query'])) {
+                $search = $filters['query'];
+                $query->where(function ($q) use ($search) {
+                    $q->where('title', 'ilike', "%{$search}%")
+                      ->orWhere('excerpt', 'ilike', "%{$search}%")
+                      ->orWhereHas('category', function ($cq) use ($search) {
+                          $cq->where('name', 'ilike', "%{$search}%");
+                      });
+                });
+            }
 
-        if (!empty($filters['category']) && $filters['category'] !== 'all') {
-            $query->whereHas('category', function ($q) use ($filters) {
-                $q->where('name', $filters['category']);
-            });
-        }
+            if (!empty($filters['category']) && $filters['category'] !== 'all') {
+                $query->whereHas('category', function ($q) use ($filters) {
+                    $q->where('name', $filters['category']);
+                });
+            }
 
-        return $query->orderByDesc('published_at')
-            ->get()
-            ->map(fn ($post) => $this->formatPost($post))
-            ->toArray();
+            return $query->orderByDesc('published_at')
+                ->get()
+                ->map(fn ($post) => $this->formatPost($post))
+                ->toArray();
+        });
     }
 
     public function getCategories(): array
     {
-        return BlogCategory::active()
-            ->ordered()
-            ->pluck('name')
-            ->toArray();
+        return Cache::remember('blog_categories', 3600, function () {
+            return BlogCategory::active()
+                ->ordered()
+                ->pluck('name')
+                ->toArray();
+        });
     }
 
     public function create(array $data): array
     {
         $post = BlogPost::create($data);
         $post->load('category');
+        $this->clearCache();
         return $this->formatPost($post);
     }
 
@@ -101,6 +120,7 @@ class EloquentBlogRepository implements BlogRepositoryInterface
         }
         $post->update($data);
         $post->load('category');
+        $this->clearCache();
         return $this->formatPost($post);
     }
 
@@ -110,7 +130,16 @@ class EloquentBlogRepository implements BlogRepositoryInterface
         if (!$post) {
             return false;
         }
-        return $post->delete();
+        $deleted = $post->delete();
+        if ($deleted) {
+            $this->clearCache();
+        }
+        return $deleted;
+    }
+
+    protected function clearCache(): void
+    {
+        Cache::flush();
     }
 
     /**

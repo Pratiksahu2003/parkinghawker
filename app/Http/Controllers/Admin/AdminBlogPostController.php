@@ -7,6 +7,7 @@ use App\Models\BlogPost;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class AdminBlogPostController extends Controller
 {
@@ -97,6 +98,7 @@ class AdminBlogPostController extends Controller
         }
 
         BlogPost::create($validated);
+        Cache::flush();
 
         return redirect()->route('admin.posts.index')
             ->with('success', 'Blog post created successfully!');
@@ -167,6 +169,7 @@ class AdminBlogPostController extends Controller
         }
 
         $post->update($validated);
+        Cache::flush();
 
         return redirect()->route('admin.posts.index')
             ->with('success', 'Blog post updated successfully!');
@@ -176,6 +179,7 @@ class AdminBlogPostController extends Controller
     {
         $post = BlogPost::findOrFail($id);
         $post->delete();
+        Cache::flush();
 
         return redirect()->route('admin.posts.index')
             ->with('success', 'Blog post deleted successfully!');

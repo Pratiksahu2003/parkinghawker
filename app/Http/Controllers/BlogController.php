@@ -18,17 +18,28 @@ class BlogController extends Controller
     {
         $filters = $request->only(['query', 'category']);
         $articles = $this->blogService->searchArticles($filters);
-        $categories = \App\Models\BlogCategory::active()->ordered()->get();
+        $categories = \Illuminate\Support\Facades\Cache::remember('blog_categories_models', 3600, function () {
+            return \App\Models\BlogCategory::active()->ordered()->get();
+        });
 
         return view('blog.index', compact('articles', 'categories', 'filters'));
     }
 
     public function category($categorySlug)
     {
-        $categoryModel = \App\Models\BlogCategory::active()->where('slug', $categorySlug)->firstOrFail();
+        $categoryModel = \Illuminate\Support\Facades\Cache::remember("blog_category_slug_{$categorySlug}", 3600, function () use ($categorySlug) {
+            return \App\Models\BlogCategory::active()->where('slug', $categorySlug)->first();
+        });
+        
+        if (!$categoryModel) {
+            abort(404, 'Category not found');
+        }
+
         $filters = ['category' => $categoryModel->name];
         $articles = $this->blogService->searchArticles($filters);
-        $categories = \App\Models\BlogCategory::active()->ordered()->get();
+        $categories = \Illuminate\Support\Facades\Cache::remember('blog_categories_models', 3600, function () {
+            return \App\Models\BlogCategory::active()->ordered()->get();
+        });
         $activeCategory = $categoryModel->name;
 
         return view('blog.index', compact('articles', 'categories', 'filters', 'activeCategory'));
