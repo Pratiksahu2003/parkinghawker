@@ -117,9 +117,10 @@
 
         {{-- Background photo --}}
         <div class="absolute inset-0 z-0">
-            <img src="{{ $pageImage }}" alt="{{ $spot['name'] }} parking facility"
+            <img src="{{ $pageImage }}" alt=""
                 class="w-full h-full object-cover opacity-[0.12]"
-                loading="eager" fetchpriority="high">
+                loading="eager" fetchpriority="high" role="presentation"
+                onerror="this.style.display='none'">
             <div class="absolute inset-0 bg-gradient-to-t from-[#04060d] via-[#04060d]/75 to-transparent"></div>
         </div>
 
