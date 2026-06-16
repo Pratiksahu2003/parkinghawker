@@ -45,5 +45,7 @@
             </a>
             @endforeach
         </div>
+
+        <x-ad-slot slot="cities_bottom_banner" class="my-6" />
     </section>
 </x-public-layout>

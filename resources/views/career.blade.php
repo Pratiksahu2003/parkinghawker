@@ -49,5 +49,7 @@
             </div>
             @endforeach
         </div>
+
+        <x-ad-slot slot="career_bottom_banner" class="my-6" />
     </section>
 </x-public-layout>

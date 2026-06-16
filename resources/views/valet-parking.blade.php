@@ -118,6 +118,11 @@
         </div>
     </div>
 
+    <!-- Valet Mid Ad Banner -->
+    <div class="max-w-7xl mx-auto px-6">
+        <x-ad-slot slot="valet_mid_banner" class="my-8" />
+    </div>
+
     <!-- Core Features Grid -->
     <section id="details" class="py-16 max-w-7xl mx-auto px-6 space-y-12">
         <div class="text-center space-y-2">
@@ -212,4 +217,8 @@
         </div>
     </section>
 
+    <!-- Valet Bottom Ad Banner -->
+    <div class="max-w-7xl mx-auto px-6 pb-12">
+        <x-ad-slot slot="valet_bottom_banner" class="my-8" />
+    </div>
 </x-public-layout>

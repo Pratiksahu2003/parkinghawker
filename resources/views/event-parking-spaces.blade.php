@@ -90,6 +90,11 @@
         </div>
     </div>
 
+    <!-- Event Mid Ad Banner -->
+    <div class="max-w-7xl mx-auto px-6">
+        <x-ad-slot slot="event_mid_banner" class="my-8" />
+    </div>
+
     <!-- Venue Categories Grid -->
     <section class="py-16 max-w-7xl mx-auto px-6 space-y-12">
         <div class="text-center space-y-2">
@@ -182,4 +187,8 @@
         </div>
     </section>
 
+    <!-- Event Bottom Ad Banner -->
+    <div class="max-w-7xl mx-auto px-6 pb-12">
+        <x-ad-slot slot="event_bottom_banner" class="my-8" />
+    </div>
 </x-public-layout>
