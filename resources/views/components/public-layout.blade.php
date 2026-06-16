@@ -14,9 +14,9 @@
     </script>
 
     <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2075682642541479"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ config('services.google_adsense.client', 'ca-pub-2075682642541479') }}"
          crossorigin="anonymous"></script>
-    <meta name="google-adsense-account" content="ca-pub-2075682642541479">
+    <meta name="google-adsense-account" content="{{ config('services.google_adsense.client', 'ca-pub-2075682642541479') }}">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

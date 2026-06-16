@@ -46,5 +46,7 @@
             </div>
             @endforeach
         </div>
+
+        <x-ad-slot slot="review_bottom_banner" class="my-6" />
     </section>
 </x-public-layout>

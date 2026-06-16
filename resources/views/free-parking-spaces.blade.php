@@ -90,6 +90,11 @@
         </div>
     </section>
 
+    <!-- Free Mid Ad Banner -->
+    <div class="max-w-7xl mx-auto px-6">
+        <x-ad-slot slot="free_mid_banner" class="my-8" />
+    </div>
+
     <!-- EEAT Authoritative Section: Compliance Checklist -->
     <section class="py-12 bg-white/[0.01] border-y border-white/5">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -164,4 +169,8 @@
         </div>
     </section>
 
+    <!-- Free Bottom Ad Banner -->
+    <div class="max-w-7xl mx-auto px-6 pb-12">
+        <x-ad-slot slot="free_bottom_banner" class="my-8" />
+    </div>
 </x-public-layout>
