@@ -19,6 +19,7 @@
     <meta name="google-adsense-account" content="{{ config('services.google_adsense.client', 'ca-pub-2075682642541479') }}">
 
     <meta charset="utf-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

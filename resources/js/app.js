@@ -33,23 +33,27 @@ gsap.ticker.lagSmoothing(0);
 // Global GSAP Page Reveals
 document.addEventListener('DOMContentLoaded', () => {
   // Fade in animation targets
-  gsap.from('.reveal-fade', {
-    opacity: 0,
-    duration: 1,
-    stagger: 0.15,
-    ease: 'power2.out',
-    delay: 0.2
-  });
+  if (document.querySelector('.reveal-fade')) {
+    gsap.from('.reveal-fade', {
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: 'power2.out',
+      delay: 0.2
+    });
+  }
 
   // Upward entrance animations
-  gsap.from('.reveal-up', {
-    y: 40,
-    opacity: 0,
-    duration: 1.2,
-    stagger: 0.1,
-    ease: 'power4.out',
-    delay: 0.1
-  });
+  if (document.querySelector('.reveal-up')) {
+    gsap.from('.reveal-up', {
+      y: 40,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.1,
+      ease: 'power4.out',
+      delay: 0.1
+    });
+  }
 
   // Parallax background items
   gsap.utils.toArray('.parallax-bg').forEach((bg) => {
